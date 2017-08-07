@@ -1,8 +1,8 @@
 package com.bupt.flowpackage.biz.auth.model;
 
-import com.bupt.flowpackage.common.domain.BaseRequest;
+import com.bupt.flowpackage.common.domain.PageRequest;
 
-public class AdminRoleListReq extends BaseRequest{
+public class AdminRoleListReq extends PageRequest{
 
 	private static final long serialVersionUID = 1L;
 	/**手机号*/

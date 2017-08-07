@@ -8,13 +8,13 @@
 						http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 					
     <!-- 数据源配置, 使用 Druid 数据库连接池 -->
-    <bean id="orderDataSource" class="com.alibaba.druid.pool.DruidDataSource" 
+    <bean id="tradeDataSource" class="com.alibaba.druid.pool.DruidDataSource" 
           init-method="init" destroy-method="close">
         <!-- 数据源驱动类可不写，Druid默认会自动根据URL识别DriverClass -->
         <property name="driverClassName" value="${jdbc.driver}" />
-        <property name="url" value="${order.jdbc.url}" />
-        <property name="username" value="${jdbc.username}" />
-        <property name="password" value="${jdbc.password}" />
+        <property name="url" value="${trade.jdbc.url}" />
+        <property name="username" value="${trade.jdbc.username}" />
+        <property name="password" value="${trade.jdbc.password}" />
         <!-- 配置初始化大小、最小、最大 -->
         <property name="maxActive" value="${jdbc.maxActive}" />
         <property name="initialSize" value="${jdbc.initialSize}" />
@@ -34,24 +34,24 @@
     </bean>
     
     <!-- MyBatis SqlSessionFactoryBean -->
-    <bean id="orderSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="orderDataSource"/>
+    <bean id="tradeSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="tradeDataSource"/>
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
-        <property name="mapperLocations" value="classpath*:com/bupt/flowpackage/mybatis/order/**/mapping/*Mapper.xml"/>
+        <property name="mapperLocations" value="classpath*:com/bupt/flowpackage/mybatis/trade/**/mapping/*Mapper.xml"/>
     </bean>
 
     <!-- 扫描basePackage下所有以@MyBatisRepository标识的 接口-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.bupt.flowpackage.mybatis.order"/>
+        <property name="basePackage" value="com.bupt.flowpackage.mybatis.trade"/>
         <property name="annotationClass" value="com.bupt.flowpackage.common.annotation.MyBatisRepository"/>
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+        <property name="sqlSessionFactoryBeanName" value="tradeSqlSessionFactory" />
     </bean>
 
-	<bean id="orderTxManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="orderDataSource" />
+	<bean id="tradeTxManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="tradeDataSource" />
 	</bean>
     
 	<!-- 支持通过注解添加事务 -->
-	<tx:annotation-driven proxy-target-class="true"	transaction-manager="orderTxManager" />
+	<tx:annotation-driven proxy-target-class="true"	transaction-manager="tradeTxManager" />
     
 </beans>

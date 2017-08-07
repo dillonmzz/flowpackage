@@ -20,6 +20,8 @@
 		<typeAlias type="com.bupt.flowpackage.mybatis.account.adminrole.model.AdminRole" alias="adminRole"/>
 		<typeAlias type="com.bupt.flowpackage.mybatis.account.menu.model.Menu" alias="menu"/>
 		<typeAlias type="com.bupt.flowpackage.mybatis.account.application.model.Application" alias="application"/>
+		<typeAlias type="com.bupt.flowpackage.mybatis.trade.provinces.model.Provinces" alias="provinces"/>
+		<typeAlias type="com.bupt.flowpackage.mybatis.trade.cities.model.Cities" alias="cities"/>
 	</typeAliases>
 
     <plugins>

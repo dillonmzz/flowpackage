@@ -13,8 +13,8 @@
         <!-- 数据源驱动类可不写，Druid默认会自动根据URL识别DriverClass -->
         <property name="driverClassName" value="${jdbc.driver}" />
         <property name="url" value="${account.jdbc.url}" />
-        <property name="username" value="${jdbc.username}" />
-        <property name="password" value="${jdbc.password}" />
+        <property name="username" value="${account.jdbc.username}" />
+        <property name="password" value="${account.jdbc.password}" />
         <!-- 配置初始化大小、最小、最大 -->
         <property name="maxActive" value="${jdbc.maxActive}" />
         <property name="initialSize" value="${jdbc.initialSize}" />

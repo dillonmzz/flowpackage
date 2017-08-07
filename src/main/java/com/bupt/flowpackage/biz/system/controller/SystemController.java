@@ -1,7 +1,17 @@
 package com.bupt.flowpackage.biz.system.controller;
 
+import javax.annotation.Resource;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.bupt.flowpackage.biz.system.model.ProvinceResp;
+import com.bupt.flowpackage.biz.system.service.SystemService;
+import com.bupt.flowpackage.common.domain.BaseResponse;
+import com.bupt.flowpackage.common.exception.ExceptionHelper;
 /**
 * @Description:系统模块
 * @author wangdaojian
@@ -11,6 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/system")
 public class SystemController {
+	public static Logger logger = LoggerFactory.getLogger(SystemController.class);
+	
+	@Resource
+	private SystemService systemService;
 	
 	/**
 	 * <p>系统日志</p>   
@@ -21,5 +35,23 @@ public class SystemController {
 	@RequestMapping("/system-log")
 	public String adminPermission() {
 		return "system/system-log";
+	}
+	
+	/**
+	 * <p>获取省份</p>   
+	 * @param @return      
+	 * @return String
+	 */
+	@ResponseBody
+	@RequestMapping("/api/provinces")
+	public BaseResponse<ProvinceResp> provinces() {
+		BaseResponse<ProvinceResp> baseResp = new BaseResponse<ProvinceResp>();
+		try{
+			ProvinceResp provinceResp = systemService.getAllProvinces();
+			baseResp.setData(provinceResp);
+		}catch(Exception e) {
+			baseResp = ExceptionHelper.createResponse(e);
+		}
+		return baseResp;
 	}
 }
