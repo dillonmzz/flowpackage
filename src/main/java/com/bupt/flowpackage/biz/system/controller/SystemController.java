@@ -6,8 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bupt.flowpackage.biz.system.model.CityResp;
 import com.bupt.flowpackage.biz.system.model.ProvinceResp;
 import com.bupt.flowpackage.biz.system.service.SystemService;
 import com.bupt.flowpackage.common.domain.BaseResponse;
@@ -54,4 +56,24 @@ public class SystemController {
 		}
 		return baseResp;
 	}
+	
+	/**
+	 * <p>获取省份下的城市</p>   
+	 * @param @param provinceCode
+	 * @param @return      
+	 * @return BaseResponse<CityResp>
+	 */
+	@ResponseBody
+	@RequestMapping("/api/getcity")
+	public BaseResponse<CityResp> getcity(@RequestParam(required=true)String provinceCode) {
+		BaseResponse<CityResp> baseResp = new BaseResponse<CityResp>();
+		try{
+			CityResp cityResp = systemService.getCitiesByProvinceCode(provinceCode);
+			baseResp.setData(cityResp);
+		}catch(Exception e) {
+			baseResp = ExceptionHelper.createResponse(e);
+		}
+		return baseResp;
+	}
+	
 }

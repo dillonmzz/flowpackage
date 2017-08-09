@@ -1,7 +1,10 @@
 package com.bupt.flowpackage.mybatis.trade.cities.mapper;
 
-import com.bupt.flowpackage.mybatis.trade.cities.model.Cities;
+import java.util.List;
 
+import com.bupt.flowpackage.common.annotation.MyBatisRepository;
+import com.bupt.flowpackage.mybatis.trade.cities.model.Cities;
+@MyBatisRepository
 public interface CitiesMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -10,6 +13,8 @@ public interface CitiesMapper {
     int insertSelective(Cities record);
 
     Cities selectByPrimaryKey(Integer id);
+    
+    List<Cities> selectBySelective(Cities cities);
 
     int updateByPrimaryKeySelective(Cities record);
 

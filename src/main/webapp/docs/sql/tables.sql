@@ -151,8 +151,8 @@ alter table sys_button comment '系统按钮表';
 create table sys_provinces
 (
    id                   int not null auto_increment comment '主键',
-   province_code           varchar(20) not null comment '省code',
-   province_name             varchar(50) not null comment '省名称',
+   province_code           varchar(8) not null comment '省code',
+   province_name             varchar(32) not null comment '省名称',
    primary key (id)
 );
 alter table sys_provinces comment '省份表';  
@@ -160,9 +160,9 @@ alter table sys_provinces comment '省份表';
 create table sys_cities
 (
    id                   int not null auto_increment comment '主键',
-   city_code           	varchar(20) not null comment '城市code',
-   city_name             	varchar(50) not null comment '城市名称',
-   province_code 			varchar(20) NOT NULL comment '省code',
+   city_code           	varchar(8) not null comment '城市code',
+   city_name             	varchar(32) not null comment '城市名称',
+   province_code 			varchar(8) NOT NULL comment '省code',
    status 				boolean default true comment '状态 1可用 0不可用',
    primary key (id)
 );
@@ -171,9 +171,9 @@ alter table sys_cities comment '城市表';
 create table sys_areas
 (
    id                   int not null auto_increment comment '主键',
-   area_code           	varchar(20) not null comment '区域code',
-   area_name             	varchar(50) not null comment '区域名称',
-   city_code 				varchar(20) NOT NULL comment '城市code',
+   area_code           	varchar(8) not null comment '区域code',
+   area_name             	varchar(32) not null comment '区域名称',
+   city_code 				varchar(8) NOT NULL comment '城市code',
    status 				boolean default true comment '状态 1可用 0不可用',
    primary key (id)
 );
