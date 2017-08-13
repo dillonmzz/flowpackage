@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bupt.flowpackage.mybatis.trade.order.mapper.FLowOrderMapper" >
-  <resultMap id="BaseResultMap" type="com.bupt.flowpackage.mybatis.trade.order.model.FLowOrder" >
+  <resultMap id="BaseResultMap" type="flowOrder" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
     <result column="mobile" property="mobile" jdbcType="VARCHAR" />
@@ -50,7 +50,7 @@
     delete from flow_order
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.bupt.flowpackage.mybatis.trade.order.model.FLowOrder" >
+  <insert id="insert" parameterType="flowOrder" >
     insert into flow_order (id, order_no, mobile, 
       customer_id, customer_account, provider_id, 
       provider_code, channel_id, channel_name, 
@@ -74,7 +74,7 @@
       #{customerCallbackTime,jdbcType=TIMESTAMP}, #{refundTime,jdbcType=TIMESTAMP}, #{errorMsg,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.bupt.flowpackage.mybatis.trade.order.model.FLowOrder" >
+  <insert id="insertSelective" parameterType="flowOrder" >
     insert into flow_order
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -261,7 +261,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bupt.flowpackage.mybatis.trade.order.model.FLowOrder" >
+  <update id="updateByPrimaryKeySelective" parameterType="flowOrder" >
     update flow_order
     <set >
       <if test="orderNo != null" >
@@ -354,7 +354,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bupt.flowpackage.mybatis.trade.order.model.FLowOrder" >
+  <update id="updateByPrimaryKey" parameterType="flowOrder" >
     update flow_order
     set order_no = #{orderNo,jdbcType=VARCHAR},
       mobile = #{mobile,jdbcType=VARCHAR},

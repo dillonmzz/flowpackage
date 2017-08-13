@@ -1,7 +1,11 @@
 package com.bupt.flowpackage.mybatis.trade.cities.model;
 
-public class Cities {
-    private Integer id;
+import com.bupt.flowpackage.common.domain.BaseBean;
+
+public class Cities extends BaseBean{
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private String cityCode;
 

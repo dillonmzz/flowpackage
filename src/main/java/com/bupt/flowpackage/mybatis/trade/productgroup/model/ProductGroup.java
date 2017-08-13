@@ -2,14 +2,20 @@ package com.bupt.flowpackage.mybatis.trade.productgroup.model;
 
 import java.util.Date;
 
-public class ProductGroup {
-    private Integer id;
+import com.bupt.flowpackage.common.domain.BaseBean;
+
+public class ProductGroup extends BaseBean{
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private String productName;
 
     private Byte operatorCode;
 
     private String provinceCode;
+    
+    private String provinceName;
 
     private String cityCode;
 
@@ -18,8 +24,26 @@ public class ProductGroup {
     private Date createTime;
 
     private String createName;
+    /**子产品数*/
+    private Integer childProductNums;
 
-    public Integer getId() {
+    public String getProvinceName() {
+		return provinceName;
+	}
+
+	public void setProvinceName(String provinceName) {
+		this.provinceName = provinceName;
+	}
+
+	public Integer getChildProductNums() {
+		return childProductNums;
+	}
+
+	public void setChildProductNums(Integer childProductNums) {
+		this.childProductNums = childProductNums;
+	}
+
+	public Integer getId() {
         return id;
     }
 

@@ -2,8 +2,12 @@ package com.bupt.flowpackage.mybatis.trade.order.model;
 
 import java.util.Date;
 
-public class FLowOrder {
-    private Integer id;
+import com.bupt.flowpackage.common.domain.BaseBean;
+
+public class FLowOrder extends BaseBean{
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private String orderNo;
 

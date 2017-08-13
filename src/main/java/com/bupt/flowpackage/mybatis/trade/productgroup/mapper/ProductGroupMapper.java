@@ -1,5 +1,7 @@
 package com.bupt.flowpackage.mybatis.trade.productgroup.mapper;
 
+import java.util.List;
+
 import com.bupt.flowpackage.common.annotation.MyBatisRepository;
 import com.bupt.flowpackage.mybatis.trade.productgroup.model.ProductGroup;
 @MyBatisRepository
@@ -9,6 +11,8 @@ public interface ProductGroupMapper {
     int insert(ProductGroup record);
 
     int insertSelective(ProductGroup record);
+    
+    List<ProductGroup> selectProductGroupPage(ProductGroup productGroup);
 
     ProductGroup selectByPrimaryKey(Integer id);
 

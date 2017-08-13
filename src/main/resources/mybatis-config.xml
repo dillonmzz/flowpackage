@@ -16,12 +16,22 @@
     </settings>
     
     <typeAliases>
+    	<!-- 账号库 -->
 		<typeAlias type="com.bupt.flowpackage.mybatis.account.admin.model.Admin" alias="admin"/>
 		<typeAlias type="com.bupt.flowpackage.mybatis.account.adminrole.model.AdminRole" alias="adminRole"/>
 		<typeAlias type="com.bupt.flowpackage.mybatis.account.menu.model.Menu" alias="menu"/>
 		<typeAlias type="com.bupt.flowpackage.mybatis.account.application.model.Application" alias="application"/>
+		<!-- 交易库 -->
 		<typeAlias type="com.bupt.flowpackage.mybatis.trade.provinces.model.Provinces" alias="provinces"/>
 		<typeAlias type="com.bupt.flowpackage.mybatis.trade.cities.model.Cities" alias="cities"/>
+		<typeAlias type="com.bupt.flowpackage.mybatis.trade.channel.model.Channel" alias="channel"/>
+		<typeAlias type="com.bupt.flowpackage.mybatis.trade.channelproduct.model.ChannelProduct" alias="channelProduct"/>
+		<typeAlias type="com.bupt.flowpackage.mybatis.trade.product.model.Product" alias="product"/>
+		<typeAlias type="com.bupt.flowpackage.mybatis.trade.productgroup.model.ProductGroup" alias="productGroup"/>
+		<typeAlias type="com.bupt.flowpackage.mybatis.trade.customer.model.Customer" alias="customer"/>
+		<typeAlias type="com.bupt.flowpackage.mybatis.trade.customerproduct.model.CustomerProduct" alias="customerProduct"/>
+		<typeAlias type="com.bupt.flowpackage.mybatis.trade.order.model.FLowOrder" alias="flowOrder"/>
+		<typeAlias type="com.bupt.flowpackage.mybatis.trade.provider.model.Provider" alias="provider"/>
 	</typeAliases>
 
     <plugins>

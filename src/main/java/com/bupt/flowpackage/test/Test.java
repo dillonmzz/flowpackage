@@ -6,7 +6,8 @@ package com.bupt.flowpackage.test;
 */
 public class Test {
 	public static void main(String[] args) {
-		System.out.println();
+		Byte a = 124;
+		System.out.println(a);
 	}
 }
  

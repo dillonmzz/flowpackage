@@ -2,8 +2,12 @@ package com.bupt.flowpackage.mybatis.trade.channelproduct.model;
 
 import java.util.Date;
 
-public class ChannelProduct {
-    private Integer id;
+import com.bupt.flowpackage.common.domain.BaseBean;
+
+public class ChannelProduct extends BaseBean{
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private Integer channelId;
 

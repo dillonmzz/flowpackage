@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bupt.flowpackage.mybatis.trade.product.mapper.ProductMapper" >
-  <resultMap id="BaseResultMap" type="com.bupt.flowpackage.mybatis.trade.product.model.Product" >
+  <resultMap id="BaseResultMap" type="product" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="product_group_id" property="productGroupId" jdbcType="INTEGER" />
     <result column="product_code" property="productCode" jdbcType="VARCHAR" />
@@ -26,7 +26,7 @@
     delete from res_product
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.bupt.flowpackage.mybatis.trade.product.model.Product" >
+  <insert id="insert" parameterType="product" >
     insert into res_product (id, product_group_id, product_code, 
       flow_value, market_price, flow_type, 
       flow_desc, create_name, create_time
@@ -36,7 +36,7 @@
       #{flowDesc,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.bupt.flowpackage.mybatis.trade.product.model.Product" >
+  <insert id="insertSelective" parameterType="product" >
     insert into res_product
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -97,7 +97,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bupt.flowpackage.mybatis.trade.product.model.Product" >
+  <update id="updateByPrimaryKeySelective" parameterType="product" >
     update res_product
     <set >
       <if test="productGroupId != null" >
@@ -127,7 +127,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bupt.flowpackage.mybatis.trade.product.model.Product" >
+  <update id="updateByPrimaryKey" parameterType="product" >
     update res_product
     set product_group_id = #{productGroupId,jdbcType=INTEGER},
       product_code = #{productCode,jdbcType=VARCHAR},

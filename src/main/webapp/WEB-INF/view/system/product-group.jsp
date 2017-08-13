@@ -21,7 +21,7 @@
 		<article class="cl pd-20">
 			<div class="product-group-main">
 				<div class="layui-field-box layui-form">
-					<form class="form-search layui-form layui-form-pane" id="searchForm" <%-- load-action="${ctx}/system/api/product-group" --%>>
+					<form class="form-search layui-form layui-form-pane" id="searchForm" load-action="${ctx}/system/api/getProductGroup">
 						<div class="layui-form-item">
 							<label class="layui-form-label">运营商:</label>
 							<div class="layui-input-inline">
@@ -48,20 +48,17 @@
 							    </select>
 							</div>
 							<button type="submit" class="layui-btn">查询</button>
-							<button class="layui-btn" onClick="return false;" data-title="添加管理员" data-modal='${ctx}/admin/admin-add'>添加用户 </button>
+							<button class="layui-btn" onClick="return false;" data-title="添加产品组" data-modal='${ctx}/system/chanelGroupAdd'>添加产品组 </button>
 						</div>
 					</form>
 					<table class="layui-table" lay-skin="line">
 						<thead>
 							<tr>
-								<th>序号</th>
-								<th>账号</th>
-								<th>手机号</th>
-								<th>姓名</th>
-								<th>邮箱</th>
-								<th>最后登录</th>
-								<th>角色组</th>
-								<th>状态</th>
+								<th>产品组名称</th>
+								<th>运营商</th>
+								<th>省份</th>
+								<th>产品类型</th>
+								<th>创建时间</th>
 								<th>操作</th>
 							</tr>
 						</thead>
@@ -78,6 +75,42 @@
 	</div>
 </section>
 <%@include file="/WEB-INF/view/commons/jslib.jsp" %>
+<script id="main-template"  type="text/html"> 
+	{{if rows.length > 0}} 
+		{{each rows item}}
+			<tr>
+				<td>{{item.adminId}}</td>
+				<td>{{item.loginName}}</td>
+				<td>{{item.mobile}}</td>
+				<td>{{item.realName}}</td>
+				<td>{{item.email}}</td>
+				<td>{{item.lastLoginTime}}</td>
+				<td>{{item.roleName}}</td>
+				<td>
+					{{if item.availableFlag}}
+						可用
+					{{else}}
+						<font color='red'>禁用</font>
+					{{/if}}
+				</td>
+				<td>
+					<a class="layui-btn layui-btn-mini" data-modal="${ctx}/admin/admin-edit?id={{item.adminId}}" data-title="编辑管理员" >修改</a>
+					<a class="layui-btn layui-btn-mini" data-modal="${ctx}/admin/admin-pass?id={{item.adminId}}" data-title="修改密码" >密码</a>
+					{{if item.loginName != 'admin'}}	
+						{{if item.availableFlag}}		
+							<a data-update="{{item.adminId}}" data-action='${ctx}/admin/admin-forbid' data-title="确认禁用用户吗？" class="layui-btn layui-btn-danger layui-btn-mini">禁用</a>
+						{{else}}
+							<a data-update="{{item.adminId}}" data-action='${ctx}/admin/admin-resume' data-title="确认启用用户吗？" class="layui-btn layui-btn-mini">启用</a>
+						{{/if}}
+						<a data-update="{{item.adminId}}" data-action='${ctx}/admin/admin-delete' data-title="确认删除用户吗？" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
+					{{/if}}
+				</td>
+			</tr>
+		{{/each}} 
+	{{else}}
+		<tr><td colspan="8" style="text-align: center">暂无数据</td></tr>
+	{{/if}}
+</script>
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript">
 layui.use('adminplugs', function(){

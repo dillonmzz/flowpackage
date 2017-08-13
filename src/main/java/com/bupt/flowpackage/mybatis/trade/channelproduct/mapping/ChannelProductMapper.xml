@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bupt.flowpackage.mybatis.trade.channelproduct.mapper.ChannelProductMapper" >
-  <resultMap id="BaseResultMap" type="com.bupt.flowpackage.mybatis.trade.channelproduct.model.ChannelProduct" >
+  <resultMap id="BaseResultMap" type="channelProduct" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="channel_id" property="channelId" jdbcType="INTEGER" />
     <result column="product_id" property="productId" jdbcType="INTEGER" />
@@ -27,7 +27,7 @@
     delete from res_channel_product
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.bupt.flowpackage.mybatis.trade.channelproduct.model.ChannelProduct" >
+  <insert id="insert" parameterType="channelProduct" >
     insert into res_channel_product (id, channel_id, product_id, 
       channel_product_code, discount, status, 
       create_time, create_name, modify_time, 
@@ -37,7 +37,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{createName,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
       #{modifyName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.bupt.flowpackage.mybatis.trade.channelproduct.model.ChannelProduct" >
+  <insert id="insertSelective" parameterType="channelProduct" >
     insert into res_channel_product
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -104,7 +104,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bupt.flowpackage.mybatis.trade.channelproduct.model.ChannelProduct" >
+  <update id="updateByPrimaryKeySelective" parameterType="channelProduct" >
     update res_channel_product
     <set >
       <if test="channelId != null" >
@@ -137,7 +137,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bupt.flowpackage.mybatis.trade.channelproduct.model.ChannelProduct" >
+  <update id="updateByPrimaryKey" parameterType="channelProduct" >
     update res_channel_product
     set channel_id = #{channelId,jdbcType=INTEGER},
       product_id = #{productId,jdbcType=INTEGER},

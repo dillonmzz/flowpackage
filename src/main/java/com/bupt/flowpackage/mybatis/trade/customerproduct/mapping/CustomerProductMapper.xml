@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bupt.flowpackage.mybatis.trade.customerproduct.mapper.CustomerProductMapper" >
-  <resultMap id="BaseResultMap" type="com.bupt.flowpackage.mybatis.trade.customerproduct.model.CustomerProduct" >
+  <resultMap id="BaseResultMap" type="customerProduct" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="customer_id" property="customerId" jdbcType="INTEGER" />
     <result column="customer_account" property="customerAccount" jdbcType="VARCHAR" />
@@ -32,7 +32,7 @@
     delete from res_customer_product
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.bupt.flowpackage.mybatis.trade.customerproduct.model.CustomerProduct" >
+  <insert id="insert" parameterType="customerProduct" >
     insert into res_customer_product (id, customer_id, customer_account, 
       channel_product_id, channel_name, flow_value, 
       market_price, provider_discount, customer_discount, 
@@ -44,7 +44,7 @@
       #{status,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, #{createName,jdbcType=VARCHAR}, 
       #{modifyTime,jdbcType=TIMESTAMP}, #{modifyName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.bupt.flowpackage.mybatis.trade.customerproduct.model.CustomerProduct" >
+  <insert id="insertSelective" parameterType="customerProduct" >
     insert into res_customer_product
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -135,7 +135,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bupt.flowpackage.mybatis.trade.customerproduct.model.CustomerProduct" >
+  <update id="updateByPrimaryKeySelective" parameterType="customerProduct" >
     update res_customer_product
     <set >
       <if test="customerId != null" >
@@ -180,7 +180,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bupt.flowpackage.mybatis.trade.customerproduct.model.CustomerProduct" >
+  <update id="updateByPrimaryKey" parameterType="customerProduct" >
     update res_customer_product
     set customer_id = #{customerId,jdbcType=INTEGER},
       customer_account = #{customerAccount,jdbcType=VARCHAR},

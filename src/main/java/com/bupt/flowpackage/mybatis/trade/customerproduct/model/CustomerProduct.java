@@ -2,8 +2,12 @@ package com.bupt.flowpackage.mybatis.trade.customerproduct.model;
 
 import java.util.Date;
 
-public class CustomerProduct {
-    private Integer id;
+import com.bupt.flowpackage.common.domain.BaseBean;
+
+public class CustomerProduct extends BaseBean{
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private Integer customerId;
 

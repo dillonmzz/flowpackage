@@ -10,10 +10,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bupt.flowpackage.biz.system.model.CityResp;
+import com.bupt.flowpackage.biz.system.model.ProductGroupReq;
 import com.bupt.flowpackage.biz.system.model.ProvinceResp;
 import com.bupt.flowpackage.biz.system.service.SystemService;
 import com.bupt.flowpackage.common.domain.BaseResponse;
+import com.bupt.flowpackage.common.domain.Page;
 import com.bupt.flowpackage.common.exception.ExceptionHelper;
+import com.bupt.flowpackage.mybatis.trade.productgroup.model.ProductGroup;
 /**
 * @Description:系统模块
 * @author wangdaojian
@@ -61,6 +64,24 @@ public class SystemController {
 		try{
 			ProvinceResp provinceResp = systemService.getAllProvinces();
 			baseResp.setData(provinceResp);
+		}catch(Exception e) {
+			baseResp = ExceptionHelper.createResponse(e);
+		}
+		return baseResp;
+	}
+	
+	/**
+	* @Description 获取基础产品组列表
+	* @param @return
+	* @return BaseResponse<ProvinceResp>
+	 */
+	@ResponseBody
+	@RequestMapping("/api/getProductGroup")
+	public BaseResponse<ProductGroup> getProductGroup(ProductGroupReq req) {
+		BaseResponse<ProductGroup> baseResp = new BaseResponse<ProductGroup>();
+		try{
+			Page<ProductGroup> pages = systemService.getProductGroupPage(req);
+			baseResp.setPages(pages);
 		}catch(Exception e) {
 			baseResp = ExceptionHelper.createResponse(e);
 		}

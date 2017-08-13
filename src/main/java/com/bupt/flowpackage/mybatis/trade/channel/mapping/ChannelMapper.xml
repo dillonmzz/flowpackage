@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bupt.flowpackage.mybatis.trade.channel.mapper.ChannelMapper" >
-  <resultMap id="BaseResultMap" type="com.bupt.flowpackage.mybatis.trade.channel.model.Channel" >
+  <resultMap id="BaseResultMap" type="channel" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="provider_id" property="providerId" jdbcType="INTEGER" />
     <result column="product_group_id" property="productGroupId" jdbcType="INTEGER" />
@@ -31,7 +31,7 @@
     delete from res_channel
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.bupt.flowpackage.mybatis.trade.channel.model.Channel" >
+  <insert id="insert" parameterType="channel" >
     insert into res_channel (id, provider_id, product_group_id, 
       channel_name, channel_type, discount, 
       success_rate, weight, generateType, 
@@ -43,7 +43,7 @@
       #{status,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, #{createName,jdbcType=VARCHAR}, 
       #{modifyTime,jdbcType=TIMESTAMP}, #{modifyName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.bupt.flowpackage.mybatis.trade.channel.model.Channel" >
+  <insert id="insertSelective" parameterType="channel" >
     insert into res_channel
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -134,7 +134,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bupt.flowpackage.mybatis.trade.channel.model.Channel" >
+  <update id="updateByPrimaryKeySelective" parameterType="channel" >
     update res_channel
     <set >
       <if test="providerId != null" >
@@ -179,7 +179,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bupt.flowpackage.mybatis.trade.channel.model.Channel" >
+  <update id="updateByPrimaryKey" parameterType="channel" >
     update res_channel
     set provider_id = #{providerId,jdbcType=INTEGER},
       product_group_id = #{productGroupId,jdbcType=INTEGER},
