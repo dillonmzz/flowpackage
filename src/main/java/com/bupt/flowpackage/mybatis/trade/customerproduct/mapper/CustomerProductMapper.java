@@ -1,7 +1,8 @@
 package com.bupt.flowpackage.mybatis.trade.customerproduct.mapper;
 
+import com.bupt.flowpackage.common.annotation.MyBatisRepository;
 import com.bupt.flowpackage.mybatis.trade.customerproduct.model.CustomerProduct;
-
+@MyBatisRepository
 public interface CustomerProductMapper {
     int deleteByPrimaryKey(Integer id);
 

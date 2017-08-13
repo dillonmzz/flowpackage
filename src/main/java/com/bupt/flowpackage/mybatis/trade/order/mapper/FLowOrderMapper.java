@@ -1,7 +1,8 @@
 package com.bupt.flowpackage.mybatis.trade.order.mapper;
 
+import com.bupt.flowpackage.common.annotation.MyBatisRepository;
 import com.bupt.flowpackage.mybatis.trade.order.model.FLowOrder;
-
+@MyBatisRepository
 public interface FLowOrderMapper {
     int deleteByPrimaryKey(Integer id);
 
