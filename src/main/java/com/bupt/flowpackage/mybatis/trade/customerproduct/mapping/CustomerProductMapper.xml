@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bupt.flowpackage.mybatis.trade.customerproduct.mapper.CustomerProductMapper" >
+  <resultMap id="BaseResultMap" type="com.bupt.flowpackage.mybatis.trade.customerproduct.model.CustomerProduct" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="customer_id" property="customerId" jdbcType="INTEGER" />
+    <result column="customer_account" property="customerAccount" jdbcType="VARCHAR" />
+    <result column="channel_product_id" property="channelProductId" jdbcType="INTEGER" />
+    <result column="channel_name" property="channelName" jdbcType="VARCHAR" />
+    <result column="flow_value" property="flowValue" jdbcType="INTEGER" />
+    <result column="market_price" property="marketPrice" jdbcType="REAL" />
+    <result column="provider_discount" property="providerDiscount" jdbcType="INTEGER" />
+    <result column="customer_discount" property="customerDiscount" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_name" property="createName" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="modify_name" property="modifyName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, customer_id, customer_account, channel_product_id, channel_name, flow_value, 
+    market_price, provider_discount, customer_discount, status, create_time, create_name, 
+    modify_time, modify_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from res_customer_product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from res_customer_product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bupt.flowpackage.mybatis.trade.customerproduct.model.CustomerProduct" >
+    insert into res_customer_product (id, customer_id, customer_account, 
+      channel_product_id, channel_name, flow_value, 
+      market_price, provider_discount, customer_discount, 
+      status, create_time, create_name, 
+      modify_time, modify_name)
+    values (#{id,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, #{customerAccount,jdbcType=VARCHAR}, 
+      #{channelProductId,jdbcType=INTEGER}, #{channelName,jdbcType=VARCHAR}, #{flowValue,jdbcType=INTEGER}, 
+      #{marketPrice,jdbcType=REAL}, #{providerDiscount,jdbcType=INTEGER}, #{customerDiscount,jdbcType=INTEGER}, 
+      #{status,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, #{createName,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{modifyName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bupt.flowpackage.mybatis.trade.customerproduct.model.CustomerProduct" >
+    insert into res_customer_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="customerAccount != null" >
+        customer_account,
+      </if>
+      <if test="channelProductId != null" >
+        channel_product_id,
+      </if>
+      <if test="channelName != null" >
+        channel_name,
+      </if>
+      <if test="flowValue != null" >
+        flow_value,
+      </if>
+      <if test="marketPrice != null" >
+        market_price,
+      </if>
+      <if test="providerDiscount != null" >
+        provider_discount,
+      </if>
+      <if test="customerDiscount != null" >
+        customer_discount,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createName != null" >
+        create_name,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="modifyName != null" >
+        modify_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="customerAccount != null" >
+        #{customerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="channelProductId != null" >
+        #{channelProductId,jdbcType=INTEGER},
+      </if>
+      <if test="channelName != null" >
+        #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="flowValue != null" >
+        #{flowValue,jdbcType=INTEGER},
+      </if>
+      <if test="marketPrice != null" >
+        #{marketPrice,jdbcType=REAL},
+      </if>
+      <if test="providerDiscount != null" >
+        #{providerDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="customerDiscount != null" >
+        #{customerDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createName != null" >
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyName != null" >
+        #{modifyName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bupt.flowpackage.mybatis.trade.customerproduct.model.CustomerProduct" >
+    update res_customer_product
+    <set >
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="customerAccount != null" >
+        customer_account = #{customerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="channelProductId != null" >
+        channel_product_id = #{channelProductId,jdbcType=INTEGER},
+      </if>
+      <if test="channelName != null" >
+        channel_name = #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="flowValue != null" >
+        flow_value = #{flowValue,jdbcType=INTEGER},
+      </if>
+      <if test="marketPrice != null" >
+        market_price = #{marketPrice,jdbcType=REAL},
+      </if>
+      <if test="providerDiscount != null" >
+        provider_discount = #{providerDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="customerDiscount != null" >
+        customer_discount = #{customerDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createName != null" >
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyName != null" >
+        modify_name = #{modifyName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bupt.flowpackage.mybatis.trade.customerproduct.model.CustomerProduct" >
+    update res_customer_product
+    set customer_id = #{customerId,jdbcType=INTEGER},
+      customer_account = #{customerAccount,jdbcType=VARCHAR},
+      channel_product_id = #{channelProductId,jdbcType=INTEGER},
+      channel_name = #{channelName,jdbcType=VARCHAR},
+      flow_value = #{flowValue,jdbcType=INTEGER},
+      market_price = #{marketPrice,jdbcType=REAL},
+      provider_discount = #{providerDiscount,jdbcType=INTEGER},
+      customer_discount = #{customerDiscount,jdbcType=INTEGER},
+      status = #{status,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_name = #{createName,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      modify_name = #{modifyName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

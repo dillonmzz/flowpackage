@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bupt.flowpackage.mybatis.trade.customer.mapper.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.bupt.flowpackage.mybatis.trade.customer.model.Customer" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="customer_account" property="customerAccount" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="deal_name" property="dealName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="secret_key" property="secretKey" jdbcType="VARCHAR" />
+    <result column="receive_status_type" property="receiveStatusType" jdbcType="TINYINT" />
+    <result column="receive_status_url" property="receiveStatusUrl" jdbcType="VARCHAR" />
+    <result column="binding_ip" property="bindingIp" jdbcType="VARCHAR" />
+    <result column="contact_name" property="contactName" jdbcType="VARCHAR" />
+    <result column="contact_mobile" property="contactMobile" jdbcType="VARCHAR" />
+    <result column="contact_qq" property="contactQq" jdbcType="VARCHAR" />
+    <result column="contact_email" property="contactEmail" jdbcType="VARCHAR" />
+    <result column="balance" property="balance" jdbcType="REAL" />
+    <result column="total_money" property="totalMoney" jdbcType="REAL" />
+    <result column="credit_money" property="creditMoney" jdbcType="REAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_name" property="createName" jdbcType="VARCHAR" />
+    <result column="mobify_time" property="mobifyTime" jdbcType="TIMESTAMP" />
+    <result column="modify_name" property="modifyName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, customer_account, customer_name, deal_name, status, secret_key, receive_status_type, 
+    receive_status_url, binding_ip, contact_name, contact_mobile, contact_qq, contact_email, 
+    balance, total_money, credit_money, create_time, create_name, mobify_time, modify_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from res_customer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from res_customer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bupt.flowpackage.mybatis.trade.customer.model.Customer" >
+    insert into res_customer (id, customer_account, customer_name, 
+      deal_name, status, secret_key, 
+      receive_status_type, receive_status_url, binding_ip, 
+      contact_name, contact_mobile, contact_qq, 
+      contact_email, balance, total_money, 
+      credit_money, create_time, create_name, 
+      mobify_time, modify_name)
+    values (#{id,jdbcType=INTEGER}, #{customerAccount,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, 
+      #{dealName,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{secretKey,jdbcType=VARCHAR}, 
+      #{receiveStatusType,jdbcType=TINYINT}, #{receiveStatusUrl,jdbcType=VARCHAR}, #{bindingIp,jdbcType=VARCHAR}, 
+      #{contactName,jdbcType=VARCHAR}, #{contactMobile,jdbcType=VARCHAR}, #{contactQq,jdbcType=VARCHAR}, 
+      #{contactEmail,jdbcType=VARCHAR}, #{balance,jdbcType=REAL}, #{totalMoney,jdbcType=REAL}, 
+      #{creditMoney,jdbcType=REAL}, #{createTime,jdbcType=TIMESTAMP}, #{createName,jdbcType=VARCHAR}, 
+      #{mobifyTime,jdbcType=TIMESTAMP}, #{modifyName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bupt.flowpackage.mybatis.trade.customer.model.Customer" >
+    insert into res_customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="customerAccount != null" >
+        customer_account,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="dealName != null" >
+        deal_name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="secretKey != null" >
+        secret_key,
+      </if>
+      <if test="receiveStatusType != null" >
+        receive_status_type,
+      </if>
+      <if test="receiveStatusUrl != null" >
+        receive_status_url,
+      </if>
+      <if test="bindingIp != null" >
+        binding_ip,
+      </if>
+      <if test="contactName != null" >
+        contact_name,
+      </if>
+      <if test="contactMobile != null" >
+        contact_mobile,
+      </if>
+      <if test="contactQq != null" >
+        contact_qq,
+      </if>
+      <if test="contactEmail != null" >
+        contact_email,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="totalMoney != null" >
+        total_money,
+      </if>
+      <if test="creditMoney != null" >
+        credit_money,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createName != null" >
+        create_name,
+      </if>
+      <if test="mobifyTime != null" >
+        mobify_time,
+      </if>
+      <if test="modifyName != null" >
+        modify_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="customerAccount != null" >
+        #{customerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="dealName != null" >
+        #{dealName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="secretKey != null" >
+        #{secretKey,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveStatusType != null" >
+        #{receiveStatusType,jdbcType=TINYINT},
+      </if>
+      <if test="receiveStatusUrl != null" >
+        #{receiveStatusUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bindingIp != null" >
+        #{bindingIp,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactMobile != null" >
+        #{contactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="contactQq != null" >
+        #{contactQq,jdbcType=VARCHAR},
+      </if>
+      <if test="contactEmail != null" >
+        #{contactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=REAL},
+      </if>
+      <if test="totalMoney != null" >
+        #{totalMoney,jdbcType=REAL},
+      </if>
+      <if test="creditMoney != null" >
+        #{creditMoney,jdbcType=REAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createName != null" >
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobifyTime != null" >
+        #{mobifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyName != null" >
+        #{modifyName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bupt.flowpackage.mybatis.trade.customer.model.Customer" >
+    update res_customer
+    <set >
+      <if test="customerAccount != null" >
+        customer_account = #{customerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="dealName != null" >
+        deal_name = #{dealName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="secretKey != null" >
+        secret_key = #{secretKey,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveStatusType != null" >
+        receive_status_type = #{receiveStatusType,jdbcType=TINYINT},
+      </if>
+      <if test="receiveStatusUrl != null" >
+        receive_status_url = #{receiveStatusUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bindingIp != null" >
+        binding_ip = #{bindingIp,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactMobile != null" >
+        contact_mobile = #{contactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="contactQq != null" >
+        contact_qq = #{contactQq,jdbcType=VARCHAR},
+      </if>
+      <if test="contactEmail != null" >
+        contact_email = #{contactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=REAL},
+      </if>
+      <if test="totalMoney != null" >
+        total_money = #{totalMoney,jdbcType=REAL},
+      </if>
+      <if test="creditMoney != null" >
+        credit_money = #{creditMoney,jdbcType=REAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createName != null" >
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobifyTime != null" >
+        mobify_time = #{mobifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyName != null" >
+        modify_name = #{modifyName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bupt.flowpackage.mybatis.trade.customer.model.Customer" >
+    update res_customer
+    set customer_account = #{customerAccount,jdbcType=VARCHAR},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      deal_name = #{dealName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      secret_key = #{secretKey,jdbcType=VARCHAR},
+      receive_status_type = #{receiveStatusType,jdbcType=TINYINT},
+      receive_status_url = #{receiveStatusUrl,jdbcType=VARCHAR},
+      binding_ip = #{bindingIp,jdbcType=VARCHAR},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      contact_mobile = #{contactMobile,jdbcType=VARCHAR},
+      contact_qq = #{contactQq,jdbcType=VARCHAR},
+      contact_email = #{contactEmail,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=REAL},
+      total_money = #{totalMoney,jdbcType=REAL},
+      credit_money = #{creditMoney,jdbcType=REAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_name = #{createName,jdbcType=VARCHAR},
+      mobify_time = #{mobifyTime,jdbcType=TIMESTAMP},
+      modify_name = #{modifyName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

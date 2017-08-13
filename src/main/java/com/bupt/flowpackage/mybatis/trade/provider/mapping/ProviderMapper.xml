@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bupt.flowpackage.mybatis.trade.provider.mapper.ProviderMapper" >
+  <resultMap id="BaseResultMap" type="com.bupt.flowpackage.mybatis.trade.provider.model.Provider" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="provider_code" property="providerCode" jdbcType="VARCHAR" />
+    <result column="provider_name" property="providerName" jdbcType="VARCHAR" />
+    <result column="balance" property="balance" jdbcType="REAL" />
+    <result column="total_money" property="totalMoney" jdbcType="REAL" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="call_time" property="callTime" jdbcType="INTEGER" />
+    <result column="concurrent_num" property="concurrentNum" jdbcType="INTEGER" />
+    <result column="receive_type" property="receiveType" jdbcType="TINYINT" />
+    <result column="provider_ip" property="providerIp" jdbcType="VARCHAR" />
+    <result column="visit_url" property="visitUrl" jdbcType="VARCHAR" />
+    <result column="provider_desc" property="providerDesc" jdbcType="VARCHAR" />
+    <result column="symbol_code" property="symbolCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, provider_code, provider_name, balance, total_money, status, call_time, concurrent_num, 
+    receive_type, provider_ip, visit_url, provider_desc, symbol_code
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from res_provider
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from res_provider
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bupt.flowpackage.mybatis.trade.provider.model.Provider" >
+    insert into res_provider (id, provider_code, provider_name, 
+      balance, total_money, status, 
+      call_time, concurrent_num, receive_type, 
+      provider_ip, visit_url, provider_desc, 
+      symbol_code)
+    values (#{id,jdbcType=INTEGER}, #{providerCode,jdbcType=VARCHAR}, #{providerName,jdbcType=VARCHAR}, 
+      #{balance,jdbcType=REAL}, #{totalMoney,jdbcType=REAL}, #{status,jdbcType=BIT}, 
+      #{callTime,jdbcType=INTEGER}, #{concurrentNum,jdbcType=INTEGER}, #{receiveType,jdbcType=TINYINT}, 
+      #{providerIp,jdbcType=VARCHAR}, #{visitUrl,jdbcType=VARCHAR}, #{providerDesc,jdbcType=VARCHAR}, 
+      #{symbolCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bupt.flowpackage.mybatis.trade.provider.model.Provider" >
+    insert into res_provider
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="providerCode != null" >
+        provider_code,
+      </if>
+      <if test="providerName != null" >
+        provider_name,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="totalMoney != null" >
+        total_money,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="callTime != null" >
+        call_time,
+      </if>
+      <if test="concurrentNum != null" >
+        concurrent_num,
+      </if>
+      <if test="receiveType != null" >
+        receive_type,
+      </if>
+      <if test="providerIp != null" >
+        provider_ip,
+      </if>
+      <if test="visitUrl != null" >
+        visit_url,
+      </if>
+      <if test="providerDesc != null" >
+        provider_desc,
+      </if>
+      <if test="symbolCode != null" >
+        symbol_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="providerCode != null" >
+        #{providerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="providerName != null" >
+        #{providerName,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=REAL},
+      </if>
+      <if test="totalMoney != null" >
+        #{totalMoney,jdbcType=REAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="callTime != null" >
+        #{callTime,jdbcType=INTEGER},
+      </if>
+      <if test="concurrentNum != null" >
+        #{concurrentNum,jdbcType=INTEGER},
+      </if>
+      <if test="receiveType != null" >
+        #{receiveType,jdbcType=TINYINT},
+      </if>
+      <if test="providerIp != null" >
+        #{providerIp,jdbcType=VARCHAR},
+      </if>
+      <if test="visitUrl != null" >
+        #{visitUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="providerDesc != null" >
+        #{providerDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="symbolCode != null" >
+        #{symbolCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bupt.flowpackage.mybatis.trade.provider.model.Provider" >
+    update res_provider
+    <set >
+      <if test="providerCode != null" >
+        provider_code = #{providerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="providerName != null" >
+        provider_name = #{providerName,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=REAL},
+      </if>
+      <if test="totalMoney != null" >
+        total_money = #{totalMoney,jdbcType=REAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="callTime != null" >
+        call_time = #{callTime,jdbcType=INTEGER},
+      </if>
+      <if test="concurrentNum != null" >
+        concurrent_num = #{concurrentNum,jdbcType=INTEGER},
+      </if>
+      <if test="receiveType != null" >
+        receive_type = #{receiveType,jdbcType=TINYINT},
+      </if>
+      <if test="providerIp != null" >
+        provider_ip = #{providerIp,jdbcType=VARCHAR},
+      </if>
+      <if test="visitUrl != null" >
+        visit_url = #{visitUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="providerDesc != null" >
+        provider_desc = #{providerDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="symbolCode != null" >
+        symbol_code = #{symbolCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bupt.flowpackage.mybatis.trade.provider.model.Provider" >
+    update res_provider
+    set provider_code = #{providerCode,jdbcType=VARCHAR},
+      provider_name = #{providerName,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=REAL},
+      total_money = #{totalMoney,jdbcType=REAL},
+      status = #{status,jdbcType=BIT},
+      call_time = #{callTime,jdbcType=INTEGER},
+      concurrent_num = #{concurrentNum,jdbcType=INTEGER},
+      receive_type = #{receiveType,jdbcType=TINYINT},
+      provider_ip = #{providerIp,jdbcType=VARCHAR},
+      visit_url = #{visitUrl,jdbcType=VARCHAR},
+      provider_desc = #{providerDesc,jdbcType=VARCHAR},
+      symbol_code = #{symbolCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

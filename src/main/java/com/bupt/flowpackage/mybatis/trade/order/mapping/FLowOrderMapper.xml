@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bupt.flowpackage.mybatis.trade.order.mapper.FLowOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.bupt.flowpackage.mybatis.trade.order.model.FLowOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="customer_id" property="customerId" jdbcType="INTEGER" />
+    <result column="customer_account" property="customerAccount" jdbcType="VARCHAR" />
+    <result column="provider_id" property="providerId" jdbcType="INTEGER" />
+    <result column="provider_code" property="providerCode" jdbcType="VARCHAR" />
+    <result column="channel_id" property="channelId" jdbcType="INTEGER" />
+    <result column="channel_name" property="channelName" jdbcType="VARCHAR" />
+    <result column="operate_code" property="operateCode" jdbcType="TINYINT" />
+    <result column="province_code" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="city_code" property="cityCode" jdbcType="VARCHAR" />
+    <result column="flow_value" property="flowValue" jdbcType="INTEGER" />
+    <result column="market_privice" property="marketPrivice" jdbcType="REAL" />
+    <result column="provider_discount" property="providerDiscount" jdbcType="INTEGER" />
+    <result column="customer_discount" property="customerDiscount" jdbcType="INTEGER" />
+    <result column="profit" property="profit" jdbcType="REAL" />
+    <result column="order_status" property="orderStatus" jdbcType="TINYINT" />
+    <result column="provider_order_no" property="providerOrderNo" jdbcType="VARCHAR" />
+    <result column="customer_order_no" property="customerOrderNo" jdbcType="VARCHAR" />
+    <result column="accept_status" property="acceptStatus" jdbcType="TINYINT" />
+    <result column="accept_time" property="acceptTime" jdbcType="TIMESTAMP" />
+    <result column="submit_status" property="submitStatus" jdbcType="TINYINT" />
+    <result column="submit_time" property="submitTime" jdbcType="TIMESTAMP" />
+    <result column="subscribe_status" property="subscribeStatus" jdbcType="TINYINT" />
+    <result column="subscribe_time" property="subscribeTime" jdbcType="TIMESTAMP" />
+    <result column="customer_callback_status" property="customerCallbackStatus" jdbcType="TINYINT" />
+    <result column="customer_callback_time" property="customerCallbackTime" jdbcType="TIMESTAMP" />
+    <result column="refund_time" property="refundTime" jdbcType="TIMESTAMP" />
+    <result column="error_msg" property="errorMsg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_no, mobile, customer_id, customer_account, provider_id, provider_code, 
+    channel_id, channel_name, operate_code, province_code, city_code, flow_value, market_privice, 
+    provider_discount, customer_discount, profit, order_status, provider_order_no, customer_order_no, 
+    accept_status, accept_time, submit_status, submit_time, subscribe_status, subscribe_time, 
+    customer_callback_status, customer_callback_time, refund_time, error_msg
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from flow_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from flow_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bupt.flowpackage.mybatis.trade.order.model.FLowOrder" >
+    insert into flow_order (id, order_no, mobile, 
+      customer_id, customer_account, provider_id, 
+      provider_code, channel_id, channel_name, 
+      operate_code, province_code, city_code, 
+      flow_value, market_privice, provider_discount, 
+      customer_discount, profit, order_status, 
+      provider_order_no, customer_order_no, accept_status, 
+      accept_time, submit_status, submit_time, 
+      subscribe_status, subscribe_time, customer_callback_status, 
+      customer_callback_time, refund_time, error_msg
+      )
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{customerId,jdbcType=INTEGER}, #{customerAccount,jdbcType=VARCHAR}, #{providerId,jdbcType=INTEGER}, 
+      #{providerCode,jdbcType=VARCHAR}, #{channelId,jdbcType=INTEGER}, #{channelName,jdbcType=VARCHAR}, 
+      #{operateCode,jdbcType=TINYINT}, #{provinceCode,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
+      #{flowValue,jdbcType=INTEGER}, #{marketPrivice,jdbcType=REAL}, #{providerDiscount,jdbcType=INTEGER}, 
+      #{customerDiscount,jdbcType=INTEGER}, #{profit,jdbcType=REAL}, #{orderStatus,jdbcType=TINYINT}, 
+      #{providerOrderNo,jdbcType=VARCHAR}, #{customerOrderNo,jdbcType=VARCHAR}, #{acceptStatus,jdbcType=TINYINT}, 
+      #{acceptTime,jdbcType=TIMESTAMP}, #{submitStatus,jdbcType=TINYINT}, #{submitTime,jdbcType=TIMESTAMP}, 
+      #{subscribeStatus,jdbcType=TINYINT}, #{subscribeTime,jdbcType=TIMESTAMP}, #{customerCallbackStatus,jdbcType=TINYINT}, 
+      #{customerCallbackTime,jdbcType=TIMESTAMP}, #{refundTime,jdbcType=TIMESTAMP}, #{errorMsg,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bupt.flowpackage.mybatis.trade.order.model.FLowOrder" >
+    insert into flow_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="customerAccount != null" >
+        customer_account,
+      </if>
+      <if test="providerId != null" >
+        provider_id,
+      </if>
+      <if test="providerCode != null" >
+        provider_code,
+      </if>
+      <if test="channelId != null" >
+        channel_id,
+      </if>
+      <if test="channelName != null" >
+        channel_name,
+      </if>
+      <if test="operateCode != null" >
+        operate_code,
+      </if>
+      <if test="provinceCode != null" >
+        province_code,
+      </if>
+      <if test="cityCode != null" >
+        city_code,
+      </if>
+      <if test="flowValue != null" >
+        flow_value,
+      </if>
+      <if test="marketPrivice != null" >
+        market_privice,
+      </if>
+      <if test="providerDiscount != null" >
+        provider_discount,
+      </if>
+      <if test="customerDiscount != null" >
+        customer_discount,
+      </if>
+      <if test="profit != null" >
+        profit,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="providerOrderNo != null" >
+        provider_order_no,
+      </if>
+      <if test="customerOrderNo != null" >
+        customer_order_no,
+      </if>
+      <if test="acceptStatus != null" >
+        accept_status,
+      </if>
+      <if test="acceptTime != null" >
+        accept_time,
+      </if>
+      <if test="submitStatus != null" >
+        submit_status,
+      </if>
+      <if test="submitTime != null" >
+        submit_time,
+      </if>
+      <if test="subscribeStatus != null" >
+        subscribe_status,
+      </if>
+      <if test="subscribeTime != null" >
+        subscribe_time,
+      </if>
+      <if test="customerCallbackStatus != null" >
+        customer_callback_status,
+      </if>
+      <if test="customerCallbackTime != null" >
+        customer_callback_time,
+      </if>
+      <if test="refundTime != null" >
+        refund_time,
+      </if>
+      <if test="errorMsg != null" >
+        error_msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="customerAccount != null" >
+        #{customerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="providerId != null" >
+        #{providerId,jdbcType=INTEGER},
+      </if>
+      <if test="providerCode != null" >
+        #{providerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null" >
+        #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="channelName != null" >
+        #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="operateCode != null" >
+        #{operateCode,jdbcType=TINYINT},
+      </if>
+      <if test="provinceCode != null" >
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="flowValue != null" >
+        #{flowValue,jdbcType=INTEGER},
+      </if>
+      <if test="marketPrivice != null" >
+        #{marketPrivice,jdbcType=REAL},
+      </if>
+      <if test="providerDiscount != null" >
+        #{providerDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="customerDiscount != null" >
+        #{customerDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="profit != null" >
+        #{profit,jdbcType=REAL},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=TINYINT},
+      </if>
+      <if test="providerOrderNo != null" >
+        #{providerOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerOrderNo != null" >
+        #{customerOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptStatus != null" >
+        #{acceptStatus,jdbcType=TINYINT},
+      </if>
+      <if test="acceptTime != null" >
+        #{acceptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="submitStatus != null" >
+        #{submitStatus,jdbcType=TINYINT},
+      </if>
+      <if test="submitTime != null" >
+        #{submitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subscribeStatus != null" >
+        #{subscribeStatus,jdbcType=TINYINT},
+      </if>
+      <if test="subscribeTime != null" >
+        #{subscribeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerCallbackStatus != null" >
+        #{customerCallbackStatus,jdbcType=TINYINT},
+      </if>
+      <if test="customerCallbackTime != null" >
+        #{customerCallbackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundTime != null" >
+        #{refundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errorMsg != null" >
+        #{errorMsg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bupt.flowpackage.mybatis.trade.order.model.FLowOrder" >
+    update flow_order
+    <set >
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="customerAccount != null" >
+        customer_account = #{customerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="providerId != null" >
+        provider_id = #{providerId,jdbcType=INTEGER},
+      </if>
+      <if test="providerCode != null" >
+        provider_code = #{providerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null" >
+        channel_id = #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="channelName != null" >
+        channel_name = #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="operateCode != null" >
+        operate_code = #{operateCode,jdbcType=TINYINT},
+      </if>
+      <if test="provinceCode != null" >
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="flowValue != null" >
+        flow_value = #{flowValue,jdbcType=INTEGER},
+      </if>
+      <if test="marketPrivice != null" >
+        market_privice = #{marketPrivice,jdbcType=REAL},
+      </if>
+      <if test="providerDiscount != null" >
+        provider_discount = #{providerDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="customerDiscount != null" >
+        customer_discount = #{customerDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="profit != null" >
+        profit = #{profit,jdbcType=REAL},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=TINYINT},
+      </if>
+      <if test="providerOrderNo != null" >
+        provider_order_no = #{providerOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerOrderNo != null" >
+        customer_order_no = #{customerOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptStatus != null" >
+        accept_status = #{acceptStatus,jdbcType=TINYINT},
+      </if>
+      <if test="acceptTime != null" >
+        accept_time = #{acceptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="submitStatus != null" >
+        submit_status = #{submitStatus,jdbcType=TINYINT},
+      </if>
+      <if test="submitTime != null" >
+        submit_time = #{submitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subscribeStatus != null" >
+        subscribe_status = #{subscribeStatus,jdbcType=TINYINT},
+      </if>
+      <if test="subscribeTime != null" >
+        subscribe_time = #{subscribeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerCallbackStatus != null" >
+        customer_callback_status = #{customerCallbackStatus,jdbcType=TINYINT},
+      </if>
+      <if test="customerCallbackTime != null" >
+        customer_callback_time = #{customerCallbackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundTime != null" >
+        refund_time = #{refundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errorMsg != null" >
+        error_msg = #{errorMsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bupt.flowpackage.mybatis.trade.order.model.FLowOrder" >
+    update flow_order
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      customer_account = #{customerAccount,jdbcType=VARCHAR},
+      provider_id = #{providerId,jdbcType=INTEGER},
+      provider_code = #{providerCode,jdbcType=VARCHAR},
+      channel_id = #{channelId,jdbcType=INTEGER},
+      channel_name = #{channelName,jdbcType=VARCHAR},
+      operate_code = #{operateCode,jdbcType=TINYINT},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      flow_value = #{flowValue,jdbcType=INTEGER},
+      market_privice = #{marketPrivice,jdbcType=REAL},
+      provider_discount = #{providerDiscount,jdbcType=INTEGER},
+      customer_discount = #{customerDiscount,jdbcType=INTEGER},
+      profit = #{profit,jdbcType=REAL},
+      order_status = #{orderStatus,jdbcType=TINYINT},
+      provider_order_no = #{providerOrderNo,jdbcType=VARCHAR},
+      customer_order_no = #{customerOrderNo,jdbcType=VARCHAR},
+      accept_status = #{acceptStatus,jdbcType=TINYINT},
+      accept_time = #{acceptTime,jdbcType=TIMESTAMP},
+      submit_status = #{submitStatus,jdbcType=TINYINT},
+      submit_time = #{submitTime,jdbcType=TIMESTAMP},
+      subscribe_status = #{subscribeStatus,jdbcType=TINYINT},
+      subscribe_time = #{subscribeTime,jdbcType=TIMESTAMP},
+      customer_callback_status = #{customerCallbackStatus,jdbcType=TINYINT},
+      customer_callback_time = #{customerCallbackTime,jdbcType=TIMESTAMP},
+      refund_time = #{refundTime,jdbcType=TIMESTAMP},
+      error_msg = #{errorMsg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

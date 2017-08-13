@@ -410,3 +410,39 @@ create table flow_order
 );
 
 alter table flow_order comment '流量订单表';
+
+create table flow_order_history
+(
+   id                   int not null,
+   order_no             varchar(32) comment '订单号',
+   mobile               varchar(16) comment '手机号',
+   customer_id          int comment '下游客户id',
+   customer_account     varchar(32) comment '下游客户账号',
+   provider_id          int comment '供应商id',
+   provider_code        varchar(32) comment '供应商账号',
+   channel_id           int comment '通道id',
+   channel_name         varchar(32) comment '通道名称',
+   operate_code         tinyint comment '运营商code 1移动 2联通 3 电信',
+   province_code        varchar(8) comment '省份code',
+   city_code            varchar(8) comment '城市code',
+   flow_value           int comment '流量大小',
+   market_privice       float(5,2) comment '市场价',
+   provider_discount    int comment '上游折扣',
+   customer_discount    int comment '下游折扣',
+   profit               float(5,2) comment '利润',
+   order_status         tinyint comment '订单状态  1充值成功 2 充值中 3 充值失败',
+   provider_order_no    varchar(48) comment '上游订单号',
+   customer_order_no    varchar(48) comment '下游订单号',
+   accept_status        tinyint comment '受理状态 1 成功 2 失败',
+   accept_time          datetime comment '受理时间',
+   submit_status        tinyint comment '提交状态  1 成功 2失败 3 处理中 4 超时',
+   submit_time          datetime comment '提交时间',
+   subscribe_status     tinyint comment '订购状态 1 成功 2失败 3处理中',
+   subscribe_time       datetime comment '订购时间',
+   customer_callback_status tinyint default 3 comment '下游回调状态 1 成功 2失败 3未回调',
+   customer_callback_time datetime comment '下游回调时间',
+   refund_time          datetime comment '退款时间',
+   error_msg            varchar(64) comment '错误原因',
+   primary key (id)
+);
+alter table flow_order_history comment '历史订单表';

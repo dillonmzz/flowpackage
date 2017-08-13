@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bupt.flowpackage.mybatis.trade.product.mapper.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.bupt.flowpackage.mybatis.trade.product.model.Product" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="product_group_id" property="productGroupId" jdbcType="INTEGER" />
+    <result column="product_code" property="productCode" jdbcType="VARCHAR" />
+    <result column="flow_value" property="flowValue" jdbcType="INTEGER" />
+    <result column="market_price" property="marketPrice" jdbcType="REAL" />
+    <result column="flow_type" property="flowType" jdbcType="TINYINT" />
+    <result column="flow_desc" property="flowDesc" jdbcType="VARCHAR" />
+    <result column="create_name" property="createName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, product_group_id, product_code, flow_value, market_price, flow_type, flow_desc, 
+    create_name, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from res_product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from res_product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bupt.flowpackage.mybatis.trade.product.model.Product" >
+    insert into res_product (id, product_group_id, product_code, 
+      flow_value, market_price, flow_type, 
+      flow_desc, create_name, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{productGroupId,jdbcType=INTEGER}, #{productCode,jdbcType=VARCHAR}, 
+      #{flowValue,jdbcType=INTEGER}, #{marketPrice,jdbcType=REAL}, #{flowType,jdbcType=TINYINT}, 
+      #{flowDesc,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bupt.flowpackage.mybatis.trade.product.model.Product" >
+    insert into res_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="productGroupId != null" >
+        product_group_id,
+      </if>
+      <if test="productCode != null" >
+        product_code,
+      </if>
+      <if test="flowValue != null" >
+        flow_value,
+      </if>
+      <if test="marketPrice != null" >
+        market_price,
+      </if>
+      <if test="flowType != null" >
+        flow_type,
+      </if>
+      <if test="flowDesc != null" >
+        flow_desc,
+      </if>
+      <if test="createName != null" >
+        create_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="productGroupId != null" >
+        #{productGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="productCode != null" >
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="flowValue != null" >
+        #{flowValue,jdbcType=INTEGER},
+      </if>
+      <if test="marketPrice != null" >
+        #{marketPrice,jdbcType=REAL},
+      </if>
+      <if test="flowType != null" >
+        #{flowType,jdbcType=TINYINT},
+      </if>
+      <if test="flowDesc != null" >
+        #{flowDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null" >
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bupt.flowpackage.mybatis.trade.product.model.Product" >
+    update res_product
+    <set >
+      <if test="productGroupId != null" >
+        product_group_id = #{productGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="productCode != null" >
+        product_code = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="flowValue != null" >
+        flow_value = #{flowValue,jdbcType=INTEGER},
+      </if>
+      <if test="marketPrice != null" >
+        market_price = #{marketPrice,jdbcType=REAL},
+      </if>
+      <if test="flowType != null" >
+        flow_type = #{flowType,jdbcType=TINYINT},
+      </if>
+      <if test="flowDesc != null" >
+        flow_desc = #{flowDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null" >
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bupt.flowpackage.mybatis.trade.product.model.Product" >
+    update res_product
+    set product_group_id = #{productGroupId,jdbcType=INTEGER},
+      product_code = #{productCode,jdbcType=VARCHAR},
+      flow_value = #{flowValue,jdbcType=INTEGER},
+      market_price = #{marketPrice,jdbcType=REAL},
+      flow_type = #{flowType,jdbcType=TINYINT},
+      flow_desc = #{flowDesc,jdbcType=VARCHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
