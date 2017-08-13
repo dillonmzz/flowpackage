@@ -12,7 +12,6 @@ import com.bupt.flowpackage.biz.system.model.ProductGroupReq;
 import com.bupt.flowpackage.biz.system.model.ProvinceResp;
 import com.bupt.flowpackage.biz.system.service.SystemService;
 import com.bupt.flowpackage.common.domain.Page;
-import com.bupt.flowpackage.mybatis.account.adminrole.model.AdminRole;
 import com.bupt.flowpackage.mybatis.trade.cities.mapper.CitiesMapper;
 import com.bupt.flowpackage.mybatis.trade.cities.model.Cities;
 import com.bupt.flowpackage.mybatis.trade.productgroup.mapper.ProductGroupMapper;
