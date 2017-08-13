@@ -35,6 +35,7 @@
 							<label class="layui-form-label">省份:</label>
 							<div class="layui-input-inline">
 								<select name="provinceCode" lay-verify="" lay-search>
+									<option value="">--请选择--</option>
 									<option value="0">--请选择--</option>
 							    </select>
 							</div>
