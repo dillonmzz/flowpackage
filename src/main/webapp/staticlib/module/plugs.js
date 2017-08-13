@@ -1,5 +1,6 @@
 layui.define(['jquery', 'layer', 'form','laypage'], function(exports){
 	var laypage = layui.laypage; 
+	var form = layui.form(); 
     /*!
      * jQuery placeholder, fix for IE6,7,8,9
      */
@@ -846,7 +847,7 @@ layui.define(['jquery', 'layer', 'form','laypage'], function(exports){
     var table = function(){
     	this.version = '1.0';
     }
-    
+    /**显示list*/
     table.prototype.show = function(url, params, curr, templateStr, tbodyName) {
     	curr = curr || 1,templateStr = templateStr || "main-template",
     	tbodyName = tbodyName || "table-body",
@@ -892,6 +893,40 @@ layui.define(['jquery', 'layer', 'form','laypage'], function(exports){
     }
     
     $.table = new table();
+    
+    var myutil = function(){
+    	this.version = '1.0';
+    }
+    /**加载省份*/
+    myutil.prototype.loadProvince = function() {
+    	var provinceObj = $.find('select[name=provinceCode]');
+    	if(!provinceObj) {
+    		return;
+    	}
+    	
+    	$.ajax({
+			url: baseUrl+'/system/api/provinces',
+			dataType: "json",
+			type: "GET",
+			success: function(resp) {
+				if(resp.code == 200) {
+					var proHtml = '';
+					for (var i = 0; i < resp.data.provinceList.length; i++) {
+		                proHtml += '<option value="' + resp.data.provinceList[i].provinceCode + '">' + resp.data.provinceList[i].provinceName + '</option>';
+		            }
+					$(provinceObj).append(proHtml);
+					form.render();
+				}else {
+					$.msg.error("获取省份异常！")
+				}
+			},
+			error: function(er) {
+				layer.msg("服务器出错，请重试！" + console.log(er));
+			}
+		});
+    }
+    
+    $.myutil = new myutil();
     
     exports('adminplugs', {});
 });
