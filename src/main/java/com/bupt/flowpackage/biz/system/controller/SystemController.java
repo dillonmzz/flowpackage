@@ -40,6 +40,16 @@ public class SystemController {
 	}
 	
 	/**
+	* @Description 基础产品组
+	* @param @return
+	* @return String
+	 */
+	@RequestMapping("/product-group")
+	public String productGroup() {
+		return "system/product-group";
+	}
+	
+	/**
 	 * <p>获取省份</p>   
 	 * @param @return      
 	 * @return String

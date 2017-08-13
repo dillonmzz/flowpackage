@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@include file="/WEB-INF/view/commons/meta.jsp" %>
-<title>订单列表-流量充值后台管理系统-摩尔科技</title>
+<title>基础产品-流量充值后台管理系统-摩尔科技</title>
 </head>
 <body>
 <%@include file="/WEB-INF/view/commons/header.jsp" %>
@@ -12,14 +12,14 @@
 
 <section class="Hui-article-box">
 	<nav class="breadcrumb"><i class="Hui-iconfont"></i>
-		<a href="#" class="maincolor">商户管理</a>
+		<a href="/" class="maincolor">系统配置</a>
 		<span class="c-999 en">&gt;</span>
-		<a href="#" class="maincolor">订单列表</a>
+		<span class="c-666">基础产品</span>
 		<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
 	</nav>
 	<div class="Hui-article">
 		<article class="cl pd-20">
-			订单列表
+			基础产品
 		</article>
 		<%@include file="/WEB-INF/view/commons/footer.jsp" %>
 	</div>

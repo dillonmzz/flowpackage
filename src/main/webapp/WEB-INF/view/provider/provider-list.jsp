@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@include file="/WEB-INF/view/commons/meta.jsp" %>
-<title>系统日志-流量充值后台管理系统-摩尔科技</title>
+<title>供应商-流量充值后台管理系统-摩尔科技</title>
 </head>
 <body>
 <%@include file="/WEB-INF/view/commons/header.jsp" %>
@@ -12,14 +12,14 @@
 
 <section class="Hui-article-box">
 	<nav class="breadcrumb"><i class="Hui-iconfont"></i>
-		<a href="/" class="maincolor">系统配置</a>
+		<a href="#" class="maincolor">上游管理</a>
 		<span class="c-999 en">&gt;</span>
-		<span class="c-666">系统日志</span>
+		<a href="#" class="maincolor">供应商列表</a>
 		<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
 	</nav>
 	<div class="Hui-article">
 		<article class="cl pd-20">
-			系统日志
+			供应商列表
 		</article>
 		<%@include file="/WEB-INF/view/commons/footer.jsp" %>
 	</div>

@@ -4,7 +4,7 @@ values (1, 1001, '流量充值平台', '流量充值后台管理模块');
 
 --添加菜单
 insert into sys_menu (id, menu_no, application_code, menu_parent_no, menu_order, menu_name, menu_url, menu_icon, is_visible, is_leaf)
-	values (1, 1, 1001, null, 1, '管理员管理', null, 'Hui-iconfont-root', true, false);
+	values (1, 1, 1001, null, 1, '管理员管理', '/admin', 'Hui-iconfont-root', true, false);
 insert into sys_menu (id, menu_no, application_code, menu_parent_no, menu_order, menu_name, menu_url, menu_icon, is_visible, is_leaf)
 	values (2, 101, 1001, 1, 1, '管理员列表', 'admin-list.html', null, true, true);
 insert into sys_menu (id, menu_no, application_code, menu_parent_no, menu_order, menu_name, menu_url, menu_icon, is_visible, is_leaf)
@@ -24,17 +24,31 @@ insert into sys_menu (menu_no, application_code, menu_parent_no, menu_order, men
 
 
 insert into sys_menu (id, menu_no, application_code, menu_parent_no, menu_order, menu_name, menu_url, menu_icon, is_visible, is_leaf)
-	values (4, 2, 1001, null, 99, '系统管理', null, 'Hui-iconfont-system', true, false);
+	values (4, 2, 1001, null, 99, '系统配置', '/system', 'Hui-iconfont-system', true, false);
 insert into sys_menu (id, menu_no, application_code, menu_parent_no, menu_order, menu_name, menu_url, menu_icon, is_visible, is_leaf)
 	values (5, 201, 1001, 2, 1, '系统日志', 'system-log.html', null, true, true);
+insert into sys_menu (menu_no, application_code, menu_parent_no, menu_order, menu_name, menu_url, menu_icon, is_visible, is_leaf)
+	values (202, 1001, 2, 2, '基础产品', 'system-product-group.html', null, true, true);
 
 insert into sys_menu (id, menu_no, application_code, menu_parent_no, menu_order, menu_name, menu_url, menu_icon, is_visible, is_leaf)
-	values (6, 3, 1001, null, 2, '商家管理', null, 'Hui-iconfont-huangguan', true, false);
+	values (6, 3, 1001, null, 2, '上游管理', '/provider', 'Hui-iconfont-practice', true, false);
 insert into sys_menu (id, menu_no, application_code, menu_parent_no, menu_order, menu_name, menu_url, menu_icon, is_visible, is_leaf)
-	values (7, 301, 1001, 3, 1, '商家列表', 'merchant-list.html', null, true, true);
+	values (7, 301, 1001, 3, 1, '供应商', 'provider-list.html', null, true, true);
 insert into sys_menu (id, menu_no, application_code, menu_parent_no, menu_order, menu_name, menu_url, menu_icon, is_visible, is_leaf)
-	values (8, 302, 1001, 3, 2, '订单列表', 'order-list.html', null, true, true);
+	values (8, 302, 1001, 3, 2, '通道管理', 'provider-channel.html', null, true, true);
 	
+insert into sys_menu (menu_no, application_code, menu_parent_no, menu_order, menu_name, menu_url, menu_icon, is_visible, is_leaf)
+	values (4, 1001, null, 3, '下游管理', '/customer', 'Hui-iconfont-dianpu', true, false);
+insert into sys_menu (menu_no, application_code, menu_parent_no, menu_order, menu_name, menu_url, menu_icon, is_visible, is_leaf)
+	values (401, 1001, 4, 1, '客户列表', 'customer-list.html', null, true, true);
+
+insert into sys_menu (menu_no, application_code, menu_parent_no, menu_order, menu_name, menu_url, menu_icon, is_visible, is_leaf)
+	values (5, 1001, null, 5, '订单管理', '/order', 'Hui-iconfont-cart2-man', true, false);
+insert into sys_menu (menu_no, application_code, menu_parent_no, menu_order, menu_name, menu_url, menu_icon, is_visible, is_leaf)
+	values (501, 1001, 5, 1, '今日订单', 'order-today.html', null, true, true);
+insert into sys_menu (menu_no, application_code, menu_parent_no, menu_order, menu_name, menu_url, menu_icon, is_visible, is_leaf)
+	values (502, 1001, 5, 2, '历史订单', 'order-history.html', null, true, true);
+
 --添加角色
 insert into cf_role (id, role_name, role_desc, create_name, create_time) values (1, '超级管理员', '超级管理员权限组', 'admin', now());
 insert into cf_role (id, role_name, role_desc, create_name, create_time) values (2, '普通管理员', '普通管理员权限组，只能查看订单', 'admin', now());

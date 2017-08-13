@@ -41,7 +41,7 @@
 				</dd>
 			</dl>
 		</c:forEach>
-		<dl id="menu-picture">
+		<!--<dl id="menu-picture">
 			<dt>
 				<i class="Hui-iconfont">&#xe613;</i> 图片管理
 				<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
@@ -54,7 +54,7 @@
 				</ul>
 			</dd>
 		</dl>
-		<!-- <dl id="menu-product">
+		 <dl id="menu-product">
 			<dt>
 				<i class="Hui-iconfont">&#xe620;</i> 产品管理
 				<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
