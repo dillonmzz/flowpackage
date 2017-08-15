@@ -12,18 +12,26 @@ public class ProductGroupReq extends PageRequest{
 
 	private static final long serialVersionUID = 1L;
 	/**运营商code*/
-	private Short operatorCode;
+	private Byte operatorCode;
 	/**省份code*/
 	private String provinceCode;
 	/**产品组类型*/
-	private Short productType;
+	private Byte productType;
 
-	public Short getOperatorCode() {
+	public Byte getOperatorCode() {
 		return operatorCode;
 	}
 
-	public void setOperatorCode(Short operatorCode) {
+	public void setOperatorCode(Byte operatorCode) {
 		this.operatorCode = operatorCode;
+	}
+
+	public Byte getProductType() {
+		return productType;
+	}
+
+	public void setProductType(Byte productType) {
+		this.productType = productType;
 	}
 
 	public String getProvinceCode() {
@@ -32,14 +40,6 @@ public class ProductGroupReq extends PageRequest{
 
 	public void setProvinceCode(String provinceCode) {
 		this.provinceCode = provinceCode;
-	}
-
-	public Short getProductType() {
-		return productType;
-	}
-
-	public void setProductType(Short productType) {
-		this.productType = productType;
 	}
 }
  

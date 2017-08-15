@@ -20,15 +20,16 @@ layui.use('adminplugs', function(){
     });
     
     /*! 注册 data-serach 表单搜索行为 */
-    /*this.$body.on('submit', 'form.form-search', function () {
-        var url = $(this).attr('action');
+    this.$body.on('submit', 'form.form-search', function () {
+    	$.table.show();
+        /*var url = $(this).attr('action');
         var split = url.indexOf('?') === -1 ? '?' : '&';
         if ((this.method || 'get').toLowerCase() === 'get') {
             window.location.href = '#' + $.menu.parseUri(url + split + $(this).serialize());
         } else {
             $.form.load(url, this, 'post');
-        }
-    });*/
+        }*/
+    });
 
     /*! 注册 data-modal 事件行为 */
     this.$body.on('click', '[data-modal]', function () {

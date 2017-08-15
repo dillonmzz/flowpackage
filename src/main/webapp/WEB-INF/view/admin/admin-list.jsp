@@ -18,7 +18,7 @@
 		<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.reload();" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
 	</nav>
 	<div class="Hui-article">
-		<article class="cl pd-20">
+		<article class="cl pt-20">
 			<div class="admin-main">
 				<div class="layui-field-box layui-form">
 					<form class="form-search layui-form layui-form-pane" id="searchForm" load-action="${ctx}/admin/api/getAdminRoleList">
@@ -31,8 +31,10 @@
 							<div class="layui-input-inline">
 								<input type="text" name="mobile" value="${param.mobile}"  placeholder="根据手机号过滤" class="layui-input">
 							</div>
-							<button type="submit" class="layui-btn">查询</button>
-							<button class="layui-btn" onClick="return false;" data-title="添加管理员" data-modal='${ctx}/admin/admin-add'>添加用户 </button>
+							<div class="layui-btn-group">
+								<button type="submit" class="layui-btn">查询</button>
+								<button class="layui-btn" onClick="return false;" data-title="添加管理员" data-modal='${ctx}/admin/admin-add'>添加用户 </button>
+							</div>
 						</div>
 					</form>
 					<table class="layui-table" lay-skin="line">
@@ -53,7 +55,7 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="admin-table-page" style="float:right; bottom:20;">
+				<div class="admin-table-page" style="float:right; margin:20px;">
 					<div id="page"></div>
 				</div>
 			</div>
@@ -81,6 +83,7 @@
 					{{/if}}
 				</td>
 				<td>
+					<div class="layui-btn-group">
 					<a class="layui-btn layui-btn-mini" data-modal="${ctx}/admin/admin-edit?id={{item.adminId}}" data-title="编辑管理员" >修改</a>
 					<a class="layui-btn layui-btn-mini" data-modal="${ctx}/admin/admin-pass?id={{item.adminId}}" data-title="修改密码" >密码</a>
 					{{if item.loginName != 'admin'}}	
@@ -91,6 +94,7 @@
 						{{/if}}
 						<a data-update="{{item.adminId}}" data-action='${ctx}/admin/admin-delete' data-title="确认删除用户吗？" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
 					{{/if}}
+					</div>			
 				</td>
 			</tr>
 		{{/each}} 

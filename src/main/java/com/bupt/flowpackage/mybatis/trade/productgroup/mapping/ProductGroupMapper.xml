@@ -46,13 +46,13 @@
     from res_product_group productgroup, sys_provinces province 
     <where>
     	productgroup.province_code = province.province_code
-		<if test="operatorCode != null and operatorCode != ''">
+		<if test="operatorCode != null and operatorCode != 0">
 			and productgroup.operator_code = #{operatorCode} 
 		</if>
-    	<if test="provinceCode != null and provinceCode != ''">
+    	<if test="provinceCode != null and provinceCode != 0">
 		    AND productgroup.province_code = ${provinceCode}
 	    </if>
-	    <if test="productType != null and productType != ''">
+	    <if test="productType != null and productType != 0">
 	    	AND productgroup.product_type = ${productType}
 	    </if>
     </where>

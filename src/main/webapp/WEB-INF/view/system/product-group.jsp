@@ -14,14 +14,14 @@
 	<nav class="breadcrumb"><i class="Hui-iconfont"></i>
 		<a href="/" class="maincolor">系统配置</a>
 		<span class="c-999 en">&gt;</span>
-		<span class="c-666">基础产品</span>
+		<a href="${ctx}/system/product-group.html" class="maincolor">基础产品</a>
 		<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
 	</nav>
 	<div class="Hui-article">
-		<article class="cl pd-20">
+		<article class="cl pt-20">
 			<div class="product-group-main">
 				<div class="layui-field-box layui-form">
-					<form class="form-search layui-form layui-form-pane" id="searchForm" load-action="${ctx}/system/api/getProductGroup">
+					<form class="form-search layui-form layui-form-pane" id="searchForm" load-action="${ctx}/system/api/getProductGroup"  onsubmit="return false">
 						<div class="layui-form-item">
 							<label class="layui-form-label">运营商:</label>
 							<div class="layui-input-inline">
@@ -47,9 +47,11 @@
 								  	<option value="2">省包不可漫游</option>
 							    </select>
 							</div>
-							<button type="submit" class="layui-btn">查询</button>
-							<button class="layui-btn" onClick="return false;" data-title="添加产品组" data-modal='${ctx}/system/chanelGroupAdd'>添加产品组 </button>
-						</div>
+							<div class="layui-btn-group">
+								<button type="submit" class="layui-btn">查询</button>
+								<button class="layui-btn" onClick="return false;" data-title="添加产品组" data-modal='${ctx}/system/chanelGroupAdd'>添加产品组 </button>
+							</div>
+							</div>
 					</form>
 					<table class="layui-table" lay-skin="line">
 						<thead>
@@ -66,7 +68,7 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="admin-table-page" style="float:right; bottom:20;">
+				<div class="admin-table-page" style="float:right; margin:20px;">
 					<div id="page"></div>
 				</div>
 			</div>	
@@ -79,31 +81,27 @@
 	{{if rows.length > 0}} 
 		{{each rows item}}
 			<tr>
-				<td>{{item.adminId}}</td>
-				<td>{{item.loginName}}</td>
-				<td>{{item.mobile}}</td>
-				<td>{{item.realName}}</td>
-				<td>{{item.email}}</td>
-				<td>{{item.lastLoginTime}}</td>
-				<td>{{item.roleName}}</td>
+				<td><a class="maincolor">{{item.productName}}</a></td>
 				<td>
-					{{if item.availableFlag}}
-						可用
-					{{else}}
-						<font color='red'>禁用</font>
-					{{/if}}
+				{{if item.operatorCode == 1}}
+					移动
+				{{else if item.operatorCode == 2}}
+					联通
+				{{else if item.operatorCode == 3}}
+					电信
+				{{/if}}
 				</td>
+				<td>{{item.provinceName}}</td>
 				<td>
-					<a class="layui-btn layui-btn-mini" data-modal="${ctx}/admin/admin-edit?id={{item.adminId}}" data-title="编辑管理员" >修改</a>
-					<a class="layui-btn layui-btn-mini" data-modal="${ctx}/admin/admin-pass?id={{item.adminId}}" data-title="修改密码" >密码</a>
-					{{if item.loginName != 'admin'}}	
-						{{if item.availableFlag}}		
-							<a data-update="{{item.adminId}}" data-action='${ctx}/admin/admin-forbid' data-title="确认禁用用户吗？" class="layui-btn layui-btn-danger layui-btn-mini">禁用</a>
-						{{else}}
-							<a data-update="{{item.adminId}}" data-action='${ctx}/admin/admin-resume' data-title="确认启用用户吗？" class="layui-btn layui-btn-mini">启用</a>
-						{{/if}}
-						<a data-update="{{item.adminId}}" data-action='${ctx}/admin/admin-delete' data-title="确认删除用户吗？" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
-					{{/if}}
+				{{if item.productType == 1}}
+					全国包可漫游
+				{{else item.productType == 2}}
+					省包不可漫游
+				{{/if}}
+				</td>
+				<td>{{item.createTime}}</td>
+				<td>
+					<a class="layui-btn layui-btn-mini" data-modal="${ctx}/admin/admin-edit?id={{item.adminId}}" data-title="编辑管理员" >编辑产品</a>
 				</td>
 			</tr>
 		{{/each}} 

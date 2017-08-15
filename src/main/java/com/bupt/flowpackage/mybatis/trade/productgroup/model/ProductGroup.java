@@ -12,7 +12,7 @@ public class ProductGroup extends BaseBean{
     private String productName;
 
     private Byte operatorCode;
-
+    
     private String provinceCode;
     
     private String provinceName;
