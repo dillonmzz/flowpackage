@@ -81,7 +81,7 @@
 	{{if rows.length > 0}} 
 		{{each rows item}}
 			<tr>
-				<td><a class="maincolor">{{item.productName}}</a></td>
+				<td><a class="maincolor">{{item.productName}}[{{item.childProductNums}}]</a></td>
 				<td>
 				{{if item.operatorCode == 1}}
 					移动
