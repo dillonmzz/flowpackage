@@ -11,24 +11,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/order")
 public class OrderController {
-	/**
-	 * <p>今日订单</p>   
-	 * @param @return      
-	 * @return String
-	 */
-	@RequestMapping("/order-today")
-	public String orderToday() {
-		return "order/order-today";
-	}
+	
+	public static final String PATH = "/order/ordermanage/";
 	
 	/**
 	 * <p>今日订单</p>   
 	 * @param @return      
 	 * @return String
 	 */
-	@RequestMapping("/order-history")
+	@RequestMapping("/ordermanage/order-today")
+	public String orderToday() {
+		return PATH + "order-today";
+	}
+	
+	/**
+	 * <p>历史订单</p>   
+	 * @param @return      
+	 * @return String
+	 */
+	@RequestMapping("/ordermanage/order-history")
 	public String orderHistory() {
-		return "order/order-history";
+		return PATH + "order-history";
 	}
 	
 }

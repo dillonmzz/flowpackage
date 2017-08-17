@@ -78,4 +78,19 @@ public class StringUtil {
 	public static String format(String format, Object... objects) {
 		return String.format(format, objects);
 	}
+
+	public static String getSubStr(String str, int num) {
+		String result = "";
+		int i = 0;
+		while (i < num) {
+			if(str.contains("/")){
+				int lastFirst = str.lastIndexOf('/');
+				result = str.substring(lastFirst) + result;
+				str = str.substring(0, lastFirst);
+			}
+			i++;
+		}
+		return result.substring(1);
+	}
+	
 }

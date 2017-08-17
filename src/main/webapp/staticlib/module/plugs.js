@@ -33,7 +33,7 @@ layui.define(['jquery', 'layer', 'form','laypage'], function(exports){
     {  
     	var hasSession = false;
     	$.ajax({
-			url: baseUrl + "/admin/api/checkSession",
+			url: baseUrl + "/adminmanage/admin/api/checkSession",
 			type: "get",
 			async : false,
 			dataType: "json",

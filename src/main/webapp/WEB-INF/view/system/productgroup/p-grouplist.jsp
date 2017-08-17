@@ -21,7 +21,7 @@
 		<article class="cl pt-20">
 			<div class="product-group-main">
 				<div class="layui-field-box layui-form">
-					<form class="form-search layui-form layui-form-pane" id="searchForm" load-action="${ctx}/system/api/getProductGroup"  onsubmit="return false">
+					<form class="form-search layui-form layui-form-pane" id="searchForm" load-action="${ctx}/system/productgroup/api/getProductGroup"  onsubmit="return false">
 						<div class="layui-form-item">
 							<label class="layui-form-label">运营商:</label>
 							<div class="layui-input-inline">

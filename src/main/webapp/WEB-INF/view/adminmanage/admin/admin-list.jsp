@@ -21,7 +21,7 @@
 		<article class="cl pt-20">
 			<div class="admin-main">
 				<div class="layui-field-box layui-form">
-					<form class="form-search layui-form layui-form-pane" id="searchForm" load-action="${ctx}/admin/api/getAdminRoleList">
+					<form class="form-search layui-form layui-form-pane" id="searchForm" load-action="${ctx}/adminmanage/admin/api/getAdminRoleList">
 						<div class="layui-form-item">
 							<label class="layui-form-label">账号:</label>
 							<div class="layui-input-inline">
@@ -84,15 +84,15 @@
 				</td>
 				<td>
 					<div class="layui-btn-group">
-					<a class="layui-btn layui-btn-mini" data-modal="${ctx}/admin/admin-edit?id={{item.adminId}}" data-title="编辑管理员" >修改</a>
-					<a class="layui-btn layui-btn-mini" data-modal="${ctx}/admin/admin-pass?id={{item.adminId}}" data-title="修改密码" >密码</a>
+					<a class="layui-btn layui-btn-mini" data-modal="${ctx}/adminmanage/admin/admin-edit?id={{item.adminId}}" data-title="编辑管理员" >修改</a>
+					<a class="layui-btn layui-btn-mini" data-modal="${ctx}/adminmanage/admin/admin-pass?id={{item.adminId}}" data-title="修改密码" >密码</a>
 					{{if item.loginName != 'admin'}}	
 						{{if item.availableFlag}}		
-							<a data-update="{{item.adminId}}" data-action='${ctx}/admin/admin-forbid' data-title="确认禁用用户吗？" class="layui-btn layui-btn-danger layui-btn-mini">禁用</a>
+							<a data-update="{{item.adminId}}" data-action='${ctx}/adminmanage/admin/admin-forbid' data-title="确认禁用用户吗？" class="layui-btn layui-btn-danger layui-btn-mini">禁用</a>
 						{{else}}
-							<a data-update="{{item.adminId}}" data-action='${ctx}/admin/admin-resume' data-title="确认启用用户吗？" class="layui-btn layui-btn-mini">启用</a>
+							<a data-update="{{item.adminId}}" data-action='${ctx}/adminmanage/admin/admin-resume' data-title="确认启用用户吗？" class="layui-btn layui-btn-mini">启用</a>
 						{{/if}}
-						<a data-update="{{item.adminId}}" data-action='${ctx}/admin/admin-delete' data-title="确认删除用户吗？" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
+						<a data-update="{{item.adminId}}" data-action='${ctx}/adminmanage/admin/admin-delete' data-title="确认删除用户吗？" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
 					{{/if}}
 					</div>			
 				</td>

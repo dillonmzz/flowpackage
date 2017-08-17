@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 * 上游供应商
 */
 @Controller
-@RequestMapping("/provider")
+@RequestMapping("/provider/provider")
 public class ProviderController {
-
+	public static final String PATH = "/provider/provider/";
 	/**
 	 * <p>供应商列表</p>   
 	 * @param @return      
@@ -19,18 +19,8 @@ public class ProviderController {
 	 */
 	@RequestMapping("/provider-list")
 	public String merchantList() {
-		return "provider/provider-list";
+		return PATH + "provider-list";
 	}
 	
-	
-	/**
-	 * <p>通道管理</p>   
-	 * @param @return      
-	 * @return String
-	 */
-	@RequestMapping("/provider-channel")
-	public String providerChannel() {
-		return "provider/provider-channel";
-	}
 }
  

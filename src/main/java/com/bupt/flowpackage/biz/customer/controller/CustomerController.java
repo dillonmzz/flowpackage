@@ -11,15 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
-
+	public static final String PATH = "/customer/customer/";
+	
 	/**
 	 * <p>客户列表</p>   
 	 * @param @return      
 	 * @return String
 	 */
-	@RequestMapping("/customer-list")
+	@RequestMapping("/customer/customer-list")
 	public String merchantList() {
-		return "customer/customer-list";
+		return PATH + "customer-list";
 	}
 }
  

@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@include file="/WEB-INF/view/commons/meta.jsp" %>
-<title>权限管理-流量充值后台管理系统-摩尔科技</title>
+<title>角色列表-流量充值后台管理系统-摩尔科技</title>
 </head>
 <body>
 <%@include file="/WEB-INF/view/commons/header.jsp" %>
@@ -14,12 +14,12 @@
 	<nav class="breadcrumb"><i class="Hui-iconfont"></i>
 		<a href="#" class="maincolor">管理员管理</a>
 		<span class="c-999 en">&gt;</span>
-		<a href="#" class="maincolor">权限管理</a>
+		<a href="#" class="maincolor">角色列表</a>
 		<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
 	</nav>
 	<div class="Hui-article">
 		<article class="cl pd-20">
-			权限管理
+			角色列表
 		</article>
 		<%@include file="/WEB-INF/view/commons/footer.jsp" %>
 	</div>

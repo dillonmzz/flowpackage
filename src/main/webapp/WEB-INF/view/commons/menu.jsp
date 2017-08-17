@@ -27,12 +27,12 @@
 							<c:choose>
     							<c:when test="${global.currentUrl == leafMenu.menuUrl}">
     								<li  class="current">
-    									<a href="${ctx}${parent.menuUrl}/${leafMenu.menuUrl}" title="${leafMenu.menuName}">${leafMenu.menuName}</a>
+    									<a href="${ctx}/${parent.menuUrl}/${leafMenu.menuUrl}" title="${leafMenu.menuName}">${leafMenu.menuName}</a>
 									</li>
     							</c:when>
     							<c:otherwise>
     								<li>
-    									<a href="${ctx}${parent.menuUrl}/${leafMenu.menuUrl}" title="${leafMenu.menuName}">${leafMenu.menuName}</a>
+    									<a href="${ctx}/${parent.menuUrl}/${leafMenu.menuUrl}" title="${leafMenu.menuName}">${leafMenu.menuName}</a>
 									</li>
     							</c:otherwise>
     						</c:choose>

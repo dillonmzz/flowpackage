@@ -21,6 +21,7 @@ import com.bupt.flowpackage.common.domain.SessionVo;
 import com.bupt.flowpackage.common.enums.ResultCode;
 import com.bupt.flowpackage.common.session.SessionUtil;
 import com.bupt.flowpackage.mybatis.account.application.model.Application;
+import com.bupt.flowpackage.utils.StringUtil;
 
 public class LoginInteceptor  extends HandlerInterceptorAdapter{
 	public static Logger logger = LoggerFactory.getLogger(LoginInteceptor.class);
@@ -32,7 +33,6 @@ public class LoginInteceptor  extends HandlerInterceptorAdapter{
 			throws Exception {
 		SessionVo sessionInfo = SessionUtil.getAdminSessionInfo();
 		String uri = request.getRequestURI();
-		
 		if(handler instanceof HandlerMethod) {
 			HandlerMethod handlerMethod = (HandlerMethod) handler; 
 			ResponseBody hasResponseBody = handlerMethod.getMethodAnnotation(ResponseBody.class);
@@ -52,6 +52,7 @@ public class LoginInteceptor  extends HandlerInterceptorAdapter{
 				return false;
 			}else {
 				String currentUri = getSimpleUri(uri);
+				String authUri = getAuthUri(uri);
 				//权限校验
 				if(hasResponseBody != null) {
 					PathMatcher matcher = new AntPathMatcher();
@@ -65,9 +66,10 @@ public class LoginInteceptor  extends HandlerInterceptorAdapter{
 						return false;
 					}
 				}else {
-					if(!SessionUtil.checkUrlAuth(currentUri)) {
+					if(!SessionUtil.checkUrlAuth(currentUri) &&  !SessionUtil.checkUrlAuth(authUri)) {
 						logger.info("\n用户={} 访问url={} 因无权限, 强制跳转到无权限页面", sessionInfo.getLoginName(), uri);
 						request.getRequestDispatcher("/error/noauth").forward(request, response);
+						return false;
 					}
 				}
 			}
@@ -84,6 +86,15 @@ public class LoginInteceptor  extends HandlerInterceptorAdapter{
 		}
 		return currentUrl;
 	}	
+	
+	private String getAuthUri(String url) {
+		String currentUrl = StringUtil.getSubStr(url, 2);
+		if(currentUrl.contains(".")) {
+			currentUrl = currentUrl.substring(0, currentUrl.indexOf("."));
+		}
+		return currentUrl;
+	}
+	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
@@ -103,18 +114,22 @@ public class LoginInteceptor  extends HandlerInterceptorAdapter{
 				webGlobalVo.setMenuList(application.getMenuList());
 			}
 			
-			//检查uri是否有权限
 			String uri = request.getRequestURI();
 			String contextPath = request.getContextPath();
-			int start = contextPath.length();
-			int end = uri.lastIndexOf("/");
-			String parentUri = uri.substring(start, end);
-			webGlobalVo.setCurrentParentUrl(parentUri);
+			uri = uri.substring(contextPath.length() + 1);
+			if(uri.contains("/")) {
+				String parentUri = uri.substring(0, uri.indexOf("/"));
+				webGlobalVo.setCurrentParentUrl(parentUri);
+				
+				//----/flowpackage/index
+				String currentUri = StringUtil.getSubStr(uri, 2);
+				if(currentUri.contains(".")) {
+					currentUri = currentUri.substring(0, currentUri.indexOf("."));
+				}
+				webGlobalVo.setCurrentUrl(currentUri + ".html");
+			}
 			
-			//----/flowpackage/index
-			String currentUri = getSimpleUri(uri);
-			webGlobalVo.setCurrentUrl(currentUri + ".html");
-			if(modelAndView != null && SessionUtil.checkUrlAuth(currentUri)) {
+			if(modelAndView != null) {
 				modelAndView.addObject(GLOBAL_INFO, webGlobalVo);
 			}
 		}

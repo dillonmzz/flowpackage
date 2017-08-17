@@ -35,10 +35,11 @@ import com.bupt.flowpackage.mybatis.account.role.model.Role;
 * @date 2017年6月23日 下午3:20:32
  */
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/adminmanage/admin")
 public class AdminController {
 	public static Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
+	private static final String PATH = "/adminmanage/admin/";
 	@Resource
 	private AdminRoleService adminRoleService;
 	/**
@@ -49,7 +50,7 @@ public class AdminController {
 	 */
 	@RequestMapping("/admin-list")
 	public String adminList() {
-		return "admin/admin-list";
+		return PATH + "admin-list";
 	} 
 	
 	@RequestMapping("/admin-add")
@@ -63,7 +64,7 @@ public class AdminController {
 			logger.error("管理员添加页面访问失败!", e);
 			throw e;
 		}
-		return "admin/admin-form";
+		return PATH + "admin-form";
 	} 
 	
 	@RequestMapping("/admin-edit")
@@ -81,7 +82,7 @@ public class AdminController {
 			logger.error("管理员添加页面访问失败!", e);
 			throw e;
 		}
-		return "admin/admin-form";
+		return PATH + "admin-form";
 	} 
 	
 	@RequestMapping("/admin-pass")
@@ -98,7 +99,7 @@ public class AdminController {
 			logger.error("管理员修改密码页面访问失败!", e);
 			throw e;
 		}
-		return "admin/admin-pwd";
+		return PATH + "admin-pwd";
 	}
 	
 	@ResponseBody
@@ -220,16 +221,5 @@ public class AdminController {
 			baseResp = ExceptionHelper.createResponse(e, req);
 		}
 		return baseResp;
-	}
-	
-	/**
-	 * <p>权限管理</p>   
-	 * @param @param request
-	 * @param @return      
-	 * @return String
-	 */
-	@RequestMapping("/admin-permission")
-	public String adminPermission() {
-		return "admin/admin-permission";
 	}
 }
