@@ -53,7 +53,7 @@ layui.use('adminplugs', function(){
             this.checked = checked;
         });
     });
-
+    
     /*! 注册 data-update 事件行为 */
     this.$body.on('click', '[data-update]', function () {
         var id = $(this).attr('data-update') || (function () {

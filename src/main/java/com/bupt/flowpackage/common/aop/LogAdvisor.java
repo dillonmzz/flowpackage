@@ -19,6 +19,10 @@ import com.bupt.flowpackage.common.domain.BaseResponse;
 public class LogAdvisor {
 	public static Logger logger = LoggerFactory.getLogger(LogAdvisor.class);
 	
+	public void init() {
+		logger.info("\n初始化日志打印拦截器.....");
+	}
+	
 	public Object printLog(ProceedingJoinPoint pjp) throws Throwable {
 		MethodSignature signature = (MethodSignature) pjp.getSignature();
 		Method method = signature.getMethod();

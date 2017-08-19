@@ -89,16 +89,12 @@
 	<!-- 处理静态资源 -->
 	<mvc:default-servlet-handler/> 
 	
-	<bean id="validateAdvitor" class="com.bupt.flowpackage.common.aop.ParamValidateAdvisor"/>
-    <bean id="logAdvisor" class="com.bupt.flowpackage.common.aop.LogAdvisor"/> 
+	
+    <bean id="logAdvisor" class="com.bupt.flowpackage.common.aop.LogAdvisor" init-method="init"/> 
 	<aop:config proxy-target-class="true">
-        <aop:pointcut id="servicePointcut" expression="execution(* com.bupt.flowpackage.biz..service.*Service.*(..))"/>
-        <aop:pointcut id="controllerPointcut"  expression="execution(* com.bupt.flowpackage.biz..controller.*Controller.*(..))"/>
-        <aop:aspect ref="logAdvisor" order="1">
+		<aop:pointcut id="controllerPointcut"  expression="execution(* com.bupt.flowpackage.biz..controller.*Controller.*(..))"/>
+        <aop:aspect ref="logAdvisor">
             <aop:around method="printLog" pointcut-ref="controllerPointcut"/>
-        </aop:aspect>
-        <aop:aspect ref="validateAdvitor" order="2">
-            <aop:around method="validate" pointcut-ref="servicePointcut"/>
         </aop:aspect>
     </aop:config>
 	<!-- <mvc:resources location="/staticlib/" mapping="/staticlib/**"></mvc:resources> -->

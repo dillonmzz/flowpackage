@@ -1,10 +1,7 @@
 package com.bupt.flowpackage.biz.system.service;
 
 import com.bupt.flowpackage.biz.system.model.CityResp;
-import com.bupt.flowpackage.biz.system.model.ProductGroupReq;
 import com.bupt.flowpackage.biz.system.model.ProvinceResp;
-import com.bupt.flowpackage.common.domain.Page;
-import com.bupt.flowpackage.mybatis.trade.productgroup.model.ProductGroup;
 
 public interface SystemService {
 
@@ -22,11 +19,4 @@ public interface SystemService {
 	 */
 	public CityResp getCitiesByProvinceCode(String provinceCode);
 	
-	/**
-	* 获取产品组page
-	* @param @param req
-	* @param @return
-	* @return Page<ProductGroup>
-	 */
-	public Page<ProductGroup> getProductGroupPage(ProductGroupReq bizReq);
 }

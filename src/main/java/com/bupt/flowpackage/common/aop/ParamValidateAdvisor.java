@@ -18,6 +18,10 @@ import com.bupt.flowpackage.utils.ValidatorUtil;
 public class ParamValidateAdvisor {
 	public static Logger logger = LoggerFactory.getLogger(ParamValidateAdvisor.class);
 	
+	public void init() {
+		logger.info("\n初始化参数校验拦截器.....");
+	}
+	
 	public Object validate(ProceedingJoinPoint pjp) throws Throwable{
 		MethodSignature signature = (MethodSignature) pjp.getSignature();
 		Method method = signature.getMethod();

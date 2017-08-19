@@ -10,9 +10,12 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.bupt.flowpackage.biz.auth.service.AdminRoleService;
 import com.bupt.flowpackage.common.domain.SessionVo;
 import com.bupt.flowpackage.mybatis.account.application.model.Application;
 import com.bupt.flowpackage.mybatis.account.menu.model.Menu;
@@ -113,6 +116,26 @@ public class SessionUtil {
 		APPLICATION_MAP.put(getAdminSessionInfo().getRoleId(), applicationList);
 		AUTH_URL_MAP.put(getAdminSessionInfo().getRoleId(), loadAllMenuUrl(applicationList));
 	}
+	
+	private static void reloadApplicationList() {
+		logger.info("\n重新加载权限信息.......");
+		WebApplicationContext wct = ContextLoader.getCurrentWebApplicationContext();
+		AdminRoleService adminRoleService = wct.getBean(AdminRoleService.class);
+		SessionVo sessionVo = getAdminSessionInfo();
+		//如果存在同样角色的菜单记录，则不去查询数据库，直接取
+		if(adminRoleService != null && sessionVo != null) {
+			List<Application> applicationList = new ArrayList<Application>();
+			if(sessionVo.isSuper()) {
+				applicationList = adminRoleService.getAllApplicationMenu();
+			}else {
+				applicationList = adminRoleService.getApplicationMenuByRoleId(sessionVo.getRoleId());
+			}
+			SessionUtil.setApplicationList(applicationList);
+			logger.info("\n重新加载权限信息成功.......");
+		}
+	}
+	
+	
 	/**
 	 * <p>把权限内的菜单url提取出来,包括菜单和按钮, 链接</p>   
 	 * @param @param applicationList
@@ -181,10 +204,13 @@ public class SessionUtil {
 	 * @return boolean
 	 */
 	public static boolean checkUrlAuth(String url) {
+		if(APPLICATION_MAP.size() == 0 && getAdminSessionInfo() != null) {
+			reloadApplicationList();
+		}
 		List<String> menuUrlList = AUTH_URL_MAP.get(getAdminSessionInfo().getRoleId());
 		if(menuUrlList != null && menuUrlList.size() > 0 && menuUrlList.contains(url)) {
 			return true;
-		}
+		}   
 		return false;
 	}
 }

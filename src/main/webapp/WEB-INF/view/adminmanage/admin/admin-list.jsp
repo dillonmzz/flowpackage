@@ -14,7 +14,7 @@
 	<nav class="breadcrumb"><i class="Hui-iconfont"></i>
 		<a href="#" class="maincolor">管理员管理</a>
 		<span class="c-999 en">&gt;</span>
-		<a href="${ctx}/admin/admin-list.html" class="maincolor">管理员列表</a>
+		<a href="${ctx}/adminmanage/admin/admin-list.html" class="maincolor">管理员列表</a>
 		<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.reload();" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
 	</nav>
 	<div class="Hui-article">
@@ -33,7 +33,7 @@
 							</div>
 							<div class="layui-btn-group">
 								<button type="submit" class="layui-btn">查询</button>
-								<button class="layui-btn" onClick="return false;" data-title="添加管理员" data-modal='${ctx}/admin/admin-add'>添加用户 </button>
+								<button class="layui-btn" onClick="return false;" data-title="添加管理员" data-modal='${ctx}/adminmanage/admin/admin-add'>添加用户 </button>
 							</div>
 						</div>
 					</form>

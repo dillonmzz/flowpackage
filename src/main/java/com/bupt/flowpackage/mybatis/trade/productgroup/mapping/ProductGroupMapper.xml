@@ -3,7 +3,7 @@
 <mapper namespace="com.bupt.flowpackage.mybatis.trade.productgroup.mapper.ProductGroupMapper" >
   <resultMap id="BaseResultMap" type="productGroup" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_group_name" property="productGroupName" jdbcType="VARCHAR" />
     <result column="operator_code" property="operatorCode" jdbcType="TINYINT" />
     <result column="province_code" property="provinceCode" jdbcType="VARCHAR" />
     <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
@@ -15,7 +15,7 @@
   
   <resultMap id="ProductGroupBaseResultMap" type="productGroup" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_group_name" property="productGroupName" jdbcType="VARCHAR" />
     <result column="operator_code" property="operatorCode" jdbcType="TINYINT" />
     <result column="province_code" property="provinceCode" jdbcType="VARCHAR" />
     <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
@@ -26,7 +26,7 @@
     <collection property="childProductNums" javaType="int" column="id" select="selectProductNumsByGroupId"/>
   </resultMap>
   <sql id="Base_Column_List" >
-    productgroup.id, product_name, operator_code, productgroup.province_code, province_name, 
+    productgroup.id, product_group_name, operator_code, productgroup.province_code, province_name, 
     city_code, product_type, create_time, create_name
   </sql>
   
@@ -40,7 +40,26 @@
   </select>
   
   <!-- 获取基础产品组列表 -->
-  <select id="selectProductGroupPage" resultMap="ProductGroupBaseResultMap" parameterType="adminRole" >
+  <select id="selectProductGroupPage" resultMap="ProductGroupBaseResultMap" parameterType="productGroup" >
+    select 
+    <include refid="Base_Column_List" />
+    from res_product_group productgroup, sys_provinces province 
+    <where>
+    	productgroup.province_code = province.province_code
+		<if test="operatorCode != null and operatorCode != 0">
+			and productgroup.operator_code = #{operatorCode} 
+		</if>
+    	<if test="provinceCode != null and provinceCode != 0">
+		    AND productgroup.province_code = ${provinceCode}
+	    </if>
+	    <if test="productType != null and productType != 0">
+	    	AND productgroup.product_type = ${productType}
+	    </if>
+    </where>
+	order by productgroup.create_time desc 
+  </select>
+  
+  <select id="selectBySelective" resultMap="BaseResultMap" parameterType="productGroup" >
     select 
     <include refid="Base_Column_List" />
     from res_product_group productgroup, sys_provinces province 
@@ -68,13 +87,13 @@
     delete from res_product_group
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="productGroup" >
-    insert into res_product_group (id, product_name, operator_code, 
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="productGroup" >
+    insert into res_product_group (product_group_name, operator_code, 
       province_code, city_code, product_type, 
       create_time, create_name)
-    values (#{id,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{operatorCode,jdbcType=TINYINT}, 
+    values (#{productGroupName,jdbcType=VARCHAR}, #{operatorCode,jdbcType=TINYINT}, 
       #{provinceCode,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{productType,jdbcType=TINYINT}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{createName,jdbcType=VARCHAR})
+      now(), #{createName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="productGroup" >
     insert into res_product_group
@@ -82,8 +101,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="productName != null" >
-        product_name,
+      <if test="productGroupName != null" >
+        product_group_name,
       </if>
       <if test="operatorCode != null" >
         operator_code,
@@ -108,8 +127,8 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="productName != null" >
-        #{productName,jdbcType=VARCHAR},
+      <if test="productGroupName != null" >
+        #{productGroupName,jdbcType=VARCHAR},
       </if>
       <if test="operatorCode != null" >
         #{operatorCode,jdbcType=TINYINT},
@@ -134,8 +153,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="productGroup" >
     update res_product_group
     <set >
-      <if test="productName != null" >
-        product_name = #{productName,jdbcType=VARCHAR},
+      <if test="productGroupName != null" >
+        product_group_name = #{productGroupName,jdbcType=VARCHAR},
       </if>
       <if test="operatorCode != null" >
         operator_code = #{operatorCode,jdbcType=TINYINT},
@@ -160,7 +179,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="productGroup" >
     update res_product_group
-    set product_name = #{productName,jdbcType=VARCHAR},
+    set product_group_name = #{productGroupName,jdbcType=VARCHAR},
       operator_code = #{operatorCode,jdbcType=TINYINT},
       province_code = #{provinceCode,jdbcType=VARCHAR},
       city_code = #{cityCode,jdbcType=VARCHAR},

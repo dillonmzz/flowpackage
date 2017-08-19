@@ -88,7 +88,7 @@ public class WebLoginController {
 			logger.error("管理员修改密码页面访问失败!", e);
 			throw e;
 		}
-		return "admin/admin-pwd";
+		return "adminmanage/admin/admin-pwd";
 	}
 	
 	@RequestMapping("/tologin")

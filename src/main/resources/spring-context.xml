@@ -39,6 +39,15 @@
             </list>
         </property>
     </bean>
+    
+    <bean id="validateAdvitor" class="com.bupt.flowpackage.common.aop.ParamValidateAdvisor" init-method="init"/>
+    <aop:config proxy-target-class="true">
+		 <aop:pointcut id="servicePointcut" expression="execution(* com.bupt.flowpackage.biz.*.service.*Service.*(..))"/>
+        <aop:aspect ref="validateAdvitor">
+            <aop:around method="validate" pointcut-ref="servicePointcut"/>
+        </aop:aspect>
+    </aop:config>
+    
     <!-- 账号角色权限库 -->
     <import resource="spring-account-datasource.xml"/>
     <!-- 订单商户库 -->

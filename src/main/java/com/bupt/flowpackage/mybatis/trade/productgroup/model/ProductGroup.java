@@ -9,7 +9,7 @@ public class ProductGroup extends BaseBean{
 
 	private Integer id;
 
-    private String productName;
+    private String productGroupName;
 
     private Byte operatorCode;
     
@@ -51,15 +51,15 @@ public class ProductGroup extends BaseBean{
         this.id = id;
     }
 
-    public String getProductName() {
-        return productName;
-    }
+    public String getProductGroupName() {
+		return productGroupName;
+	}
 
-    public void setProductName(String productName) {
-        this.productName = productName == null ? null : productName.trim();
-    }
+	public void setProductGroupName(String productGroupName) {
+		this.productGroupName = productGroupName == null ? null : productGroupName.trim();
+	}
 
-    public Byte getOperatorCode() {
+	public Byte getOperatorCode() {
         return operatorCode;
     }
 

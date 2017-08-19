@@ -1,16 +1,18 @@
 package com.bupt.flowpackage.biz.system.model;
 
-import com.bupt.flowpackage.common.domain.PageRequest;
+import org.hibernate.validator.constraints.NotBlank;
+
+import com.bupt.flowpackage.common.domain.BaseRequest;
 
 /**
- * <p>Description:基础产品组</p>
+ * <p>Description:产品组添加</p>
  * <p>Company:摩尔科技</p>
  * @author daojian
- * @date 2017年8月13日 下午9:28:34
+ * @date 2017年6月12日 下午10:28:25
  */
-public class ProductGroupReq extends PageRequest{
-
+public class ProductGroupAddReq extends BaseRequest{
 	private static final long serialVersionUID = 1L;
+	
 	/**运营商code*/
 	private Byte operatorCode;
 	/**省份code*/
@@ -18,38 +20,32 @@ public class ProductGroupReq extends PageRequest{
 	/**产品组类型*/
 	private Byte productType;
 	/**产品组名称*/
+	@NotBlank(message="产品组名称不能为空！")
 	private String productGroupName;
 	
-	public String getProductGroupName() {
-		return productGroupName;
-	}
-
-	public void setProductGroupName(String productGroupName) {
-		this.productGroupName = productGroupName;
-	}
-
 	public Byte getOperatorCode() {
 		return operatorCode;
 	}
-
 	public void setOperatorCode(Byte operatorCode) {
 		this.operatorCode = operatorCode;
 	}
-
-	public Byte getProductType() {
-		return productType;
-	}
-
-	public void setProductType(Byte productType) {
-		this.productType = productType;
-	}
-
 	public String getProvinceCode() {
 		return provinceCode;
 	}
-
 	public void setProvinceCode(String provinceCode) {
 		this.provinceCode = provinceCode;
+	}
+	public Byte getProductType() {
+		return productType;
+	}
+	public void setProductType(Byte productType) {
+		this.productType = productType;
+	}
+	public String getProductGroupName() {
+		return productGroupName;
+	}
+	public void setProductGroupName(String productGroupName) {
+		this.productGroupName = productGroupName;
 	}
 }
  

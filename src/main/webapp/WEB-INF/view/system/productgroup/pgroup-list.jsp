@@ -14,7 +14,7 @@
 	<nav class="breadcrumb"><i class="Hui-iconfont"></i>
 		<a href="/" class="maincolor">系统配置</a>
 		<span class="c-999 en">&gt;</span>
-		<a href="${ctx}/system/product-group.html" class="maincolor">基础产品</a>
+		<a href="${ctx}/system/productgroup/pgroup-list.html" class="maincolor">基础产品</a>
 		<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
 	</nav>
 	<div class="Hui-article">
@@ -49,7 +49,7 @@
 							</div>
 							<div class="layui-btn-group">
 								<button type="submit" class="layui-btn">查询</button>
-								<button class="layui-btn" onClick="return false;" data-title="添加产品组" data-modal='${ctx}/system/chanelGroupAdd'>添加产品组 </button>
+								<button class="layui-btn" onClick="return false;" data-title="添加产品组" data-modal='${ctx}/system/productgroup/pgroup-add'>添加产品组 </button>
 							</div>
 							</div>
 					</form>
@@ -81,7 +81,7 @@
 	{{if rows.length > 0}} 
 		{{each rows item}}
 			<tr>
-				<td><a class="maincolor">{{item.productName}}[{{item.childProductNums}}]</a></td>
+				<td><a class="maincolor">{{item.productGroupName}}[{{item.childProductNums}}个]</a></td>
 				<td>
 				{{if item.operatorCode == 1}}
 					移动

@@ -6,8 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bupt.flowpackage.biz.system.model.ProductGroupAddReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupReq;
-import com.bupt.flowpackage.biz.system.service.SystemService;
+import com.bupt.flowpackage.biz.system.service.ProductGroupService;
 import com.bupt.flowpackage.common.domain.BaseResponse;
 import com.bupt.flowpackage.common.domain.Page;
 import com.bupt.flowpackage.common.exception.ExceptionHelper;
@@ -20,15 +21,20 @@ public class ProductGroupController {
 	public static final String PATH = "/system/productgroup/";
 
 	@Resource
-	private SystemService systemService;
+	private ProductGroupService productGroupService;
 	/**
 	* @Description 基础产品组
 	* @param @return
 	* @return String
 	 */
-	@RequestMapping("/p-grouplist")
+	@RequestMapping("/pgroup-list")
 	public String productGroup() {
-		return PATH + "p-grouplist";
+		return PATH + "pgroup-list";
+	}
+	
+	@RequestMapping("/pgroup-add")
+	public String chanelGroupAdd() {
+		return PATH + "pgroup-form";
 	}
 	
 	/**
@@ -41,8 +47,21 @@ public class ProductGroupController {
 	public BaseResponse<ProductGroup> getProductGroup(ProductGroupReq req) {
 		BaseResponse<ProductGroup> baseResp = new BaseResponse<ProductGroup>();
 		try{
-			Page<ProductGroup> pages = systemService.getProductGroupPage(req);
+			Page<ProductGroup> pages = productGroupService.getProductGroupPage(req);
 			baseResp.setPages(pages);
+		}catch(Exception e) {
+			baseResp = ExceptionHelper.createResponse(e);
+		}
+		return baseResp;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/api/pgroup-update")
+	public BaseResponse<String> pgroupUpdate(ProductGroupAddReq req) {
+		BaseResponse<String> baseResp = new BaseResponse<String>();
+		try{
+			productGroupService.productGroupAdd(req);
+			baseResp.setMsg("产品组添加成功!");
 		}catch(Exception e) {
 			baseResp = ExceptionHelper.createResponse(e);
 		}

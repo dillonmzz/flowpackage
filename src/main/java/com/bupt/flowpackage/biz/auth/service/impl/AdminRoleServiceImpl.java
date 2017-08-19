@@ -105,7 +105,7 @@ public class AdminRoleServiceImpl implements AdminRoleService{
 	public int adminAdd(AdminAddReq req){
 		SessionVo sessionVo = SessionUtil.getAdminSessionInfo();
 		Admin admin = new Admin();
-		if(sessionVo.isSuper() || SessionUtil.checkUrlAuth("admin-add")) {
+		if(sessionVo.isSuper() || SessionUtil.checkUrlAuth("admin/admin-add")) {
 			AdminRole adminRoleReq = new AdminRole();
 			adminRoleReq.setLoginName(req.getLoginName());
 			AdminRole adminRoleResp = adminMapper.selectAdminRoleInfo(adminRoleReq);
@@ -139,7 +139,7 @@ public class AdminRoleServiceImpl implements AdminRoleService{
 	@Transactional("account")
 	public boolean adminUpdate(AdminUpdateReq req) {
 		SessionVo sessionVo = SessionUtil.getAdminSessionInfo();
-		if(sessionVo.isSuper() || SessionUtil.checkUrlAuth("admin-edit") || req.getAdminId() == sessionVo.getAdminId()){
+		if(sessionVo.isSuper() || SessionUtil.checkUrlAuth("admin/admin-edit") || req.getAdminId() == sessionVo.getAdminId()){
 			Admin admin = adminMapper.selectByPrimaryKey(req.getAdminId());
 			if(admin == null) {
 				BizException.warn("用户不存在!");
@@ -170,7 +170,7 @@ public class AdminRoleServiceImpl implements AdminRoleService{
 	
 	public boolean adminUpdatePwd(AdminPwdReq req){
 		SessionVo sessionVo = SessionUtil.getAdminSessionInfo();
-		if(sessionVo.isSuper() || SessionUtil.checkUrlAuth("admin-pass") || req.getAdminId() == sessionVo.getAdminId()){
+		if(sessionVo.isSuper() || SessionUtil.checkUrlAuth("admin/admin-pass") || req.getAdminId() == sessionVo.getAdminId()){
 			Admin admin = adminMapper.selectByPrimaryKey(req.getAdminId());
 			if(admin == null) {
 				BizException.warn("用户不存在!");

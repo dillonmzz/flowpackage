@@ -56,7 +56,7 @@ public class LoginInteceptor  extends HandlerInterceptorAdapter{
 				//权限校验
 				if(hasResponseBody != null) {
 					PathMatcher matcher = new AntPathMatcher();
-					if(!matcher.match(API_PATH, uri) && !SessionUtil.checkUrlAuth(currentUri)){
+					if(!matcher.match(API_PATH, uri) && !SessionUtil.checkUrlAuth(authUri)){
 						BaseResponse<String> baseResp = new BaseResponse<String>(ResultCode.Result_NO_AUTH);
 						logger.info("\n用户访问url={} 该用户loginName={}无权限，返回提示信息！", uri, sessionInfo.getLoginName());
 						response.setCharacterEncoding("UTF-8");

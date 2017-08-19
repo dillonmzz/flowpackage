@@ -13,6 +13,8 @@ public interface ProductGroupMapper {
     int insertSelective(ProductGroup record);
     
     List<ProductGroup> selectProductGroupPage(ProductGroup productGroup);
+    
+    ProductGroup selectBySelective(ProductGroup record);
 
     ProductGroup selectByPrimaryKey(Integer id);
 
