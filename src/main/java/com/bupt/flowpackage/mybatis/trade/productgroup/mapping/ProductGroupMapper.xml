@@ -87,6 +87,7 @@
     delete from res_product_group
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  
   <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="productGroup" >
     insert into res_product_group (product_group_name, operator_code, 
       province_code, city_code, product_type, 

@@ -49,6 +49,7 @@
 
 	<bean id="tradeTxManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="tradeDataSource" />
+		<qualifier value="trade" />
 	</bean>
     
 	<!-- 支持通过注解添加事务 -->

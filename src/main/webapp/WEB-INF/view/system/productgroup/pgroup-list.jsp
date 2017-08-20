@@ -101,7 +101,10 @@
 				</td>
 				<td>{{item.createTime}}</td>
 				<td>
-					<a class="layui-btn layui-btn-mini" data-modal="${ctx}/admin/admin-edit?id={{item.adminId}}" data-title="编辑管理员" >编辑产品</a>
+					<div class="layui-btn-group">
+						<a class="layui-btn layui-btn-mini" data-modal="${ctx}/admin/admin-edit?id={{item.adminId}}" data-title="编辑管理员" >编辑产品</a>
+						<a data-update="{{item.id}}" data-action='${ctx}/system/productgroup/pgroup-delete' data-title="确认删除该产品组吗？<br><font color='red'>警告：此操作将会删除对应的通道和通道产品以及客户产品！</font>" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>	
+					</div>		
 				</td>
 			</tr>
 		{{/each}} 

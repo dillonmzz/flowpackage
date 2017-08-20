@@ -27,5 +27,14 @@ public interface ProductGroupService {
 	* @return int
 	 */
 	public int productGroupAdd(ProductGroupAddReq bizReq);
+	
+	/**
+	* 产品组删除 同时删除产品组下的产品，同时通道和通道产品和客户产品
+	* @param @param groupId
+	* @param @return
+	* @return int
+	 */
+	public int productGroupDelete(Integer pgroupId);
+	
 }
  

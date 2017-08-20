@@ -5,7 +5,7 @@ import com.bupt.flowpackage.mybatis.trade.channel.model.Channel;
 @MyBatisRepository
 public interface ChannelMapper {
     int deleteByPrimaryKey(Integer id);
-
+    
     int insert(Channel record);
 
     int insertSelective(Channel record);

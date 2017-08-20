@@ -7,7 +7,7 @@ import com.bupt.flowpackage.mybatis.trade.productgroup.model.ProductGroup;
 @MyBatisRepository
 public interface ProductGroupMapper {
     int deleteByPrimaryKey(Integer id);
-
+    
     int insert(ProductGroup record);
 
     int insertSelective(ProductGroup record);

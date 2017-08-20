@@ -221,7 +221,7 @@ create table res_product
 alter table res_product comment '基础产品表';
 
 alter table res_product add constraint FK_product_group_ref foreign key (product_group_id)
-      references res_product_group (id) on delete restrict on update restrict;
+      references res_product_group (id) on delete cascade on update restrict;
       
 drop table if exists res_provider;
 /*==============================================================*/
@@ -272,10 +272,10 @@ create table res_channel
 alter table res_channel comment '上游通道表';
 
 alter table res_channel add constraint FK_product_group_channel_ref foreign key (product_group_id)
-      references res_product_group (id) on delete restrict on update restrict;
+      references res_product_group (id) on delete cascade on update restrict;
 
 alter table res_channel add constraint FK_provider_channel_ref foreign key (provider_id)
-      references res_provider (id) on delete restrict on update restrict;
+      references res_provider (id) on delete cascade on update restrict;
 
       
 drop table if exists res_channel_product;
@@ -300,10 +300,10 @@ create table res_channel_product
 alter table res_channel_product comment '上游通道产品表';
 
 alter table res_channel_product add constraint FK_channel_product_ref foreign key (channel_id)
-      references res_channel (id) on delete restrict on update restrict;
+      references res_channel (id) on delete cascade on update restrict;
 
 alter table res_channel_product add constraint FK_product_channel_ref foreign key (product_id)
-      references res_product (id) on delete restrict on update restrict;
+      references res_product (id) on delete cascade on update restrict;
       
 drop table if exists res_customer;
 
@@ -364,10 +364,10 @@ create table res_customer_product
 alter table res_customer_product comment '客户产品表';
 
 alter table res_customer_product add constraint FK_channel_customer_product_ref foreign key (channel_product_id)
-      references res_channel_product (id) on delete restrict on update restrict;
+      references res_channel_product (id) on delete cascade on update restrict;
 
 alter table res_customer_product add constraint FK_customer_product_ref foreign key (customer_id)
-      references res_customer (id) on delete restrict on update restrict;
+      references res_customer (id) on delete cascade on update restrict;
 
 drop table if exists flow_order;
 

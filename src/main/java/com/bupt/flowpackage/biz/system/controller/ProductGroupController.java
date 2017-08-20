@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bupt.flowpackage.biz.system.model.ProductGroupAddReq;
@@ -62,6 +63,19 @@ public class ProductGroupController {
 		try{
 			productGroupService.productGroupAdd(req);
 			baseResp.setMsg("产品组添加成功!");
+		}catch(Exception e) {
+			baseResp = ExceptionHelper.createResponse(e);
+		}
+		return baseResp;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/pgroup-delete")
+	public BaseResponse<String> pgroupDelete(@RequestParam(required=true)Integer id) {
+		BaseResponse<String> baseResp = new BaseResponse<String>();
+		try{
+			productGroupService.productGroupDelete(id);
+			baseResp.setMsg("产品组删除成功!");
 		}catch(Exception e) {
 			baseResp = ExceptionHelper.createResponse(e);
 		}

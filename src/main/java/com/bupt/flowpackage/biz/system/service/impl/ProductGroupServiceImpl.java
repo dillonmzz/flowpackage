@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bupt.flowpackage.biz.system.model.ProductGroupAddReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupReq;
@@ -14,6 +15,7 @@ import com.bupt.flowpackage.common.domain.Page;
 import com.bupt.flowpackage.common.domain.SessionVo;
 import com.bupt.flowpackage.common.exception.BizException;
 import com.bupt.flowpackage.common.session.SessionUtil;
+import com.bupt.flowpackage.mybatis.trade.channel.mapper.ChannelMapper;
 import com.bupt.flowpackage.mybatis.trade.productgroup.mapper.ProductGroupMapper;
 import com.bupt.flowpackage.mybatis.trade.productgroup.model.ProductGroup;
 import com.bupt.flowpackage.utils.PageRespUtil;
@@ -30,7 +32,8 @@ import com.github.pagehelper.PageInfo;
 public class ProductGroupServiceImpl implements ProductGroupService{
 	@Resource
 	private ProductGroupMapper productGroupMapper;
-	
+	@Resource
+	private ChannelMapper channelMapper;
 	
 	@Override
 	public Page<ProductGroup> getProductGroupPage(ProductGroupReq bizReq){
@@ -58,6 +61,13 @@ public class ProductGroupServiceImpl implements ProductGroupService{
 		productGroup.setCreateName(sessionVo.getLoginName());
 		productGroupMapper.insert(productGroup);
 		return productGroup.getId();
+	}
+	
+	@Override
+	@Transactional("trade")
+	public int productGroupDelete(Integer pgroupId) {
+		int deleteNum = productGroupMapper.deleteByPrimaryKey(pgroupId);
+		return deleteNum;
 	}
 	
 }
