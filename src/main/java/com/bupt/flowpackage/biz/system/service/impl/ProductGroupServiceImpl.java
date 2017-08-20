@@ -62,6 +62,7 @@ public class ProductGroupServiceImpl implements ProductGroupService{
 		return productGroup.getId();
 	}
 	
+	
 	@Override
 	@Transactional("trade")
 	public int productGroupDelete(Integer pgroupId) {
