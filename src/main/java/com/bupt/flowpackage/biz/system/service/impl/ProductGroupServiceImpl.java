@@ -57,7 +57,6 @@ public class ProductGroupServiceImpl implements ProductGroupService{
 		if(temp != null) {
 			BizException.warn(105, "存在相同的产品组!");
 		}
-		
 		productGroup.setCreateName(sessionVo.getLoginName());
 		productGroupMapper.insert(productGroup);
 		return productGroup.getId();
