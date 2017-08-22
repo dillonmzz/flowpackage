@@ -53,7 +53,7 @@
     }
     
     layui.use(['adminplugs', 'form'], function(){
-    	var form = layui.form(); 
+    	var form = layui.form; 
     	$.myutil.loadProvince();
     	
     	form.on('select', function(){
