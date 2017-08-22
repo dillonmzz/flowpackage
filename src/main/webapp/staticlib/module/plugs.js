@@ -882,7 +882,7 @@ layui.define(['jquery', 'layer', 'form','laypage', 'table'], function(exports){
 			    		count: respData.pages.total, //通过后台拿到的总页数
 						groups:3,
 						limit:limit,
-						layout: ['prev', 'page', 'next', 'count', 'skip', 'limit'],
+						layout: ['prev', 'page', 'next', 'skip', 'count', 'limit'],
 			    		curr: curr, //当前页
 						jump: function(obj, first) { //触发分页后的回调
 							if(!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
