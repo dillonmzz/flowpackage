@@ -1,6 +1,7 @@
-layui.define(['jquery', 'layer', 'form','laypage'], function(exports){
+layui.define(['jquery', 'layer', 'form','laypage', 'table'], function(exports){
 	var laypage = layui.laypage; 
-	var form = layui.form(); 
+	var form = layui.form; 
+	var laytable = layui.table;
     /*!
      * jQuery placeholder, fix for IE6,7,8,9
      */
@@ -848,18 +849,20 @@ layui.define(['jquery', 'layer', 'form','laypage'], function(exports){
     	this.version = '1.0';
     }
     /**显示list*/
-    table.prototype.show = function(url, params, curr, templateStr, tbodyName) {
+    table.prototype.show = function(url, params, curr, limit, templateStr, tbodyName) {
     	curr = curr || 1,templateStr = templateStr || "main-template",
     	tbodyName = tbodyName || "table-body",
     	url = url || $('form.form-search').attr('load-action'),
     	params = params || $('#searchForm').serializeObject();
-    	$.extend(params, {'pageNum' : curr});
+    	$.extend(params, {'pageNum':curr, 'pageSize':limit});
     	if(!url) {
     		return;
     	}
+    	
     	var loading = layer.load(0, {
 			  shade: [0.1,'black'] //0.1透明度的黑色背景
 		});
+    	
 		$.ajax({
 			url: url,
 			type: "POST",
@@ -870,14 +873,20 @@ layui.define(['jquery', 'layer', 'form','laypage'], function(exports){
 				if(respData.code == 200) {
 					var tableData = template(templateStr, respData.pages);  
 			    	$("#" + tbodyName).html(tableData);
+			    	laytable.init('demo', {
+		    		  height: 468 //设置高度
+		    		});
 					//显示分页
-					laypage({
-						cont: 'page', 
-						pages: respData.pages.totalPages, //通过后台拿到的总页数
-						curr: curr, //当前页
+			    	laypage.render({
+			    		elem: 'page', 
+			    		count: respData.pages.total, //通过后台拿到的总页数
+						groups:3,
+						limit:limit,
+						layout: ['prev', 'page', 'next', 'count', 'skip', 'limit'],
+			    		curr: curr, //当前页
 						jump: function(obj, first) { //触发分页后的回调
 							if(!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
-								$.table.show(url, params, obj.curr, templateStr, tbodyName);
+								$.table.show(url, params, obj.curr, obj.limit, templateStr, tbodyName);
 							}
 						}
 					});

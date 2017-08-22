@@ -2,7 +2,10 @@ package com.bupt.flowpackage.biz.system.controller;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,6 +21,7 @@ import com.bupt.flowpackage.mybatis.trade.productgroup.model.ProductGroup;
 @Controller
 @RequestMapping("/system/productgroup")
 public class ProductGroupController {
+	public static Logger logger = LoggerFactory.getLogger(ProductGroupController.class);
 	
 	public static final String PATH = "/system/productgroup/";
 
@@ -81,4 +85,22 @@ public class ProductGroupController {
 		}
 		return baseResp;
 	}
+	
+	@RequestMapping("/pgroup-addproduct")
+	public String addProduct(@RequestParam(required=true)Integer id, ModelMap modelMap) {
+		/*AdminAddOrEditResp resp = new AdminAddOrEditResp();
+		try{
+			List<Role> roleList = adminRoleService.getRoleList();
+			resp.setRoleList(roleList);
+			AdminRole adminRole = adminRoleService.getAdminRoleByKey(id);
+			if(adminRole != null) {
+				resp.setAdmin(adminRole);
+			}
+			modelMap.addAttribute("resp", resp);
+		}catch(Exception e) {
+			logger.error("产品组添加产品页面访问失败!", e);
+			throw e;
+		}*/
+		return PATH + "pgroup-addproduct";
+	} 
 }

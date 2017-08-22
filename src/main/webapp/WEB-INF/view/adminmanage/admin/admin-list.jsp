@@ -37,18 +37,18 @@
 							</div>
 						</div>
 					</form>
-					<table class="layui-table" lay-skin="line">
+					<table lay-filter="demo" class="layui-table">
 						<thead>
 							<tr>
-								<th>序号</th>
-								<th>账号</th>
-								<th>手机号</th>
-								<th>姓名</th>
-								<th>邮箱</th>
-								<th>最后登录</th>
-								<th>角色组</th>
-								<th>状态</th>
-								<th>操作</th>
+								<th lay-data="{field:'adminId', width:80, sort: true}">序号</th>
+								<th lay-data="{field:'loginName', width:100}">账号</th>
+								<th lay-data="{field:'mobile', width:120}">手机号</th>
+								<th lay-data="{field:'realName', width:120}">姓名</th>
+								<th lay-data="{field:'email', width:160}">邮箱</th>
+								<th lay-data="{field:'lastLoginTime', width:160}">最后登录</th>
+								<th lay-data="{field:'roleName', width:120}">角色组</th>
+								<th lay-data="{field:'availableFlag', width:60}">状态</th>
+								<th lay-data="{field:'handle', width:180}">操作</th>
 							</tr>
 						</thead>
 						<tbody id="table-body">
