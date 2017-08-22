@@ -25,7 +25,7 @@
 						<div class="layui-form-item">
 							<label class="layui-form-label">账号:</label>
 							<div class="layui-input-inline">
-								<input type="text" name="loginName" value="${param.loginName}"  placeholder="根据姓名过滤" class="layui-input">
+								<input type="text" name="loginName" value="${param.loginName}"  placeholder="根据账号过滤" class="layui-input">
 							</div>
 							<label class="layui-form-label">手机号:</label>
 							<div class="layui-input-inline">
@@ -37,18 +37,18 @@
 							</div>
 						</div>
 					</form>
-					<table lay-filter="demo" class="layui-table">
+					<!-- <table lay-filter="table" class="layui-table"> -->
+					<table class="layui-table">
 						<thead>
 							<tr>
-								<th lay-data="{field:'adminId', width:80, sort: true}">序号</th>
-								<th lay-data="{field:'loginName', width:100}">账号</th>
-								<th lay-data="{field:'mobile', width:120}">手机号</th>
+								<th lay-data="{field:'loginName', width:120}">账号</th>
+								<th lay-data="{field:'mobile', width:130}">手机号</th>
 								<th lay-data="{field:'realName', width:120}">姓名</th>
-								<th lay-data="{field:'email', width:160}">邮箱</th>
+								<th lay-data="{field:'email', width:220}">邮箱</th>
 								<th lay-data="{field:'lastLoginTime', width:160}">最后登录</th>
 								<th lay-data="{field:'roleName', width:120}">角色组</th>
-								<th lay-data="{field:'availableFlag', width:60}">状态</th>
-								<th lay-data="{field:'handle', width:180}">操作</th>
+								<th lay-data="{field:'availableFlag', width:80}">状态</th>
+								<th lay-data="{field:'handle',width:220}">操作</th>
 							</tr>
 						</thead>
 						<tbody id="table-body">
@@ -68,7 +68,6 @@
 	{{if rows.length > 0}} 
 		{{each rows item}}
 			<tr>
-				<td>{{item.adminId}}</td>
 				<td>{{item.loginName}}</td>
 				<td>{{item.mobile}}</td>
 				<td>{{item.realName}}</td>
