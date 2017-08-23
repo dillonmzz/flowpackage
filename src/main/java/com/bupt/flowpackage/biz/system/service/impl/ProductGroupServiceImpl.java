@@ -10,12 +10,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bupt.flowpackage.biz.system.model.ProductGroupAddReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupReq;
+import com.bupt.flowpackage.biz.system.model.ProductResp;
 import com.bupt.flowpackage.biz.system.service.ProductGroupService;
 import com.bupt.flowpackage.common.domain.Page;
 import com.bupt.flowpackage.common.domain.SessionVo;
 import com.bupt.flowpackage.common.exception.BizException;
 import com.bupt.flowpackage.common.session.SessionUtil;
 import com.bupt.flowpackage.mybatis.trade.channel.mapper.ChannelMapper;
+import com.bupt.flowpackage.mybatis.trade.product.mapper.ProductMapper;
+import com.bupt.flowpackage.mybatis.trade.product.model.Product;
 import com.bupt.flowpackage.mybatis.trade.productgroup.mapper.ProductGroupMapper;
 import com.bupt.flowpackage.mybatis.trade.productgroup.model.ProductGroup;
 import com.bupt.flowpackage.utils.PageRespUtil;
@@ -32,6 +35,8 @@ import com.github.pagehelper.PageInfo;
 public class ProductGroupServiceImpl implements ProductGroupService{
 	@Resource
 	private ProductGroupMapper productGroupMapper;
+	@Resource
+	private ProductMapper productMapper;
 	@Resource
 	private ChannelMapper channelMapper;
 	
@@ -68,6 +73,20 @@ public class ProductGroupServiceImpl implements ProductGroupService{
 	public int productGroupDelete(Integer pgroupId) {
 		int deleteNum = productGroupMapper.deleteByPrimaryKey(pgroupId);
 		return deleteNum;
+	}
+	@Override
+	public ProductResp getProductList(Integer pgroupId) {
+		ProductResp resp = new ProductResp();
+		ProductGroup pgroup = productGroupMapper.selectByPrimaryKey(pgroupId);
+		if(pgroup != null) {
+			resp.setProductGroupName(pgroup.getProductGroupName());
+		}else {
+			BizException.warn(105, "产品组不存在!");
+		}
+		
+		List<Product> productList = productMapper.selectByPGroupId(pgroupId);
+		resp.setProductList(productList);
+		return resp;
 	}
 	
 }

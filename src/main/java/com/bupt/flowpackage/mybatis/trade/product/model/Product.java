@@ -10,6 +10,8 @@ public class Product extends BaseBean{
 	private Integer id;
 
     private Integer productGroupId;
+    
+    private String productGroupName;
 
     private String productCode;
 
@@ -22,10 +24,18 @@ public class Product extends BaseBean{
     private String flowDesc;
 
     private String createName;
-
+    
     private Date createTime;
+    
+    public String getProductGroupName() {
+		return productGroupName;
+	}
 
-    public Integer getId() {
+	public void setProductGroupName(String productGroupName) {
+		this.productGroupName = productGroupName;
+	}
+
+	public Integer getId() {
         return id;
     }
 

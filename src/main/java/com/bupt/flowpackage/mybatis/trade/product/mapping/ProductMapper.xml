@@ -16,12 +16,26 @@
     id, product_group_id, product_code, flow_value, market_price, flow_type, flow_desc, 
     create_name, create_time
   </sql>
+  
+  <sql id="PGroup_Column_List" >
+    product.id, product_group_id, product_group_name, product_code, flow_value, market_price, flow_type, flow_desc, 
+    product.create_name, product.create_time 
+  </sql>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from res_product
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectByPGroupId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from res_product
+    where product_group_id = #{id,jdbcType=INTEGER}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from res_product
     where id = #{id,jdbcType=INTEGER}

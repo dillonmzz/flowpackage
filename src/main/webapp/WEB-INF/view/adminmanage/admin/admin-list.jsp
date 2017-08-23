@@ -37,7 +37,7 @@
 							</div>
 						</div>
 					</form>
-					<!-- <table lay-filter="table" class="layui-table"> -->
+					<!-- <table lay-filter="layui-table" class="layui-table"> -->
 					<table class="layui-table">
 						<thead>
 							<tr>

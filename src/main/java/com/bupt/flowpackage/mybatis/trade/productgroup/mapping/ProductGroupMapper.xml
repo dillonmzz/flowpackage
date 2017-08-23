@@ -25,6 +25,7 @@
     <result column="create_name" property="createName" jdbcType="VARCHAR" />
     <collection property="childProductNums" javaType="int" column="id" select="selectProductNumsByGroupId"/>
   </resultMap>
+  
   <sql id="Base_Column_List" >
     productgroup.id, product_group_name, operator_code, productgroup.province_code, province_name, 
     city_code, product_type, create_time, create_name
@@ -36,7 +37,7 @@
     from res_product_group productgroup, sys_provinces province 
     where 
     productgroup.province_code = province.province_code
-    and id = #{id,jdbcType=INTEGER}
+    and productgroup.id = #{id,jdbcType=INTEGER}
   </select>
   
   <!-- 获取基础产品组列表 -->

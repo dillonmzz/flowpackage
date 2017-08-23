@@ -55,12 +55,12 @@
 					<table class="layui-table">
 						<thead>
 							<tr>
-								<th>产品组名称</th>
-								<th>运营商</th>
-								<th>省份</th>
-								<th>产品类型</th>
-								<th>创建时间</th>
-								<th>操作</th>
+								<th lay-data="{field:'productGroupName', width:220}">产品组名称</th>
+								<th lay-data="{field:'operatorCode', width:120}">运营商</th>
+								<th lay-data="{field:'provinceName', width:120}">省份</th>
+								<th lay-data="{field:'productType', width:120}">产品类型</th>
+								<th lay-data="{field:'createTime', width:120}">创建时间</th>
+								<th lay-data="{field:'handle', width:220}">操作</th>
 							</tr>
 						</thead>
 						<tbody id="table-body">
@@ -101,7 +101,7 @@
 				<td>{{item.createTime}}</td>
 				<td>
 					<div class="layui-btn-group">
-						<a class="layui-btn layui-btn-mini" modal-width="1200px" data-modal="${ctx}/system/productgroup/pgroup-addproduct?id={{item.id}}" data-title="添加/编辑产品" >编辑产品</a>
+						<a class="layui-btn layui-btn-mini" modal-width="1000px" data-modal="${ctx}/system/productgroup/pgroup-productedit?pgroupId={{item.id}}" data-title="添加/编辑产品" >编辑产品</a>
 						<a data-update="{{item.id}}" data-action='${ctx}/system/productgroup/pgroup-delete' data-title="确认删除该产品组吗？<br><font color='red'>警告：此操作将会删除对应的通道和通道产品以及客户产品！</font>" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>	
 					</div>		
 				</td>

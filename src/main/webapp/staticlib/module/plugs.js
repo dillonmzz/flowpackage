@@ -873,7 +873,7 @@ layui.define(['jquery', 'layer', 'form','laypage', 'table'], function(exports){
 				if(respData.code == 200) {
 					var tableData = template(templateStr, respData.pages);  
 			    	$("#" + tbodyName).html(tableData);
-			    	laytable.init('table', {
+			    	laytable.init('layui-table', {
 		    		  height: 468 //设置高度
 		    		});
 					//显示分页

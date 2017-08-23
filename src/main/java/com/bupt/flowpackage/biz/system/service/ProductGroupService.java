@@ -2,6 +2,7 @@ package com.bupt.flowpackage.biz.system.service;
 
 import com.bupt.flowpackage.biz.system.model.ProductGroupAddReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupReq;
+import com.bupt.flowpackage.biz.system.model.ProductResp;
 import com.bupt.flowpackage.common.domain.Page;
 import com.bupt.flowpackage.mybatis.trade.productgroup.model.ProductGroup;
 
@@ -35,6 +36,14 @@ public interface ProductGroupService {
 	* @return int
 	 */
 	public int productGroupDelete(Integer pgroupId);
+	
+	/**
+	 * <p>查看产品组下的产品列表</p>   
+	 * @param @param pgroupId
+	 * @param @return      
+	 * @return ProductResp
+	 */
+	public ProductResp getProductList(Integer pgroupId);
 	
 }
  

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bupt.flowpackage.biz.system.model.ProductGroupAddReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupReq;
+import com.bupt.flowpackage.biz.system.model.ProductResp;
 import com.bupt.flowpackage.biz.system.service.ProductGroupService;
 import com.bupt.flowpackage.common.domain.BaseResponse;
 import com.bupt.flowpackage.common.domain.Page;
@@ -85,22 +86,22 @@ public class ProductGroupController {
 		}
 		return baseResp;
 	}
-	
-	@RequestMapping("/pgroup-addproduct")
-	public String addProduct(@RequestParam(required=true)Integer id, ModelMap modelMap) {
-		/*AdminAddOrEditResp resp = new AdminAddOrEditResp();
+	/**
+	 * <p>获取产品组下的产品</p>   
+	 * @param @param pgroupId
+	 * @param @param modelMap
+	 * @param @return      
+	 * @return String
+	 */
+	@RequestMapping("/pgroup-productedit")
+	public String productEdit(@RequestParam(required=true)Integer pgroupId, ModelMap modelMap) {
 		try{
-			List<Role> roleList = adminRoleService.getRoleList();
-			resp.setRoleList(roleList);
-			AdminRole adminRole = adminRoleService.getAdminRoleByKey(id);
-			if(adminRole != null) {
-				resp.setAdmin(adminRole);
-			}
+			ProductResp resp = productGroupService.getProductList(pgroupId);
 			modelMap.addAttribute("resp", resp);
 		}catch(Exception e) {
 			logger.error("产品组添加产品页面访问失败!", e);
 			throw e;
-		}*/
-		return PATH + "pgroup-addproduct";
+		}
+		return PATH + "pgroup-productedit";
 	} 
 }
