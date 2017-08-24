@@ -7,6 +7,13 @@
 			<div class="layui-col-md11">
 				<b>产品组名称: ${resp.productGroupName}</b>
 			</div>
+			<div class="layui-col-md1">
+				<b>
+					<button class="layui-btn layui-btn-small productAdd">
+						<i class="layui-icon">&#xe654;</i>
+					</button>
+				</b>
+			</div>
 		</div>
 	</div>
 	<table class="layui-table" lay-filter="eventFilter" id="showTable">
@@ -23,9 +30,15 @@
 		<tbody id="table-body" id="productTable">
 			<c:forEach var="item" items="${resp.productList}" varStatus="s">
 				<tr>
-					<td>${item.flowValue}</td>
-					<td><input muxform="true" type="text" name="marketPrice" required="required" title="市场价必须是数字" value="${item.marketPrice}" placeholder="请输入市场价" autocomplete="off" class="layui-input"></td>
 					<td>
+						${item.flowValue}
+						<input type="hidden"  name="flowValue" value="${item.flowValue}">
+					</td>
+					<td>
+						<input muxform="true" type="text" name="marketPrice" required="required" pattern="^[1-9]\d*(\.\d+)?$" title="市场价必须是数字" value="${item.marketPrice}" placeholder="请输入市场价" autocomplete="off" class="layui-input">
+					</td>
+					<td>
+						<input type="hidden"  name="flowType" value="${item.flowType}">
 						<c:choose>
 							<c:when test="${item.flowType == 2}">
 								特殊包
@@ -35,7 +48,9 @@
 							</c:otherwise>
 						</c:choose>
 					</td>
-					<td><input type="text" name="flowDesc" value="${item.flowDesc}" placeholder="请输入备注" autocomplete="off" class="layui-input"></td>
+					<td>
+						<input type="text" name="flowDesc" value="${item.flowDesc}" placeholder="请输入备注" autocomplete="off" class="layui-input">
+					</td>
 					<td>
 						<fmt:formatDate value="${item.createTime}" type="date" pattern="yyyy-MM-dd HH:mm:ss" />
 					</td>
