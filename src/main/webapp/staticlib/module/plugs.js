@@ -403,7 +403,7 @@ layui.define(['jquery', 'layer', 'form','laypage', 'table'], function(exports){
         // 表单元素
         this.inputTag = 'input,textarea,select';
         // 检测元素事件
-        this.checkEvent = {change: true, blur: true, keyup: false};
+        this.checkEvent = {change: true, /*blur: true,*/ keyup: false};
     };
 
     /**
@@ -515,7 +515,7 @@ layui.define(['jquery', 'layer', 'form','laypage', 'table'], function(exports){
         }
         elements.each(function () {
             if (self.checkInput(this, params) === false) {
-                return $(this).focus(), (allpass = false);
+                return /*$(this).focus(), */(allpass = false);
             }
         });
         return allpass;
@@ -603,14 +603,20 @@ layui.define(['jquery', 'layer', 'form','laypage', 'table'], function(exports){
      * @returns {undefined}
      */
     validate.prototype.errorPlacement = function (ele, content) {
-        $(ele).addClass('validate-error'), this.insertErrorEle(ele);
-        $($(ele).data('input-info')).addClass('fadeInRight animated').css({width: 'auto'}).html(content);
+    	$(ele).css("border-color", "red");
+    	if($(ele).attr("muxform") == "true") {
+    		$.msg.error(content);
+    	}else {
+    		$(ele).addClass('validate-error'), this.insertErrorEle(ele);
+            $($(ele).data('input-info')).addClass('fadeInRight animated').css({width: 'auto'}).html(content);
+    	}
     };
 
     /**
      * 错误消息消除
      */
     validate.prototype.successPlacement = function (ele) {
+    	$(ele).css("border-color", "");
         $(ele).removeClass('validate-error'), this.insertErrorEle(ele);
         $($(ele).data('input-info')).removeClass('fadeInRight').css({width: '30px'}).html('');
     };
