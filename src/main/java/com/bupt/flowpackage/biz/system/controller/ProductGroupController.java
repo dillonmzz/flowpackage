@@ -118,4 +118,16 @@ public class ProductGroupController {
 		}
 		return PATH + "pgroup-productedit";
 	} 
+	
+	@RequestMapping("/pgroup-productlist")
+	public String productList(@RequestParam(required=true)Integer pgroupId, ModelMap modelMap) {
+		try{
+			ProductResp resp = productGroupService.getProductList(pgroupId);
+			modelMap.addAttribute("resp", resp);
+		}catch(Exception e) {
+			logger.error("产品组查看产品页面访问失败!", e);
+			throw e;
+		}
+		return PATH + "pgroup-productlist";
+	} 
 }

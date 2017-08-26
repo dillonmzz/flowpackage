@@ -80,7 +80,7 @@
 	{{if rows.length > 0}} 
 		{{each rows item}}
 			<tr>
-				<td><a class="maincolor">{{item.productGroupName}}[{{item.childProductNums}}个]</a></td>
+				<td><a class="maincolor" modal-width="1100px" data-modal="${ctx}/system/productgroup/pgroup-productlist?pgroupId={{item.id}}" data-title="查看产品">{{item.productGroupName}}[{{item.childProductNums}}个]</a></td>
 				<td>
 				{{if item.operatorCode == 1}}
 					移动

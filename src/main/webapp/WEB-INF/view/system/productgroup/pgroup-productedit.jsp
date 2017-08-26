@@ -4,8 +4,11 @@
 <form class="layui-form layui-box" style='padding:10px 10px 10px 10px' action="${ctx}/system/productgroup/api/product-update" data-auto="true" method="post">
 	<div class="layui-fluid">
 		<div class="layui-row">
-			<div class="layui-col-md11">
+			<div class="layui-col-md7">
 				<b>产品组名称: ${resp.productGroupName}</b>
+			</div>
+			<div class="layui-col-md5">
+				<font color="red">警告：删除产品会同时删除关联的通道产品和客户产品!</font>
 			</div>
 		</div>
 	</div>
@@ -20,7 +23,7 @@
 				<th lay-data="{field:'handel', width:100}">操作</th>
 			</tr>
 		</thead>
-		<tbody id="table-body" id="productTable">
+		<tbody>
 			<c:forEach var="item" items="${resp.productList}" varStatus="s">
 				<tr>
 					<td>

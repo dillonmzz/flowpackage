@@ -330,6 +330,7 @@ layui.define(['jquery', 'layer', 'form','laypage', 'table'], function(exports){
             layer.open({
                 type: 1,
                 btn: false,
+                offset: '100px',
                 area: width  || "900px",
                 content: res,
                 title: title || '',
