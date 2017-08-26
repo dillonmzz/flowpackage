@@ -1,5 +1,7 @@
 package com.bupt.flowpackage.test;
 
+import java.util.Date;
+
 import com.bupt.flowpackage.utils.StringUtil;
 
 /** 
@@ -9,7 +11,7 @@ import com.bupt.flowpackage.utils.StringUtil;
 */
 public class Test {
 	public static void main(String[] args) {
-		String uri = "/flowpackage/adminmanage/admin/admin-list.html";
+		/*String uri = "/flowpackage/adminmanage/admin/admin-list.html";
 		String contextPath = "/flowpackage";
 		int start = contextPath.length();
 		uri = uri.substring(contextPath.length());
@@ -17,7 +19,9 @@ public class Test {
 		System.out.println(StringUtil.getSubStr(uri, 2));
 		int end = uri.indexOf("/", 2);
 		String parentUri = uri.substring(0, end);
-		System.out.println(parentUri);
+		System.out.println(parentUri);*/
+		Date now = new Date();
+		System.out.println(now.getTime());
 	}
 }
  

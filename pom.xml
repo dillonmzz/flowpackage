@@ -265,6 +265,18 @@
 		  <artifactId>hibernate-validator</artifactId>
 		  <version>5.3.5.Final</version>
 		</dependency>
+		<!-- aes加密 -->
+		<dependency>
+		    <groupId>org.bouncycastle</groupId>
+		    <artifactId>bcprov-jdk15on</artifactId>
+		    <version>1.56</version>
+		</dependency>
+		<!-- 摘要运算、编码的工具包 -->
+		<dependency>
+		  <groupId>commons-codec</groupId>
+		  <artifactId>commons-codec</artifactId>
+		  <version>1.10</version>
+		</dependency>
 	</dependencies>
 
 	<build>

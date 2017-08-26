@@ -15,4 +15,6 @@ public interface Constants {
 	static final String PAGE_404 ="errorpages/error-404";//404页面
 	static final String PAGE_500 ="errorpages/error-500";//500页面
 	static final String PAGE_NOAUTH ="errorpages/error-noauth";//无权限页面
+	/**秘钥加密键, 可以一个月变一次*/
+	public static final String MD5Key = "daojianFlowPackage";          
 }

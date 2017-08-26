@@ -26,6 +26,16 @@ public class RandomUtil {
 		String requestNo = df.format(date);
 		return requestNo;
 	}
+	/**
+	 * 返回系统当前时间(精确到毫秒)
+	 * @return 以yyyyMMddHHmmss为格式的当前系统时间
+	 */
+	public static String produceRequestNo(Date date){
+		DateFormat df = new SimpleDateFormat(dtLong);
+		String requestNo = df.format(date);
+		return requestNo;
+	}
+	
 
 	/**
 	 * 获取系统当前日期(精确到毫秒)，格式：yyyy-MM-dd HH:mm:ss

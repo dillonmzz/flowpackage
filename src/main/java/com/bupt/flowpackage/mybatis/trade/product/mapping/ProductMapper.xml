@@ -36,11 +36,25 @@
     where product_group_id = #{id,jdbcType=INTEGER}
   </select>
   
+  <select id="selectProductIdsPGroupId" resultType="int" parameterType="java.lang.Integer" >
+    select id from res_product
+    where product_group_id = #{id,jdbcType=INTEGER}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from res_product
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="product" >
+  
+  <delete id="deleteBatch" parameterType="java.util.List" >
+    delete from res_product
+    where id in
+    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">   
+        #{item, jdbcType=INTEGER}   
+    </foreach>  
+  </delete>
+  
+  <insert id="insert" parameterType="product">
     insert into res_product (id, product_group_id, product_code, 
       flow_value, market_price, flow_type, 
       flow_desc, create_name, create_time
@@ -50,6 +64,30 @@
       #{flowDesc,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
+  <!-- 批量添加产品 -->
+  <insert id="insertProductBatch" parameterType="java.util.List">
+    insert into res_product (product_group_id, product_code, 
+      flow_value, market_price, flow_type, 
+      flow_desc, create_name, create_time
+      )
+    values 
+    <foreach collection="list" item="item" index="index" separator="," >  
+    	 (#{item.productGroupId,jdbcType=INTEGER}, #{item.productCode,jdbcType=VARCHAR}, 
+	      #{item.flowValue,jdbcType=INTEGER}, #{item.marketPrice,jdbcType=REAL}, 
+	      #{item.flowType,jdbcType=TINYINT},  #{item.flowDesc,jdbcType=VARCHAR}, 
+	      #{item.createName,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP} )
+    </foreach>
+  </insert>
+  
+  <!-- 批量更新产品 -->
+  <update id="updateBatch" parameterType="java.util.List" >
+  	<foreach collection="list" item="item" separator=";" open="" close="" >
+  		update res_product set market_price = #{item.marketPrice,jdbcType=REAL},
+	   	flow_desc = #{item.flowDesc,jdbcType=VARCHAR}
+	    where id = #{item.id,jdbcType=INTEGER}
+  	</foreach>
+  </update>
+  
   <insert id="insertSelective" parameterType="product" >
     insert into res_product
     <trim prefix="(" suffix=")" suffixOverrides="," >

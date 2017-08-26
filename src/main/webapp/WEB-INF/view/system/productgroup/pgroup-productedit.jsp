@@ -1,18 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/view/commons/taglib.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<form class="layui-form layui-box" style='padding:10px 10px 10px 10px' <%-- action="${ctx}/adminmanage/admin/api/update" --%> data-auto="true" method="post">
+<form class="layui-form layui-box" style='padding:10px 10px 10px 10px' action="${ctx}/system/productgroup/api/product-update" data-auto="true" method="post">
 	<div class="layui-fluid">
 		<div class="layui-row">
 			<div class="layui-col-md11">
 				<b>产品组名称: ${resp.productGroupName}</b>
-			</div>
-			<div class="layui-col-md1">
-				<b>
-					<button class="layui-btn layui-btn-small productAdd">
-						<i class="layui-icon">&#xe654;</i>
-					</button>
-				</b>
 			</div>
 		</div>
 	</div>
@@ -33,6 +26,7 @@
 					<td>
 						${item.flowValue}
 						<input type="hidden"  name="flowValue" value="${item.flowValue}">
+						<input type="hidden"  name="id" value="${item.id}">
 					</td>
 					<td>
 						<input muxform="true" type="text" name="marketPrice" required="required" pattern="^[1-9]\d*(\.\d+)?$" title="市场价必须是数字" value="${item.marketPrice}" placeholder="请输入市场价" autocomplete="off" class="layui-input">
@@ -67,8 +61,13 @@
 				</tr>
 			</c:forEach>
 			<tr data-class="clone">
-				<td><input type="text" name="flowValue" placeholder="请输入流量" autocomplete="off" class="layui-input"></td>
-				<td><input type="text" name="marketPrice" placeholder="请输入市场" autocomplete="off" class="layui-input"></td>
+				<td>
+				<input type="hidden"  name="id" value="">
+				<input type="text" muxform="true" name="flowValue" placeholder="请输入流量" pattern="^\d+$" title="流量必须是正整数" autocomplete="off" class="layui-input">
+				</td>
+				<td>
+				<input type="text" muxform="true" name="marketPrice" placeholder="请输入市场价" pattern="^[1-9]\d*(\.\d+)?$" title="市场价必须是数字" autocomplete="off" class="layui-input">
+				</td>
 				<td>
 					<select name="flowType" id="flowType">
 						<option value="1">普通包</option>
@@ -92,6 +91,7 @@
 	</table>
 	<div class="layui-form-item text-c">
 		<br><br>
+		<input type="hidden" name="productGroupId" value="${resp.productGroupId}">
 		<button class="layui-btn" type='submit'>保存数据</button>
 		<button class="layui-btn layui-btn-danger" type='button' data-close>取消</button>
 	</div>

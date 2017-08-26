@@ -113,7 +113,7 @@ drop table if exists sys_menu;
 /*==============================================================*/
 create table sys_menu
 (
-   id                   int not null comment '主键',
+   id                   int not null auto_increment comment '主键',
    menu_no              smallint comment '菜单编码',
    application_code     smallint comment '模块code',
    menu_parent_no       smallint comment '父菜单编码',
@@ -187,7 +187,7 @@ drop table if exists res_product_group;
 /*==============================================================*/
 create table res_product_group
 (
-   id                   int not null,
+   id                   int not null auto_increment,
    product_name         varchar(32) comment '产品组名称',
    operator_code        tinyint comment '运营商code 1移动 2联通 3 电信',
    province_code        varchar(8) comment '省份code',
@@ -206,7 +206,7 @@ drop table if exists res_product;
 /*==============================================================*/
 create table res_product
 (
-   id                   int not null,
+   id                   int not null auto_increment,
    product_group_id     int comment '所属产品组id',
    product_code         varchar(32) comment '产品编码 32为随机字符',
    flow_value           int comment '流量值',
@@ -229,7 +229,7 @@ drop table if exists res_provider;
 /*==============================================================*/
 create table res_provider
 (
-   id                   int not null,
+   id                   int not null auto_increment,
    provider_code        varchar(32) comment '供应商编码',
    provider_name        varchar(32) comment '供应商名称',
    balance              float(7,2) comment '余额',
@@ -253,7 +253,7 @@ drop table if exists res_channel;
 /*==============================================================*/
 create table res_channel
 (
-   id                   int not null,
+   id                   int not null auto_increment,
    provider_id          int comment '供应商id',
    product_group_id     int comment '产品组id',
    channel_name         varchar(32) comment '通道名称',
@@ -284,7 +284,7 @@ drop table if exists res_channel_product;
 /*==============================================================*/
 create table res_channel_product
 (
-   id                   int not null,
+   id                   int not null auto_increment,
    channel_id           int comment '通道id',
    product_id           int comment '基础产品id',
    channel_product_code varchar(48) comment '通道产品编码',
@@ -312,7 +312,7 @@ drop table if exists res_customer;
 /*==============================================================*/
 create table res_customer
 (
-   id                   int not null,
+   id                   int not null auto_increment,
    customer_account     varchar(32) comment '客户账号',
    customer_name        varchar(32) comment '客户名称',
    deal_name            varchar(32) comment '成单人',
@@ -344,7 +344,7 @@ drop table if exists res_customer_product;
 /*==============================================================*/
 create table res_customer_product
 (
-   id                   int not null,
+   id                   int not null auto_increment,
    customer_id          int comment '客户id',
    customer_account     varchar(32) comment '客户账号',
    channel_product_id   int comment '通道产品id',
@@ -376,7 +376,7 @@ drop table if exists flow_order;
 /*==============================================================*/
 create table flow_order
 (
-   id                   int not null,
+   id                   int not null auto_increment,
    order_no             varchar(32) comment '订单号',
    mobile               varchar(16) comment '手机号',
    customer_id          int comment '下游客户id',
@@ -413,7 +413,7 @@ alter table flow_order comment '流量订单表';
 
 create table flow_order_history
 (
-   id                   int not null,
+   id                   int not null auto_increment,
    order_no             varchar(32) comment '订单号',
    mobile               varchar(16) comment '手机号',
    customer_id          int comment '下游客户id',

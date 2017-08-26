@@ -403,7 +403,7 @@ layui.define(['jquery', 'layer', 'form','laypage', 'table'], function(exports){
         // 表单元素
         this.inputTag = 'input,textarea,select';
         // 检测元素事件
-        this.checkEvent = {change: true, /*blur: true,*/ keyup: false};
+        this.checkEvent = {/*change: true, */blur: true, keyup: false};
     };
 
     /**
@@ -605,7 +605,7 @@ layui.define(['jquery', 'layer', 'form','laypage', 'table'], function(exports){
     validate.prototype.errorPlacement = function (ele, content) {
     	$(ele).css("border-color", "red");
     	if($(ele).attr("muxform") == "true") {
-    		$.msg.error(content);
+    		$.msg.error(content, 2);
     	}else {
     		$(ele).addClass('validate-error'), this.insertErrorEle(ele);
             $($(ele).data('input-info')).addClass('fadeInRight animated').css({width: 'auto'}).html(content);

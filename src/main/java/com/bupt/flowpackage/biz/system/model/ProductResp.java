@@ -11,7 +11,17 @@ public class ProductResp extends BaseBean{
 
 	private String productGroupName;
 	
+	private Integer productGroupId;
+	
 	private List<Product> productList;
+	
+	public Integer getProductGroupId() {
+		return productGroupId;
+	}
+
+	public void setProductGroupId(Integer productGroupId) {
+		this.productGroupId = productGroupId;
+	}
 
 	public String getProductGroupName() {
 		return productGroupName;

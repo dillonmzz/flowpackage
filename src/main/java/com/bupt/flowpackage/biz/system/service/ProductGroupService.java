@@ -1,5 +1,6 @@
 package com.bupt.flowpackage.biz.system.service;
 
+import com.bupt.flowpackage.biz.system.model.ProductAddReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupAddReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupReq;
 import com.bupt.flowpackage.biz.system.model.ProductResp;
@@ -28,6 +29,14 @@ public interface ProductGroupService {
 	* @return int
 	 */
 	public int productGroupAdd(ProductGroupAddReq bizReq);
+	
+	/**
+	* 产品添加
+	* @param @param bizReq
+	* @param @return
+	* @return int
+	 */
+	public int productUpdate(ProductAddReq bizReq);
 	
 	/**
 	* 产品组删除 同时删除产品组下的产品，同时通道和通道产品和客户产品

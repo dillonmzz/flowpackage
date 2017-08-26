@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bupt.flowpackage.biz.system.model.ProductAddReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupAddReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupReq;
 import com.bupt.flowpackage.biz.system.model.ProductResp;
@@ -55,6 +56,19 @@ public class ProductGroupController {
 		try{
 			Page<ProductGroup> pages = productGroupService.getProductGroupPage(req);
 			baseResp.setPages(pages);
+		}catch(Exception e) {
+			baseResp = ExceptionHelper.createResponse(e);
+		}
+		return baseResp;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/api/product-update")
+	public BaseResponse<ProductGroup> productUpdate(ProductAddReq req) {
+		BaseResponse<ProductGroup> baseResp = new BaseResponse<ProductGroup>();
+		try{
+			productGroupService.productUpdate(req);
+			baseResp.setMsg("产品更新成功!");
 		}catch(Exception e) {
 			baseResp = ExceptionHelper.createResponse(e);
 		}
