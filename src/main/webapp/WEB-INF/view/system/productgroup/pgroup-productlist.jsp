@@ -21,35 +21,45 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="item" items="${resp.productList}" varStatus="s">
-				<tr>
-					<td>
-						${item.productCode}
-					</td>
-					<td>
-						${item.flowValue}
-					</td>
-					<td>
-						${item.marketPrice}
-					</td>
-					<td>
-						<c:choose>
-							<c:when test="${item.flowType == 2}">
-								特殊包
-							</c:when>
-							<c:otherwise>
-								普通包
-							</c:otherwise>
-						</c:choose>
-					</td>
-					<td>
-						${item.flowDesc}
-					</td>
-					<td>
-						<fmt:formatDate value="${item.createTime}" type="date" pattern="yyyy-MM-dd HH:mm:ss" />
-					</td>
-				</tr>
-			</c:forEach>
+			<c:choose>
+				<c:when test="${!empty resp.productList}">
+					<c:forEach var="item" items="${resp.productList}" varStatus="s">
+						<tr>
+							<td>
+								${item.productCode}
+							</td>
+							<td>
+								${item.flowValue}
+							</td>
+							<td>
+								${item.marketPrice}
+							</td>
+							<td>
+								<c:choose>
+									<c:when test="${item.flowType == 2}">
+										特殊包
+									</c:when>
+									<c:otherwise>
+										普通包
+									</c:otherwise>
+								</c:choose>
+							</td>
+							<td>
+								${item.flowDesc}
+							</td>
+							<td>
+								<fmt:formatDate value="${item.createTime}" type="date" pattern="yyyy-MM-dd HH:mm:ss" />
+							</td>
+						</tr>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<tr><td colspan="6" style="text-align: center">暂无数据</td></tr>
+					</tr>
+				</c:otherwise>
+			</c:choose>
+			
 		</tbody>
 	</table>
 </div>
