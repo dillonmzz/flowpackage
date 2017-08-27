@@ -14,6 +14,8 @@ public interface ProductGroupMapper {
     
     List<ProductGroup> selectProductGroupPage(ProductGroup productGroup);
     
+    List<ProductGroup> selectProductGroupList();
+    
     ProductGroup selectBySelective(ProductGroup record);
 
     ProductGroup selectByPrimaryKey(Integer id);

@@ -15,6 +15,7 @@ INSERT INTO `account`.`sys_menu` (`menu_no`, `application_code`, `menu_parent_no
 INSERT INTO `account`.`sys_menu` (`menu_no`, `application_code`, `menu_parent_no`, `menu_order`, `menu_name`, `menu_url`, `menu_type`, `menu_icon`, `is_visible`, `is_leaf`) VALUES ('204', '1001', '202', '4', '产品组删除', 'productgroup/pgroup-delete.html', '2', NULL, '1', '1');
 INSERT INTO `account`.`sys_menu` (`menu_no`, `application_code`, `menu_parent_no`, `menu_order`, `menu_name`, `menu_url`, `menu_type`, `menu_icon`, `is_visible`, `is_leaf`) VALUES ('205', '1001', '202', '5', '产品编辑', 'productgroup/pgroup-productedit.html', '2', NULL, '1', '1');
 INSERT INTO `account`.`sys_menu` (`menu_no`, `application_code`, `menu_parent_no`, `menu_order`, `menu_name`, `menu_url`, `menu_type`, `menu_icon`, `is_visible`, `is_leaf`) VALUES ('206', '1001', '202', '6', '产品列表', 'productgroup/pgroup-productlist.html', '2', NULL, '1', '1');
+INSERT INTO `account`.`sys_menu` (`menu_no`, `application_code`, `menu_parent_no`, `menu_order`, `menu_name`, `menu_url`, `menu_type`, `menu_icon`, `is_visible`, `is_leaf`) VALUES ('207', '1001', '202', '7', '产品组克隆', 'productgroup/pgroup-clone.html', '2', NULL, '1', '1');
 
 
 INSERT INTO `account`.`sys_menu` (`menu_no`, `application_code`, `menu_parent_no`, `menu_order`, `menu_name`, `menu_url`, `menu_type`, `menu_icon`, `is_visible`, `is_leaf`) VALUES ('3', '1001', NULL, '2', '上游管理', 'provider', '1', 'Hui-iconfont-banzhu', '1', '0');

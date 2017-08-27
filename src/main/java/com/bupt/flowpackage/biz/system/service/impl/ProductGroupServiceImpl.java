@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bupt.flowpackage.biz.system.model.ProductAddReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupAddReq;
+import com.bupt.flowpackage.biz.system.model.ProductGroupCloneReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupReq;
 import com.bupt.flowpackage.biz.system.model.ProductResp;
 import com.bupt.flowpackage.biz.system.service.ProductGroupService;
@@ -61,6 +62,11 @@ public class ProductGroupServiceImpl implements ProductGroupService{
 		return PageRespUtil.createPage(pageInfo);
 	}
 	
+	public List<ProductGroup> getProductGroupList() {
+		List<ProductGroup> pgroupList = productGroupMapper.selectProductGroupList();
+		return pgroupList;
+	}
+	
 	@Override
 	public int productGroupAdd(ProductGroupAddReq bizReq) {
 		SessionVo sessionVo = SessionUtil.getAdminSessionInfo();
@@ -74,6 +80,44 @@ public class ProductGroupServiceImpl implements ProductGroupService{
 		productGroup.setCreateName(sessionVo.getLoginName());
 		productGroupMapper.insert(productGroup);
 		return productGroup.getId();
+	}
+	
+	@Transactional("trade")
+	public int productGroupClone(ProductGroupCloneReq bizReq){
+		SessionVo sessionVo = SessionUtil.getAdminSessionInfo();
+		ProductGroup pgroup = productGroupMapper.selectByPrimaryKey(bizReq.getClonePGroupId());
+		if(pgroup == null) {
+			BizException.warn(105, "源组不存在!");
+		}
+		
+		ProductGroup productGroup = new ProductGroup();
+		BeanUtils.copyProperties(bizReq, productGroup);
+		
+		ProductGroup temp = productGroupMapper.selectBySelective(productGroup);
+		if(temp != null) {
+			BizException.warn(105, "目标组已存在!");
+		}
+		
+		productGroup.setCreateName(sessionVo.getLoginName());
+		//添加产品组
+		productGroupMapper.insert(productGroup);
+		int insertNum = 0;
+		//获取原始产品组的产品，并修改相关属性
+		List<Product> productList = productMapper.selectByPGroupId(bizReq.getClonePGroupId());
+		if(productList != null && productList.size() > 0) {
+			for(Product product : productList) {
+				product.setProductGroupId(productGroup.getId());
+				product.setCreateName(sessionVo.getLoginName());
+				Date now = new Date();
+				product.setCreateTime(now);
+				String md5Str = RandomUtil.produceRequestNo(now) + 
+						product.getProductGroupId() + product.getFlowValue() + product.getFlowType();
+				md5Str = Signature.MD5(md5Str);
+				product.setProductCode(md5Str);
+			}
+			insertNum = productMapper.insertProductBatch(productList);
+		}
+		return insertNum;
 	}
 	
 	@Transactional("trade")

@@ -1,5 +1,7 @@
 package com.bupt.flowpackage.biz.system.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bupt.flowpackage.biz.system.model.ProductAddReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupAddReq;
+import com.bupt.flowpackage.biz.system.model.ProductGroupCloneReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupReq;
 import com.bupt.flowpackage.biz.system.model.ProductResp;
 import com.bupt.flowpackage.biz.system.service.ProductGroupService;
@@ -39,9 +42,44 @@ public class ProductGroupController {
 		return PATH + "pgroup-list";
 	}
 	
+	/**
+	* @Description 产品组添加
+	* @param @return
+	* @return String
+	 */
 	@RequestMapping("/pgroup-add")
-	public String chanelGroupAdd() {
+	public String productGroupAdd() {
 		return PATH + "pgroup-form";
+	}
+	
+	/**
+	* @Description 产品组克隆
+	* @param @return
+	* @return String
+	 */
+	@RequestMapping("/pgroup-clone")
+	public String productGroupClone(ModelMap modelMap) {
+		try{
+			List<ProductGroup>  pgroupList = productGroupService.getProductGroupList();
+			modelMap.addAttribute("pgroupList", pgroupList);
+		}catch(Exception e) {
+			logger.error("产品组克隆页面访问失败!", e);
+			throw e;
+		}
+		return PATH + "pgroup-clone";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/api/pgroup-clone")
+	public BaseResponse<String> pgroupClone(ProductGroupCloneReq req) {
+		BaseResponse<String> baseResp = new BaseResponse<String>();
+		try{
+			productGroupService.productGroupClone(req);
+			baseResp.setMsg("产品组克隆成功!");
+		}catch(Exception e) {
+			baseResp = ExceptionHelper.createResponse(e);
+		}
+		return baseResp;
 	}
 	
 	/**
@@ -118,7 +156,13 @@ public class ProductGroupController {
 		}
 		return PATH + "pgroup-productedit";
 	} 
-	
+	/**
+	* @Description 产品组查看产品页面
+	* @param @param pgroupId
+	* @param @param modelMap
+	* @param @return
+	* @return String
+	 */
 	@RequestMapping("/pgroup-productlist")
 	public String productList(@RequestParam(required=true)Integer pgroupId, ModelMap modelMap) {
 		try{

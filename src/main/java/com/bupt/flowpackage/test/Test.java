@@ -20,8 +20,25 @@ public class Test {
 		int end = uri.indexOf("/", 2);
 		String parentUri = uri.substring(0, end);
 		System.out.println(parentUri);*/
-		Date now = new Date();
-		System.out.println(now.getTime());
+		Person p = new Person();
+		setPersonName(p);
+		System.out.println(p.getName());
 	}
+	
+	public static void setPersonName(Person p) {
+		p.setName("wang");
+	}
+}
+class Person{
+	String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 }
  

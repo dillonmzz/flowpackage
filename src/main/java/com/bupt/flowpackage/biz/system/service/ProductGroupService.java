@@ -1,7 +1,10 @@
 package com.bupt.flowpackage.biz.system.service;
 
+import java.util.List;
+
 import com.bupt.flowpackage.biz.system.model.ProductAddReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupAddReq;
+import com.bupt.flowpackage.biz.system.model.ProductGroupCloneReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupReq;
 import com.bupt.flowpackage.biz.system.model.ProductResp;
 import com.bupt.flowpackage.common.domain.Page;
@@ -23,12 +26,27 @@ public interface ProductGroupService {
 	public Page<ProductGroup> getProductGroupPage(ProductGroupReq bizReq);
 	
 	/**
+	* @Description 查看所有的产品组
+	* @param @return
+	* @return List<ProductGroup>
+	 */
+	public List<ProductGroup> getProductGroupList();
+	
+	/**
 	* 产品组添加
 	* @param @param bizReq
 	* @param @return
 	* @return int
 	 */
 	public int productGroupAdd(ProductGroupAddReq bizReq);
+	
+	/**
+	* 产品组克隆 会克隆产品组及产品组下的所有产品
+	* @param @param bizReq
+	* @param @return
+	* @return int
+	 */
+	public int productGroupClone(ProductGroupCloneReq bizReq);
 	
 	/**
 	* 产品添加

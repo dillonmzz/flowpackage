@@ -24,7 +24,7 @@
 					<form class="form-search layui-form layui-form-pane" id="searchForm" load-action="${ctx}/system/productgroup/api/getProductGroup"  onsubmit="return false">
 						<div class="layui-form-item">
 							<label class="layui-form-label">运营商:</label>
-							<div class="layui-input-inline">
+							<div class="layui-input-inline" style="width: 120px">
 								<select name="operatorCode">
 							        <option value="0">--请选择--</option>
 								  	<option value="1">移动</option>
@@ -39,7 +39,7 @@
 							    </select>
 							</div>
 							<label class="layui-form-label">产品类型:</label>
-							<div class="layui-input-inline">
+							<div class="layui-input-inline"  style="width: 160px">
 								<select name="productType">
 									<option value="0">--请选择--</option>
 								  	<option value="1">全国包可漫游</option>
@@ -49,6 +49,7 @@
 							<div class="layui-btn-group">
 								<button type="submit" class="layui-btn">查询</button>
 								<button class="layui-btn" onClick="return false;" data-title="添加产品组" data-modal='${ctx}/system/productgroup/pgroup-add'>添加产品组 </button>
+								<button class="layui-btn layui-btn-normal" onClick="return false;" data-title="克隆产品组" data-modal='${ctx}/system/productgroup/pgroup-clone'>克隆产品组 </button>
 							</div>
 							</div>
 					</form>
