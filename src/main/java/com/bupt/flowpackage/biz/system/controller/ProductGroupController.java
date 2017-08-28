@@ -53,6 +53,16 @@ public class ProductGroupController {
 	}
 	
 	/**
+	* @Description 产品查询
+	* @param @return
+	* @return String
+	 */
+	@RequestMapping("/product-query")
+	public String productQuery() {
+		return PATH + "product-query";
+	}
+	
+	/**
 	* @Description 产品组克隆
 	* @param @return
 	* @return String
