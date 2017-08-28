@@ -19,59 +19,58 @@
 	</nav>
 	<div class="Hui-article">
 		<article class="cl pt-20">
-			<div class="product-group-main">
-				<div class="layui-field-box layui-form">
-					<form class="form-search layui-form layui-form-pane" id="searchForm" load-action="${ctx}/system/productgroup/api/getProductGroup"  onsubmit="return false">
-						<div class="layui-form-item">
-							<label class="layui-form-label">运营商:</label>
-							<div class="layui-input-inline" style="width: 120px">
-								<select name="operatorCode">
-							        <option value="0">--请选择--</option>
-								  	<option value="1">移动</option>
-								  	<option value="2">联通</option>
-								  	<option value="3">电信</option>
-							     </select>
-							</div>
-							<label class="layui-form-label">省份:</label>
-							<div class="layui-input-inline">
-								<select name="provinceCode" lay-verify="" lay-search>
-									<option value="0">--请选择--</option>
-							    </select>
-							</div>
-							<label class="layui-form-label">产品类型:</label>
-							<div class="layui-input-inline"  style="width: 160px">
-								<select name="productType">
-									<option value="0">--请选择--</option>
-								  	<option value="1">全国包可漫游</option>
-								  	<option value="2">省包不可漫游</option>
-							    </select>
-							</div>
-							<div class="layui-btn-group">
-								<button type="submit" class="layui-btn">查询</button>
-								<button class="layui-btn" onClick="return false;" data-title="添加产品组" data-modal='${ctx}/system/productgroup/pgroup-add'>添加产品组 </button>
-								<button class="layui-btn layui-btn-normal" onClick="return false;" data-title="克隆产品组" data-modal='${ctx}/system/productgroup/pgroup-clone'>克隆产品组 </button>
-							</div>
-							</div>
-					</form>
-					<table class="layui-table">
-						<thead>
-							<tr>
-								<th lay-data="{field:'productGroupName', width:220}">产品组名称</th>
-								<th lay-data="{field:'operatorCode', width:120}">运营商</th>
-								<th lay-data="{field:'provinceName', width:120}">省份</th>
-								<th lay-data="{field:'productType', width:120}">产品类型</th>
-								<th lay-data="{field:'createTime', width:120}">创建时间</th>
-								<th lay-data="{field:'handle', width:220}">操作</th>
-							</tr>
-						</thead>
-						<tbody id="table-body">
-						</tbody>
-					</table>
-				</div>
-				<div class="admin-table-page" style="float:right; margin:20px;">
-					<div id="page"></div>
-				</div>
-			</div>	
+			<div class="layui-field-box layui-form">
+				<form class="form-search layui-form layui-form-pane" id="searchForm" load-action="${ctx}/system/productgroup/api/getProductList"  onsubmit="return false">
+					<div class="layui-form-item">
+						<label class="layui-form-label">运营商:</label>
+						<div class="layui-input-inline" style="width: 120px">
+							<select name="operatorCode">
+							  	<option value="1">移动</option>
+							  	<option value="2">联通</option>
+							  	<option value="3">电信</option>
+						     </select>
+						</div>
+						<label class="layui-form-label">省份:</label>
+						<div class="layui-input-inline" style="width: 160px">
+							<select name="provinceCode" lay-verify="" lay-search>
+						    </select>
+						</div>
+						<label class="layui-form-label">产品类型:</label>
+						<div class="layui-input-inline"  style="width: 130px">
+							<select name="productType">
+							  	<option value="1">全国包可漫游</option>
+							  	<option value="2">省包不可漫游</option>
+						    </select>
+						</div>
+						<label class="layui-form-label">产品编码:</label>
+						<div class="layui-input-inline"  style="width: 160px">
+							<input type="text" name="productCode" placeholder="请输入产品编号" class="layui-input">
+						</div>
+						<div class="layui-btn-group">
+							<button type="submit" class="layui-btn">查询</button>
+						</div>
+					</div>
+				</form>
+				<table class="layui-table">
+					<thead>
+						<tr>
+							<th lay-data="{field:'productGroupName', width:220}">产品编码</th>
+							<th lay-data="{field:'operatorCode', width:120}">运营商</th>
+							<th lay-data="{field:'provinceName', width:120}">省份</th>
+							<th lay-data="{field:'productType', width:120}">产品类型</th>
+							<th lay-data="{field:'flowValue', width:120}">流量值</th>
+							<th lay-data="{field:'handle', width:220}">流量类型</th>
+							<th lay-data="{field:'handle', width:220}">备注</th>
+							<th lay-data="{field:'handle', width:220}">市场价</th>
+						</tr>
+					</thead>
+					<tbody id="table-body">
+					</tbody>
+				</table>
+			</div>
+			<div class="admin-table-page" style="float:right; margin:20px;">
+				<div id="page"></div>
+			</div>
 		</article>
 		<%@include file="/WEB-INF/view/commons/footer.jsp" %>
 	</div>

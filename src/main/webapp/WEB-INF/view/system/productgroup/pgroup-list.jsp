@@ -33,13 +33,13 @@
 							     </select>
 							</div>
 							<label class="layui-form-label">省份:</label>
-							<div class="layui-input-inline">
+							<div class="layui-input-inline" style="width: 160px">
 								<select name="provinceCode" lay-verify="" lay-search>
 									<option value="0">--请选择--</option>
 							    </select>
 							</div>
 							<label class="layui-form-label">产品类型:</label>
-							<div class="layui-input-inline"  style="width: 160px">
+							<div class="layui-input-inline"  style="width: 130px">
 								<select name="productType">
 									<option value="0">--请选择--</option>
 								  	<option value="1">全国包可漫游</option>
