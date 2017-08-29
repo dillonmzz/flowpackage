@@ -5,6 +5,10 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="product_group_id" property="productGroupId" jdbcType="INTEGER" />
     <result column="product_code" property="productCode" jdbcType="VARCHAR" />
+    <result column="operator_code" property="operatorCode" jdbcType="TINYINT" />
+    <result column="province_code" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="product_type" property="productType" jdbcType="TINYINT" />
     <result column="flow_value" property="flowValue" jdbcType="INTEGER" />
     <result column="market_price" property="marketPrice" jdbcType="REAL" />
     <result column="flow_type" property="flowType" jdbcType="TINYINT" />
@@ -12,14 +16,15 @@
     <result column="create_name" property="createName" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
+  
   <sql id="Base_Column_List" >
     id, product_group_id, product_code, flow_value, market_price, flow_type, flow_desc, 
     create_name, create_time
   </sql>
   
-  <sql id="PGroup_Column_List" >
-    product.id, product_group_id, product_group_name, product_code, flow_value, market_price, flow_type, flow_desc, 
-    product.create_name, product.create_time 
+  <sql id="Product_Column_List" >
+    product_code, operator_code, province.province_code, province.province_name, product_type, 
+    flow_value, flow_type, flow_desc, market_price
   </sql>
   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -40,6 +45,28 @@
     select id from res_product
     where product_group_id = #{id,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectProductByPage" resultMap="BaseResultMap" parameterType="product" >
+    select 
+    <include refid="Product_Column_List" />
+    from res_product product, res_product_group pgroup,sys_provinces province 
+    where 
+    product.product_group_id  = pgroup.id and 
+	pgroup.province_code = province.province_code 
+	<if test="operatorCode != null and operatorCode != 0">
+		and pgroup.operator_code = #{operatorCode} 
+	</if>
+   	<if test="provinceCode != null and provinceCode != 0">
+	    AND pgroup.province_code = #{provinceCode}
+    </if>
+    <if test="productType != null and productType != 0">
+    	AND pgroup.product_type = #{productType}
+    </if>
+    <if test="productCode != null and productCode != ''">
+    	AND product.product_code = #{productCode}
+    </if>
+  </select>
+  
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from res_product

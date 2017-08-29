@@ -20,11 +20,12 @@
 	<div class="Hui-article">
 		<article class="cl pt-20">
 			<div class="layui-field-box layui-form">
-				<form class="form-search layui-form layui-form-pane" id="searchForm" load-action="${ctx}/system/productgroup/api/getProductList"  onsubmit="return false">
+				<form class="form-search layui-form layui-form-pane" id="searchForm" load-action="${ctx}/system/productgroup/api/productquery"  onsubmit="return false">
 					<div class="layui-form-item">
 						<label class="layui-form-label">运营商:</label>
 						<div class="layui-input-inline" style="width: 120px">
 							<select name="operatorCode">
+								<option value="0">--请选择--</option>
 							  	<option value="1">移动</option>
 							  	<option value="2">联通</option>
 							  	<option value="3">电信</option>
@@ -33,11 +34,13 @@
 						<label class="layui-form-label">省份:</label>
 						<div class="layui-input-inline" style="width: 160px">
 							<select name="provinceCode" lay-verify="" lay-search>
+								<option value="0">--请选择--</option>
 						    </select>
 						</div>
 						<label class="layui-form-label">产品类型:</label>
 						<div class="layui-input-inline"  style="width: 130px">
 							<select name="productType">
+								<option value="0">--请选择--</option>
 							  	<option value="1">全国包可漫游</option>
 							  	<option value="2">省包不可漫游</option>
 						    </select>
@@ -58,17 +61,17 @@
 							<th lay-data="{field:'operatorCode', width:120}">运营商</th>
 							<th lay-data="{field:'provinceName', width:120}">省份</th>
 							<th lay-data="{field:'productType', width:120}">产品类型</th>
-							<th lay-data="{field:'flowValue', width:120}">流量值</th>
+							<th lay-data="{field:'flowValue', width:120}">流量值(M)</th>
 							<th lay-data="{field:'handle', width:220}">流量类型</th>
 							<th lay-data="{field:'handle', width:220}">备注</th>
-							<th lay-data="{field:'handle', width:220}">市场价</th>
+							<th lay-data="{field:'handle', width:220}">市场价(元)</th>
 						</tr>
 					</thead>
 					<tbody id="table-body">
 					</tbody>
 				</table>
 			</div>
-			<div class="admin-table-page" style="float:right; margin:20px;">
+			<div style="float:right; margin:20px;">
 				<div id="page"></div>
 			</div>
 		</article>
@@ -80,7 +83,7 @@
 	{{if rows.length > 0}} 
 		{{each rows item}}
 			<tr>
-				<td><a class="maincolor" modal-width="1100px" data-modal="${ctx}/system/productgroup/pgroup-productlist?pgroupId={{item.id}}" data-title="查看产品">{{item.productGroupName}}[{{item.childProductNums}}个]</a></td>
+				<td>{{item.productCode}}</td>
 				<td>
 				{{if item.operatorCode == 1}}
 					移动
@@ -98,13 +101,16 @@
 					省包不可漫游
 				{{/if}}
 				</td>
-				<td>{{item.createTime}}</td>
+				<td>{{item.flowValue}}</td>
 				<td>
-					<div class="layui-btn-group">
-						<a class="layui-btn layui-btn-mini" modal-width="1000px" data-modal="${ctx}/system/productgroup/pgroup-productedit?pgroupId={{item.id}}" data-title="添加/编辑产品" >编辑产品</a>
-						<a data-update="{{item.id}}" data-action='${ctx}/system/productgroup/pgroup-delete' data-title="确认删除该产品组吗？<br><font color='red'>警告：此操作将会删除对应的通道和通道产品以及客户产品！</font>" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>	
-					</div>		
+				{{if item.flowType == 1}}
+					普通包
+				{{else item.flowType == 2}}
+					特殊包
+				{{/if}}
 				</td>
+				<td>{{item.flowDesc}}</td>
+				<td>{{item.marketPrice}}</td>
 			</tr>
 		{{/each}} 
 	{{else}}

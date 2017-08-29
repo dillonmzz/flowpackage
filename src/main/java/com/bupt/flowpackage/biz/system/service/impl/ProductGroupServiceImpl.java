@@ -16,6 +16,7 @@ import com.bupt.flowpackage.biz.system.model.ProductAddReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupAddReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupCloneReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupReq;
+import com.bupt.flowpackage.biz.system.model.ProductListReq;
 import com.bupt.flowpackage.biz.system.model.ProductResp;
 import com.bupt.flowpackage.biz.system.service.ProductGroupService;
 import com.bupt.flowpackage.common.domain.Page;
@@ -190,7 +191,7 @@ public class ProductGroupServiceImpl implements ProductGroupService{
 		return deleteNum;
 	}
 	@Override
-	public ProductResp getProductList(Integer pgroupId) {
+	public ProductResp getProductListByGroupId(Integer pgroupId) {
 		ProductResp resp = new ProductResp();
 		ProductGroup pgroup = productGroupMapper.selectByPrimaryKey(pgroupId);
 		if(pgroup != null) {
@@ -203,6 +204,18 @@ public class ProductGroupServiceImpl implements ProductGroupService{
 		List<Product> productList = productMapper.selectByPGroupId(pgroupId);
 		resp.setProductList(productList);
 		return resp;
+	}
+	
+	@Override
+	public Page<Product> getProductListBySelect(ProductListReq bizReq){
+		Product product = new Product();
+		BeanUtils.copyProperties(bizReq, product);
+		
+		PageHelper.startPage(bizReq.getPageNum(), bizReq.getPageSize());
+		List<Product> productList = productMapper.selectProductByPage(product);
+		PageInfo<Product> pageInfo = new PageInfo<Product>(productList);
+		
+		return PageRespUtil.createPage(pageInfo);
 	}
 	
 }

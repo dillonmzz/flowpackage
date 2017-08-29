@@ -51,10 +51,10 @@
 			and productgroup.operator_code = #{operatorCode} 
 		</if>
     	<if test="provinceCode != null and provinceCode != 0">
-		    AND productgroup.province_code = ${provinceCode}
+		    AND productgroup.province_code = #{provinceCode}
 	    </if>
 	    <if test="productType != null and productType != 0">
-	    	AND productgroup.product_type = ${productType}
+	    	AND productgroup.product_type = #{productType}
 	    </if>
     </where>
 	order by productgroup.province_code 

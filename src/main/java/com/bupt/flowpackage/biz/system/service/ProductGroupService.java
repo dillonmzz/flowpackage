@@ -6,8 +6,10 @@ import com.bupt.flowpackage.biz.system.model.ProductAddReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupAddReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupCloneReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupReq;
+import com.bupt.flowpackage.biz.system.model.ProductListReq;
 import com.bupt.flowpackage.biz.system.model.ProductResp;
 import com.bupt.flowpackage.common.domain.Page;
+import com.bupt.flowpackage.mybatis.trade.product.model.Product;
 import com.bupt.flowpackage.mybatis.trade.productgroup.model.ProductGroup;
 
 /**
@@ -70,7 +72,15 @@ public interface ProductGroupService {
 	 * @param @return      
 	 * @return ProductResp
 	 */
-	public ProductResp getProductList(Integer pgroupId);
+	public ProductResp getProductListByGroupId(Integer pgroupId);
+	
+	/**
+	* 根据各种条件查询产品list
+	* @param @param bizReq
+	* @param @return
+	* @return ProductResp
+	 */
+	public Page<Product> getProductListBySelect(ProductListReq bizReq);
 	
 }
  

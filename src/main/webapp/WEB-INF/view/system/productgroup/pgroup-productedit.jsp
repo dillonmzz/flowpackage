@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/view/commons/taglib.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<style>
+div.layui-table-cell {
+	
+}
+</style>
 <form class="layui-form layui-box" style='padding:10px 10px 10px 10px' action="${ctx}/system/productgroup/api/product-update" data-auto="true" method="post">
 	<div class="layui-fluid">
 		<div class="layui-row">
@@ -20,7 +25,7 @@
 				<th lay-data="{field:'flowType', width:160}">流量类型</th>
 				<th lay-data="{field:'flowDesc', width:220}">备注</th>
 				<th lay-data="{field:'createTime', width:160}">创建时间</th>
-				<th lay-data="{field:'handel', width:100}">操作</th>
+				<th lay-data="{field:'handel', width:120}">操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -71,7 +76,7 @@
 				<td>
 				<input type="text" muxform="true" name="marketPrice" placeholder="请输入市场价" pattern="^[1-9]\d*(\.\d+)?$" title="市场价必须是数字" autocomplete="off" class="layui-input">
 				</td>
-				<td>
+				<td class="selecttd">
 					<select name="flowType" id="flowType">
 						<option value="1">普通包</option>
 						<option value="2">特殊包</option>

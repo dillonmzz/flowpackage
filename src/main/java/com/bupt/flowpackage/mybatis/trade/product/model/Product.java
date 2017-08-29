@@ -2,17 +2,15 @@ package com.bupt.flowpackage.mybatis.trade.product.model;
 
 import java.util.Date;
 
-import com.bupt.flowpackage.common.domain.BaseBean;
+import com.bupt.flowpackage.mybatis.trade.productgroup.model.ProductGroup;
 
-public class Product extends BaseBean{
+public class Product extends ProductGroup{
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 
     private Integer productGroupId;
     
-    private String productGroupName;
-
     private String productCode;
 
     private Integer flowValue;
@@ -27,14 +25,6 @@ public class Product extends BaseBean{
     
     private Date createTime;
     
-    public String getProductGroupName() {
-		return productGroupName;
-	}
-
-	public void setProductGroupName(String productGroupName) {
-		this.productGroupName = productGroupName;
-	}
-
 	public Integer getId() {
         return id;
     }

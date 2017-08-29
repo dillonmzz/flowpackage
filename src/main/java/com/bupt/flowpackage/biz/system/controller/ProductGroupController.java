@@ -16,11 +16,13 @@ import com.bupt.flowpackage.biz.system.model.ProductAddReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupAddReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupCloneReq;
 import com.bupt.flowpackage.biz.system.model.ProductGroupReq;
+import com.bupt.flowpackage.biz.system.model.ProductListReq;
 import com.bupt.flowpackage.biz.system.model.ProductResp;
 import com.bupt.flowpackage.biz.system.service.ProductGroupService;
 import com.bupt.flowpackage.common.domain.BaseResponse;
 import com.bupt.flowpackage.common.domain.Page;
 import com.bupt.flowpackage.common.exception.ExceptionHelper;
+import com.bupt.flowpackage.mybatis.trade.product.model.Product;
 import com.bupt.flowpackage.mybatis.trade.productgroup.model.ProductGroup;
 
 @Controller
@@ -110,6 +112,25 @@ public class ProductGroupController {
 		return baseResp;
 	}
 	
+	/**
+	* 产品查询
+	* @param @param req
+	* @param @return
+	* @return BaseResponse<ProductGroup>
+	 */
+	@ResponseBody
+	@RequestMapping("/api/productquery")
+	public BaseResponse<Product> productQuery(ProductListReq req) {
+		BaseResponse<Product> baseResp = new BaseResponse<Product>();
+		try{
+			Page<Product> page = productGroupService.getProductListBySelect(req);
+			baseResp.setPages(page);
+		}catch(Exception e) {
+			baseResp = ExceptionHelper.createResponse(e);
+		}
+		return baseResp;
+	}
+	
 	@ResponseBody
 	@RequestMapping("/api/product-update")
 	public BaseResponse<ProductGroup> productUpdate(ProductAddReq req) {
@@ -158,7 +179,7 @@ public class ProductGroupController {
 	@RequestMapping("/pgroup-productedit")
 	public String productEdit(@RequestParam(required=true)Integer pgroupId, ModelMap modelMap) {
 		try{
-			ProductResp resp = productGroupService.getProductList(pgroupId);
+			ProductResp resp = productGroupService.getProductListByGroupId(pgroupId);
 			modelMap.addAttribute("resp", resp);
 		}catch(Exception e) {
 			logger.error("产品组添加产品页面访问失败!", e);
@@ -176,7 +197,7 @@ public class ProductGroupController {
 	@RequestMapping("/pgroup-productlist")
 	public String productList(@RequestParam(required=true)Integer pgroupId, ModelMap modelMap) {
 		try{
-			ProductResp resp = productGroupService.getProductList(pgroupId);
+			ProductResp resp = productGroupService.getProductListByGroupId(pgroupId);
 			modelMap.addAttribute("resp", resp);
 		}catch(Exception e) {
 			logger.error("产品组查看产品页面访问失败!", e);

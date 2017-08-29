@@ -68,7 +68,7 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="admin-table-page" style="float:right; margin:20px;">
+				<div style="float:right; margin:20px;">
 					<div id="page"></div>
 				</div>
 			</div>	

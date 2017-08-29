@@ -18,6 +18,8 @@ public interface ProductMapper {
     
     List<Product> selectByPGroupId(Integer pgroupId);
     
+    List<Product> selectProductByPage(Product product);
+    
     List<Integer> selectProductIdsPGroupId(Integer pgroupId);
 
     int updateByPrimaryKeySelective(Product record);
