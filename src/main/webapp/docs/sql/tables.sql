@@ -242,6 +242,10 @@ create table res_provider
    visit_url            varchar(256) comment '访问地址',
    provider_desc        varchar(256) comment '供应商说明',
    symbol_code          varchar(32) comment '接口代号',
+   create_time          datetime comment '创建时间',
+   create_name          varchar(48) comment '创建人',
+   modify_time          datetime comment '修改时间',
+   modify_name          varchar(48) comment '修改人',
    primary key (id)
 );
 alter table res_provider comment '上游供应商';

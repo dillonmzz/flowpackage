@@ -42,7 +42,7 @@
 							<tr>
 								<th lay-data="{field:'providerName', width:220}">供应商名称</th>
 								<th lay-data="{field:'providerCode', width:120}">供应商编码</th>
-								<th lay-data="{field:'money', width:120}">余额/总额</th>
+								<th lay-data="{field:'money', width:120}">余额/总额(元)</th>
 								<th lay-data="{field:'status', width:120}">状态</th>
 								<th lay-data="{field:'callTime', width:120}">回调时长(分钟)</th>
 								<th lay-data="{field:'concurrentNum', width:120}">并发量(单/秒)</th>
@@ -100,9 +100,7 @@
 </script>
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript">
-layui.use('adminplugs', function(){
-	$.myutil.loadProvince();
-});
+
 </script>
 </body>
 </html>

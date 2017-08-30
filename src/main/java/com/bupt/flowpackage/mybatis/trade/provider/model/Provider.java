@@ -1,5 +1,7 @@
 package com.bupt.flowpackage.mybatis.trade.provider.model;
 
+import java.util.Date;
+
 import com.bupt.flowpackage.common.domain.PageRequest;
 
 public class Provider extends PageRequest{
@@ -30,8 +32,48 @@ public class Provider extends PageRequest{
     private String providerDesc;
 
     private String symbolCode;
+    
+    private Date createTime;
 
-    public Integer getId() {
+    private String createName;
+
+    private Date modifyTime;
+
+    private String modifyName;
+    
+    public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public String getCreateName() {
+		return createName;
+	}
+
+	public void setCreateName(String createName) {
+		this.createName = createName;
+	}
+
+	public Date getModifyTime() {
+		return modifyTime;
+	}
+
+	public void setModifyTime(Date modifyTime) {
+		this.modifyTime = modifyTime;
+	}
+
+	public String getModifyName() {
+		return modifyName;
+	}
+
+	public void setModifyName(String modifyName) {
+		this.modifyName = modifyName;
+	}
+
+	public Integer getId() {
         return id;
     }
 

@@ -15,10 +15,15 @@
     <result column="visit_url" property="visitUrl" jdbcType="VARCHAR" />
     <result column="provider_desc" property="providerDesc" jdbcType="VARCHAR" />
     <result column="symbol_code" property="symbolCode" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_name" property="createName" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="modify_name" property="modifyName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, provider_code, provider_name, balance, total_money, status, call_time, concurrent_num, 
-    receive_type, provider_ip, visit_url, provider_desc, symbol_code
+    receive_type, provider_ip, visit_url, provider_desc, symbol_code, create_time, create_name, 
+    modify_time, modify_name
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
