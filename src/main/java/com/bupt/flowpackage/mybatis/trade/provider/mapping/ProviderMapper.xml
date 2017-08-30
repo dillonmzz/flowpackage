@@ -26,6 +26,20 @@
     from res_provider
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectProviderByPage" resultMap="BaseResultMap" parameterType="provider" >
+    select 
+    <include refid="Base_Column_List" />
+    from res_provider 
+    where 1=1 
+    <if test="providerName != null and providerName != ''">
+    	AND provider_name = #{providerName}
+    </if>
+    <if test="providerCode != null and providerCode != ''">
+    	AND provider_code = #{providerCode}
+    </if>
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from res_provider
     where id = #{id,jdbcType=INTEGER}

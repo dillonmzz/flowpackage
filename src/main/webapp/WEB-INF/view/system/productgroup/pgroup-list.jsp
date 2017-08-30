@@ -48,7 +48,7 @@
 							</div>
 							<div class="layui-btn-group">
 								<button type="submit" class="layui-btn">查询</button>
-								<button class="layui-btn" onClick="return false;" data-title="添加产品组" data-modal='${ctx}/system/productgroup/pgroup-add'>添加产品组 </button>
+								<button class="layui-btn layui-btn-normal" onClick="return false;" data-title="添加产品组" data-modal='${ctx}/system/productgroup/pgroup-add'>添加产品组 </button>
 								<button class="layui-btn layui-btn-normal" onClick="return false;" data-title="克隆产品组" data-modal='${ctx}/system/productgroup/pgroup-clone'>克隆产品组 </button>
 							</div>
 							</div>

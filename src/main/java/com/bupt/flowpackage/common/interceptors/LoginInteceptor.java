@@ -73,6 +73,10 @@ public class LoginInteceptor  extends HandlerInterceptorAdapter{
 					}
 				}
 			}
+		} else if(sessionInfo == null) {
+			logger.info("\n用户访问url={} 因未登陆或session过期, 强制跳转到tologin登陆页", uri);
+			response.sendRedirect(request.getContextPath() + "/tologin");
+			return false;
 		}
 		return true;
 	}

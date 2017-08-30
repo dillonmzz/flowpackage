@@ -33,7 +33,7 @@
 							</div>
 							<div class="layui-btn-group">
 								<button type="submit" class="layui-btn">查询</button>
-								<button class="layui-btn" onClick="return false;" data-title="添加管理员" data-modal='${ctx}/adminmanage/admin/admin-add'>添加用户 </button>
+								<button class="layui-btn layui-btn-normal" onClick="return false;" data-title="添加管理员" data-modal='${ctx}/adminmanage/admin/admin-add'>添加用户 </button>
 							</div>
 						</div>
 					</form>

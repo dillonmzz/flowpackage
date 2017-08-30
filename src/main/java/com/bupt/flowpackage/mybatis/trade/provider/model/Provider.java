@@ -1,8 +1,8 @@
 package com.bupt.flowpackage.mybatis.trade.provider.model;
 
-import com.bupt.flowpackage.common.domain.BaseBean;
+import com.bupt.flowpackage.common.domain.PageRequest;
 
-public class Provider extends BaseBean{
+public class Provider extends PageRequest{
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;

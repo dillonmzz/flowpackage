@@ -1,4 +1,4 @@
-package com.bupt.flowpackage.biz.provider.controller;
+package com.bupt.flowpackage.biz.upstream.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 * @date 2017年8月17日 上午10:49:33
  */
 @Controller
-@RequestMapping("/provider/pchannel")
+@RequestMapping("/upstream/pchannel")
 public class PChannelController {
-	public static final String PATH = "/provider/pchannel/";
+	public static final String PATH = "/upstream/pchannel/";
 	
 	/**
 	 * <p>通道列表</p>   
