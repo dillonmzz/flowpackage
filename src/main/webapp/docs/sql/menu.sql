@@ -21,6 +21,7 @@ INSERT INTO `account`.`sys_menu` (`menu_no`, `application_code`, `menu_parent_no
 
 INSERT INTO `account`.`sys_menu` (`menu_no`, `application_code`, `menu_parent_no`, `menu_order`, `menu_name`, `menu_url`, `menu_type`, `menu_icon`, `is_visible`, `is_leaf`) VALUES ('3', '1001', NULL, '2', '上游管理', 'provider', '1', 'Hui-iconfont-banzhu', '1', '0');
 INSERT INTO `account`.`sys_menu` (`menu_no`, `application_code`, `menu_parent_no`, `menu_order`, `menu_name`, `menu_url`, `menu_type`, `menu_icon`, `is_visible`, `is_leaf`) VALUES ('301', '1001', '3', '1', '供应商', 'provider/provider-list.html', '1', NULL, '1', '1');
+INSERT INTO `account`.`sys_menu` (`menu_no`, `application_code`, `menu_parent_no`, `menu_order`, `menu_name`, `menu_url`, `menu_type`, `menu_icon`, `is_visible`, `is_leaf`) VALUES ('302', '1001', '301', '1', '供应商添加', 'provider/provider-add.html', '2', NULL, '1', '1');
 INSERT INTO `account`.`sys_menu` (`menu_no`, `application_code`, `menu_parent_no`, `menu_order`, `menu_name`, `menu_url`, `menu_type`, `menu_icon`, `is_visible`, `is_leaf`) VALUES ('302', '1001', '3', '2', '通道管理', 'pchannel/channel-list.html', '1', NULL, '1', '1');
 
 

@@ -36,7 +36,12 @@ public class ProviderController {
 	public String merchantList() {
 		return PATH + "provider-list";
 	}
-	
+	/**
+	* 获取供应商list
+	* @param @param req
+	* @param @return
+	* @return BaseResponse<Provider>
+	 */
 	@ResponseBody
 	@RequestMapping("/api/getProviderList")
 	public BaseResponse<Provider> getProviderList(Provider req) {
@@ -49,6 +54,17 @@ public class ProviderController {
 		}
 		return baseResp;
 	}
+	
+	/**
+	* 供应商添加页面
+	* @param @param modelMap
+	* @param @return
+	* @return String
+	 */
+	@RequestMapping("/provider-add")
+	public String providerAdd() {
+		return PATH + "provider-form";
+	} 
 	
 }
  

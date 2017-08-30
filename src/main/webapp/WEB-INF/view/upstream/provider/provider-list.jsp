@@ -33,7 +33,7 @@
 							</div>
 							<div class="layui-btn-group">
 								<button type="submit" class="layui-btn">查询</button>
-								<button class="layui-btn layui-btn-normal" onClick="return false;" data-title="添加产品组" data-modal='${ctx}/system/productgroup/pgroup-add'>添加供应商 </button>
+								<button class="layui-btn layui-btn-normal" onClick="return false;" data-title="添加供应商" modal-width="1100px" modal-offset="30px" data-modal='${ctx}/upstream/provider/provider-add'>添加供应商 </button>
 							</div>
 						</div>
 					</form>

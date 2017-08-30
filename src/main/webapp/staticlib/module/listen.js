@@ -33,7 +33,7 @@ layui.use('adminplugs', function(){
 
     /*! 注册 data-modal 事件行为 */
     this.$body.on('click', '[data-modal]', function () {
-        return $.form.modal($(this).attr('data-modal'), 'open_type=modal', $(this).attr('data-title') || '编辑', null, null, null, $(this).attr('modal-width'));
+        return $.form.modal($(this).attr('data-modal'), 'open_type=modal', $(this).attr('data-title') || '编辑', null, null, null, $(this).attr('modal-width'), $(this).attr('modal-offset'));
     });
 
     /*! 注册 data-open 事件行为 */

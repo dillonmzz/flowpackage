@@ -322,7 +322,7 @@ layui.define(['jquery', 'layer', 'form','laypage', 'table'], function(exports){
      * @param loading
      * @param tips
      */
-    _form.prototype.modal = function (url, data, title, callback, loading, tips, width) {
+    _form.prototype.modal = function (url, data, title, callback, loading, tips, width, offset) {
         this.load(url, data, 'GET', function (res) {
             if (typeof (res) === 'object') {
                 return $.msg.auto(res);
@@ -330,7 +330,7 @@ layui.define(['jquery', 'layer', 'form','laypage', 'table'], function(exports){
             layer.open({
                 type: 1,
                 btn: false,
-                offset: '100px',
+                offset: offset || '80px',
                 area: width  || "900px",
                 content: res,
                 title: title || '',
