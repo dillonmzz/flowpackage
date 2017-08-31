@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bupt.flowpackage.mybatis.trade.provider.mapper.ProviderInterfaceParamMapper" >
+  <resultMap id="BaseResultMap" type="com.bupt.flowpackage.mybatis.trade.provider.model.ProviderInterfaceParam" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="provider_id" property="providerId" jdbcType="INTEGER" />
+    <result column="interface_code" property="interfaceCode" jdbcType="INTEGER" />
+    <result column="param_name_en" property="paramNameEn" jdbcType="VARCHAR" />
+    <result column="param_value" property="paramValue" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, provider_id, interface_code, param_name_en, param_value
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from res_provider_interface_param
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from res_provider_interface_param
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bupt.flowpackage.mybatis.trade.provider.model.ProviderInterfaceParam" >
+    insert into res_provider_interface_param (id, provider_id, interface_code, 
+      param_name_en, param_value)
+    values (#{id,jdbcType=INTEGER}, #{providerId,jdbcType=INTEGER}, #{interfaceCode,jdbcType=INTEGER}, 
+      #{paramNameEn,jdbcType=VARCHAR}, #{paramValue,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bupt.flowpackage.mybatis.trade.provider.model.ProviderInterfaceParam" >
+    insert into res_provider_interface_param
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="providerId != null" >
+        provider_id,
+      </if>
+      <if test="interfaceCode != null" >
+        interface_code,
+      </if>
+      <if test="paramNameEn != null" >
+        param_name_en,
+      </if>
+      <if test="paramValue != null" >
+        param_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="providerId != null" >
+        #{providerId,jdbcType=INTEGER},
+      </if>
+      <if test="interfaceCode != null" >
+        #{interfaceCode,jdbcType=INTEGER},
+      </if>
+      <if test="paramNameEn != null" >
+        #{paramNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="paramValue != null" >
+        #{paramValue,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bupt.flowpackage.mybatis.trade.provider.model.ProviderInterfaceParam" >
+    update res_provider_interface_param
+    <set >
+      <if test="providerId != null" >
+        provider_id = #{providerId,jdbcType=INTEGER},
+      </if>
+      <if test="interfaceCode != null" >
+        interface_code = #{interfaceCode,jdbcType=INTEGER},
+      </if>
+      <if test="paramNameEn != null" >
+        param_name_en = #{paramNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="paramValue != null" >
+        param_value = #{paramValue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bupt.flowpackage.mybatis.trade.provider.model.ProviderInterfaceParam" >
+    update res_provider_interface_param
+    set provider_id = #{providerId,jdbcType=INTEGER},
+      interface_code = #{interfaceCode,jdbcType=INTEGER},
+      param_name_en = #{paramNameEn,jdbcType=VARCHAR},
+      param_value = #{paramValue,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

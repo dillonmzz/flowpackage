@@ -19,9 +19,9 @@ public class Provider extends PageRequest{
 
     private Boolean status;
 
-    private Integer callTime;
+    private Integer callTime = 12;
 
-    private Integer concurrentNum;
+    private Integer concurrentNum = 0;
 
     private Byte receiveType;
 

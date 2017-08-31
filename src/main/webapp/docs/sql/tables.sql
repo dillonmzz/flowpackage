@@ -450,3 +450,43 @@ create table flow_order_history
    primary key (id)
 );
 alter table flow_order_history comment '历史订单表';
+
+drop table if exists dict_interface_param;
+
+/*==============================================================*/
+/* Table: dict_interface_param                                  */
+/*==============================================================*/
+create table dict_interface_param
+(
+   id                   int not null auto_increment comment '主键',
+   interface_code       varchar(16) comment '接口编码',
+   param_name           varchar(64) comment '参数名称',
+   param_value          varchar(128) comment '参数值',
+   param_desc           varchar(128) comment '参数说明',
+   primary key (id)
+);
+
+alter table dict_interface_param comment '接口参数字典表';
+
+drop table if exists res_provider_interface_param;
+
+/*==============================================================*/
+/* Table: res_provider_interface_param                          */
+/*==============================================================*/
+create table res_provider_interface_param
+(
+   id                   int not null,
+   provider_id          int comment '供应商id',
+   interface_code       int comment '接口编码',
+   param_name_en        varchar(16) comment '参数名称英文',
+   param_value          varchar(128) comment '参数值',
+   primary key (id)
+);
+
+alter table res_provider_interface_param comment '供应商接口参数表';
+
+alter table res_provider_interface_param add constraint FK_Reference_12 foreign key (provider_id)
+      references res_provider (id) on delete cascade on update restrict;
+
+alter table res_provider_interface_param add constraint FK_Reference_13 foreign key (interface_code)
+      references dict_interface_param (id) on delete cascade on update restrict;

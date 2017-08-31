@@ -1,17 +1,22 @@
 package com.bupt.flowpackage.biz.upstream.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bupt.flowpackage.biz.upstream.model.ProviderAddOrEditResp;
 import com.bupt.flowpackage.biz.upstream.service.ProviderService;
 import com.bupt.flowpackage.common.domain.BaseResponse;
 import com.bupt.flowpackage.common.domain.Page;
 import com.bupt.flowpackage.common.exception.ExceptionHelper;
+import com.bupt.flowpackage.mybatis.account.role.model.Role;
 import com.bupt.flowpackage.mybatis.trade.provider.model.Provider;
 
 /** 
@@ -62,7 +67,16 @@ public class ProviderController {
 	* @return String
 	 */
 	@RequestMapping("/provider-add")
-	public String providerAdd() {
+	public String providerAdd(ModelMap modelMap) {
+		try{
+			ProviderAddOrEditResp resp = new ProviderAddOrEditResp();
+			Provider provider = new Provider();
+			resp.setProvider(provider);
+			modelMap.addAttribute("resp", resp);
+		}catch(Exception e) {
+			logger.error("供应商添加页面访问失败!", e);
+			throw e;
+		}
 		return PATH + "provider-form";
 	} 
 	

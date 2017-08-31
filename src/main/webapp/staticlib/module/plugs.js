@@ -327,31 +327,60 @@ layui.define(['jquery', 'layer', 'form','laypage', 'table'], function(exports){
             if (typeof (res) === 'object') {
                 return $.msg.auto(res);
             }
-            layer.open({
-                type: 1,
-                btn: false,
-                offset: offset || '80px',
-                area: width  || "900px",
-                content: res,
-                title: title || '',
-                success: function (dom, index) {
-                    // 此窗口完成时需要自动关闭
-                    $.msg.addAutoSuccessCloseIndex(index);
-                    var $container = $(dom);
-                    /* 处理样式及返回按钮事件 */
-                    $container.find('[data-close]').off('click').on('click', function () {
-                        if ($(this).attr('data-confirm')) {
-                            $.msg.confirm($(this).attr('data-confirm'), function () {
+            
+            if(offset != null) {
+            	layer.open({
+                    type: 1,
+                    btn: false,
+                    area: width  || "900px",
+                    content: res,
+                    title: title || '',
+                    success: function (dom, index) {
+                        // 此窗口完成时需要自动关闭
+                        $.msg.addAutoSuccessCloseIndex(index);
+                        var $container = $(dom);
+                        /* 处理样式及返回按钮事件 */
+                        $container.find('[data-close]').off('click').on('click', function () {
+                            if ($(this).attr('data-confirm')) {
+                                $.msg.confirm($(this).attr('data-confirm'), function () {
+                                    layer.close(index);
+                                });
+                            } else {
                                 layer.close(index);
-                            });
-                        } else {
-                            layer.close(index);
-                        }
-                    });
-                    /* 事件重载 */
-                    $.form.reInit($container);
-                }
-            });
+                            }
+                        });
+                        /* 事件重载 */
+                        $.form.reInit($container);
+                    }
+                });
+            }else {
+            	layer.open({
+                    type: 1,
+                    btn: false,
+                    offset: '90px',
+                    area: width  || "900px",
+                    content: res,
+                    title: title || '',
+                    success: function (dom, index) {
+                        // 此窗口完成时需要自动关闭
+                        $.msg.addAutoSuccessCloseIndex(index);
+                        var $container = $(dom);
+                        /* 处理样式及返回按钮事件 */
+                        $container.find('[data-close]').off('click').on('click', function () {
+                            if ($(this).attr('data-confirm')) {
+                                $.msg.confirm($(this).attr('data-confirm'), function () {
+                                    layer.close(index);
+                                });
+                            } else {
+                                layer.close(index);
+                            }
+                        });
+                        /* 事件重载 */
+                        $.form.reInit($container);
+                    }
+                });
+            }
+            
             return (typeof callback === 'function') && callback.call(this);
         }, loading, tips);
     };
