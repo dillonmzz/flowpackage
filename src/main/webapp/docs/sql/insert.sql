@@ -2,7 +2,7 @@
 insert into sys_application (id, application_code, application_name, application_desc) 
 values (1, 1001, '流量充值平台', '流量充值后台管理模块');
 
---添加菜单    菜刀队
+--添加菜单    菜刀队1
 insert into sys_menu (id, menu_no, application_code, menu_parent_no, menu_order, menu_name, menu_url, menu_icon, is_visible, is_leaf)
 	values (1, 1, 1001, null, 1, '管理员管理', '/admin', 'Hui-iconfont-root', true, false);
 insert into sys_menu (id, menu_no, application_code, menu_parent_no, menu_order, menu_name, menu_url, menu_icon, is_visible, is_leaf)
