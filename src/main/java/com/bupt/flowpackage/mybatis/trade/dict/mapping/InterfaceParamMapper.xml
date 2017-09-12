@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bupt.flowpackage.mybatis.trade.dict.mapper.InterfaceParamMapper" >
+  <resultMap id="BaseResultMap" type="com.bupt.flowpackage.mybatis.trade.dict.model.InterfaceParam" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="interface_code" property="interfaceCode" jdbcType="INTEGER" />
+    <result column="param_name" property="paramName" jdbcType="VARCHAR" />
+    <result column="param_name_en" property="paramNameEn" jdbcType="VARCHAR" />
+    <result column="param_value" property="paramValue" jdbcType="VARCHAR" />
+    <result column="param_desc" property="paramDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, interface_code, param_name, param_name_en, param_value, param_desc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dict_interface_param
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dict_interface_param
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bupt.flowpackage.mybatis.trade.dict.model.InterfaceParam" >
+    insert into dict_interface_param (id, interface_code, param_name, 
+      param_name_en, param_value, param_desc
+      )
+    values (#{id,jdbcType=INTEGER}, #{interfaceCode,jdbcType=INTEGER}, #{paramName,jdbcType=VARCHAR}, 
+      #{paramNameEn,jdbcType=VARCHAR}, #{paramValue,jdbcType=VARCHAR}, #{paramDesc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bupt.flowpackage.mybatis.trade.dict.model.InterfaceParam" >
+    insert into dict_interface_param
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="interfaceCode != null" >
+        interface_code,
+      </if>
+      <if test="paramName != null" >
+        param_name,
+      </if>
+      <if test="paramNameEn != null" >
+        param_name_en,
+      </if>
+      <if test="paramValue != null" >
+        param_value,
+      </if>
+      <if test="paramDesc != null" >
+        param_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="interfaceCode != null" >
+        #{interfaceCode,jdbcType=INTEGER},
+      </if>
+      <if test="paramName != null" >
+        #{paramName,jdbcType=VARCHAR},
+      </if>
+      <if test="paramNameEn != null" >
+        #{paramNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="paramValue != null" >
+        #{paramValue,jdbcType=VARCHAR},
+      </if>
+      <if test="paramDesc != null" >
+        #{paramDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bupt.flowpackage.mybatis.trade.dict.model.InterfaceParam" >
+    update dict_interface_param
+    <set >
+      <if test="interfaceCode != null" >
+        interface_code = #{interfaceCode,jdbcType=INTEGER},
+      </if>
+      <if test="paramName != null" >
+        param_name = #{paramName,jdbcType=VARCHAR},
+      </if>
+      <if test="paramNameEn != null" >
+        param_name_en = #{paramNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="paramValue != null" >
+        param_value = #{paramValue,jdbcType=VARCHAR},
+      </if>
+      <if test="paramDesc != null" >
+        param_desc = #{paramDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bupt.flowpackage.mybatis.trade.dict.model.InterfaceParam" >
+    update dict_interface_param
+    set interface_code = #{interfaceCode,jdbcType=INTEGER},
+      param_name = #{paramName,jdbcType=VARCHAR},
+      param_name_en = #{paramNameEn,jdbcType=VARCHAR},
+      param_value = #{paramValue,jdbcType=VARCHAR},
+      param_desc = #{paramDesc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
