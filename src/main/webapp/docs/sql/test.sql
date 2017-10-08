@@ -68,4 +68,4 @@ insert into cf_admin (id, login_name, password, real_name, mobile, email,
 	
 insert into cf_adminRole (id, admin_id, role_id) values (12, 12, 2);
 啊速度发撒地方sdfssd
-sdfsdf
+sdfsdfsdfsdf
